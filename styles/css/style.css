@@ -1,0 +1,427 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+  font-family: "Inter", sans-serif;
+}
+
+.font-22px {
+  font-size: 22px;
+}
+
+.font-24px {
+  font-size: 24px;
+}
+
+.font-28px {
+  font-size: 28px;
+}
+
+.font-48px {
+  font-size: 48px;
+}
+
+.hidden {
+  display: none;
+}
+
+.transparent-dark-background {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.foreground {
+  z-index: 10;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.border-radius {
+  border-radius: 4px;
+}
+
+.margin-top {
+  margin-top: 0.5rem;
+}
+
+#search {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 18.45rem;
+  height: 2.25rem;
+  z-index: 10;
+}
+#search i {
+  color: white;
+  margin: 0 0.36rem;
+}
+#search #search-bar {
+  width: 16.2rem;
+  height: 1.62rem;
+  border: none;
+  border-radius: 1rem;
+  font-size: 0.81rem;
+  padding: 0 0.5rem;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow: hidden;
+  /* Chrome, Safari, Edge, Opera */
+  /* Firefox */
+}
+html input::-webkit-outer-spin-button,
+html input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+html input[type=number] {
+  -moz-appearance: textfield;
+}
+
+#weather {
+  height: 100vh;
+  width: 100vw;
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#weather .weather__container {
+  position: absolute;
+  height: 18rem;
+  width: 15rem;
+  color: white;
+  text-align: center;
+}
+#weather .weather__container #temperature {
+  font-size: 2rem;
+}
+#weather .weather__container #clock {
+  font-family: "Inconsolata", monospace;
+  font-size: 0.8rem;
+}
+#weather .weather__container i {
+  font-size: 2.4rem;
+}
+#weather .weather__container .container-flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#credit {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+}
+
+#setup {
+  position: absolute;
+  background-color: white;
+  width: 100%;
+  z-index: 9;
+}
+
+#settings {
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: 1.5rem;
+  background: none;
+  border: none;
+  color: #dfdfdf;
+  -webkit-text-stroke: 1px black;
+  z-index: 10;
+}
+
+#settings:hover,
+#settings:active {
+  color: #fff;
+  transition: 0.2s;
+}
+
+.cloud {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  animation-duration: 60s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  overflow: hidden;
+}
+
+.fade {
+  animation: fade 60s;
+}
+
+.speed-1 {
+  animation-name: cloud-speed-1;
+}
+
+.speed-2 {
+  animation-name: cloud-speed-2;
+}
+
+.speed-3 {
+  animation-name: cloud-speed-3;
+}
+
+.speed-4 {
+  animation-name: cloud-speed-4;
+}
+
+.speed-5 {
+  animation-name: cloud-speed-5;
+}
+
+.rain {
+  animation-name: raining;
+}
+
+.snow {
+  animation-name: snowing;
+}
+
+.particle {
+  font-size: 5px;
+  position: absolute;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  color: #e8e8e8;
+  z-index: 1;
+}
+
+.lightning {
+  animation: flash 1s linear;
+}
+
+.atmosphere {
+  position: absolute;
+  overflow: hidden;
+  animation: shifting 12s linear infinite;
+  width: 100%;
+  left: 0;
+  bottom: -10%;
+}
+
+.layer-1 {
+  height: 90%;
+}
+
+.layer-2 {
+  height: 70%;
+  animation-delay: 1s;
+}
+
+.fog-1 {
+  background: linear-gradient(to top, rgba(242, 242, 242, 0.5), rgba(242, 242, 242, 0));
+}
+
+.fog-2 {
+  background: linear-gradient(to top, rgba(222, 222, 222, 0.5), rgba(222, 222, 222, 0));
+}
+
+.sand-1 {
+  background: linear-gradient(to top, rgba(227, 209, 179, 0.5), rgba(227, 209, 179, 0));
+}
+
+.sand-2 {
+  background: linear-gradient(to top, rgba(186, 171, 147, 0.5), rgba(186, 171, 147, 0));
+}
+
+@keyframes cloud-speed-1 {
+  from {
+    left: -20%;
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  to {
+    left: 60%;
+    opacity: 0;
+  }
+}
+@keyframes cloud-speed-2 {
+  from {
+    left: -20%;
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  to {
+    left: 70%;
+    opacity: 0;
+  }
+}
+@keyframes cloud-speed-3 {
+  from {
+    left: -20%;
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  to {
+    left: 80%;
+    opacity: 0;
+  }
+}
+@keyframes cloud-speed-4 {
+  from {
+    left: -20%;
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  to {
+    left: 90%;
+    opacity: 0;
+  }
+}
+@keyframes cloud-speed-5 {
+  from {
+    left: -20%;
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  85% {
+    opacity: 1;
+  }
+  to {
+    left: 100%;
+    opacity: 0;
+  }
+}
+@keyframes cloud-movement {
+  from {
+    left: -20%;
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  75% {
+    opacity: 1;
+  }
+  to {
+    left: 100%;
+    opacity: 0;
+  }
+}
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+  5% {
+    opacity: 1;
+  }
+  95% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes raining {
+  from {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  to {
+    top: 99%;
+    opacity: 0;
+  }
+}
+@keyframes snowing {
+  from {
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+    transform: translateX(-150%);
+  }
+  40% {
+    transform: translateX(250%);
+  }
+  70% {
+    transform: translateX(-150%);
+  }
+  90% {
+    opacity: 1;
+    transform: translateX(250%);
+  }
+  to {
+    opacity: 0;
+    top: 99%;
+  }
+}
+@keyframes flash {
+  from {
+    opacity: 0;
+  }
+  90% {
+    opacity: 1;
+    background: #fff;
+  }
+  to {
+    opacity: 0;
+  }
+}
+@keyframes shifting {
+  20% {
+    bottom: -5%;
+  }
+  40% {
+    bottom: 0%;
+  }
+  60% {
+    bottom: -5%;
+  }
+  80% {
+    bottom: -10%;
+  }
+  90% {
+    bottom: -5%;
+  }
+  100% {
+    bottom: -10%;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

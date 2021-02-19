@@ -1,0 +1,335 @@
+.cloud {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  animation-duration: 60s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  overflow: hidden;
+}
+
+.fade {
+  animation: fade 60s;
+}
+
+.speed-1 {
+  animation-name: cloud-speed-1; //160, 20s intervals
+}
+
+.speed-2 {
+  animation-name: cloud-speed-2;
+}
+
+.speed-3 {
+  animation-name: cloud-speed-3;
+}
+
+.speed-4 {
+  animation-name: cloud-speed-4;
+}
+
+.speed-5 {
+  animation-name: cloud-speed-5;
+}
+
+.rain {
+  animation-name: raining;
+}
+
+.snow {
+  animation-name: snowing;
+}
+
+.particle {
+  font-size: 5px;
+  position: absolute;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  color: #e8e8e8;
+  z-index: 1;
+}
+
+.lightning {
+  animation: flash 1s linear;
+}
+
+.atmosphere {
+  position: absolute;
+  overflow: hidden;
+  animation: shifting 12s linear infinite;
+  width: 100%;
+  left: 0;
+  bottom: -10%;
+  //opacity: 0.3;
+}
+
+.layer-1 {
+  height: 90%;
+
+  //#f2f2f2
+}
+
+.layer-2 {
+  height: 70%;
+
+  animation-delay: 1s;
+  //#dedede
+}
+
+.fog-1 {
+  background: linear-gradient(
+    to top,
+    rgba(242, 242, 242, 0.5),
+    rgba(242, 242, 242, 0)
+  );
+}
+
+.fog-2 {
+  background: linear-gradient(
+    to top,
+    rgba(222, 222, 222, 0.5),
+    rgba(222, 222, 222, 0)
+  );
+}
+
+.sand-1 {
+  background: linear-gradient(
+    to top,
+    rgba(227, 209, 179, 0.5),
+    rgba(227, 209, 179, 0)
+  );
+}
+
+.sand-2 {
+  background: linear-gradient(
+    to top,
+    rgba(186, 171, 147, 0.5),
+    rgba(186, 171, 147, 0)
+  );
+}
+
+@keyframes cloud-speed-1 {
+  from {
+    left: -20%;
+    opacity: 0;
+  }
+
+  5% {
+    opacity: 1;
+  }
+
+  85% {
+    opacity: 1;
+  }
+
+  to {
+    left: 60%;
+    opacity: 0;
+  }
+}
+
+@keyframes cloud-speed-2 {
+  from {
+    left: -20%;
+    opacity: 0;
+  }
+
+  5% {
+    opacity: 1;
+  }
+
+  85% {
+    opacity: 1;
+  }
+
+  to {
+    left: 70%;
+    opacity: 0;
+  }
+}
+
+@keyframes cloud-speed-3 {
+  from {
+    left: -20%;
+    opacity: 0;
+  }
+
+  5% {
+    opacity: 1;
+  }
+
+  85% {
+    opacity: 1;
+  }
+
+  to {
+    left: 80%;
+    opacity: 0;
+  }
+}
+
+@keyframes cloud-speed-4 {
+  from {
+    left: -20%;
+    opacity: 0;
+  }
+
+  5% {
+    opacity: 1;
+  }
+
+  85% {
+    opacity: 1;
+  }
+
+  to {
+    left: 90%;
+    opacity: 0;
+  }
+}
+
+@keyframes cloud-speed-5 {
+  from {
+    left: -20%;
+    opacity: 0;
+  }
+
+  5% {
+    opacity: 1;
+  }
+
+  85% {
+    opacity: 1;
+  }
+
+  to {
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes cloud-movement {
+  from {
+    left: -20%;
+    opacity: 0;
+  }
+
+  5% {
+    opacity: 1;
+  }
+
+  75% {
+    opacity: 1;
+  }
+
+  to {
+    left: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+
+  5% {
+    opacity: 1;
+  }
+
+  95% {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes raining {
+  from {
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+  to {
+    top: 99%;
+    opacity: 0;
+  }
+}
+
+@keyframes snowing {
+  from {
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+    transform: translateX(-150%);
+  }
+
+  40% {
+    transform: translateX(250%);
+  }
+
+  70% {
+    transform: translateX(-150%);
+  }
+
+  90% {
+    opacity: 1;
+    transform: translateX(250%);
+  }
+
+  to {
+    opacity: 0;
+    top: 99%;
+  }
+}
+
+@keyframes flash {
+  from {
+    opacity: 0;
+  }
+
+  90% {
+    opacity: 1;
+    background: #fff;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes shifting {
+  20% {
+    bottom: -5%;
+  }
+
+  40% {
+    bottom: 0%;
+  }
+
+  60% {
+    bottom: -5%;
+  }
+
+  80% {
+    bottom: -10%;
+  }
+
+  90% {
+    bottom: -5%;
+  }
+
+  100% {
+    bottom: -10%;
+  }
+}

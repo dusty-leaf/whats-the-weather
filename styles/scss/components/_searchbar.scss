@@ -1,0 +1,22 @@
+#search {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 18.45rem; //22.5rem
+  height: 2.25rem; //2.5rem
+  z-index: 10;
+
+  i {
+    color: white;
+    margin: 0 0.36rem; // 0.4rem
+  }
+
+  #search-bar {
+    width: 16.2rem; //18rem
+    height: 1.62rem; //1.8rem
+    border: none;
+    border-radius: 1rem;
+    font-size: 0.81rem;
+    padding: 0 0.5rem;
+  }
+}

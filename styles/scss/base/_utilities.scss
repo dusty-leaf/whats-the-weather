@@ -1,0 +1,25 @@
+.hidden {
+  display: none;
+}
+
+.transparent-dark-background {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.foreground {
+  z-index: 10;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.border-radius {
+  border-radius: 4px;
+}
+
+.margin-top {
+  margin-top: 0.5rem;
+}

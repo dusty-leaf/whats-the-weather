@@ -1,0 +1,10 @@
+// https://itnext.io/structuring-your-sass-projects-c8d41fa55ed4
+
+@use './base/reset';
+@use './base/typography';
+@use './base/utilities';
+@use './components/searchbar';
+@use './layout/navigation';
+@use './partials/weather';
+@use './partials/setup';
+@use './partials/animations';
