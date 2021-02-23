@@ -3,14 +3,16 @@ import { animateWeatherGFX, animateSky }from './scripts/animations.js';
 import { displayWeather, displayTemperature, displayLocation, displayClock } from './scripts/displayUI.js';
 import { updateLS, getLS } from './scripts/LS.js';
 import searchBar from './scripts/searchBar.js';
+import Location from './scripts/location.js';
+import getLocation from './scripts/location.js';
 
-const getWeather = () => {
-    const query = getLS('zip') ? `zip=${getLS('zip')},${getLS('country')}` : `q=${getLS('city')},${getLS('country')}`;
-    fetch(`https://api.openweathermap.org/data/2.5/weather?${query}&appid=${config.API_KEY}&units=imperial`)
+const getWeather = (lat, lon) => {
+    //const query = getLS('zip') ? `zip=${getLS('zip')}` : `q=${getLS('city')},${getLS('country')}`;
+    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${config.API_KEY}&units=imperial`)
         .then((response) => response.json())
         .then((data) => {
             console.log(data);
-            displayLocation(getLS('city'));
+            displayLocation(`${getLS('city').charAt(0)}${getLS('city').slice(1).toLowerCase()}`);
             const weather = data.weather[0].main;
             updateLS('weather', weather);
             displayWeather(data.weather[0].icon, weather);
@@ -32,8 +34,14 @@ const trackWeather = () => {
 }
 
 displayClock();
-getWeather();
-trackWeather();
-searchBar();
+const location = getLocation();
 
+getWeather(location.lat, location.lon);
+trackWeather();
+
+const uiSearchSubmit = document.getElementById('search-submit');
+uiSearchSubmit.addEventListener('click', () => {
+    searchBar();
+    getWeather();
+});
 

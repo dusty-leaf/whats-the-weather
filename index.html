@@ -11,9 +11,12 @@
     <title id="title">Homepage</title>
 </head>
 <body id="body">
-    <div id="search" class="transparent-dark-background foreground flex-center border-radius">
-        <i class="fas fa-search"></i>
-        <input id="search-bar" type="text" placeholder="City, Zip Code &#40;US only&#41; or Country Code">
+    <div class="search__container transparent-dark-background foreground flex-center border-radius">
+        <div class="search-bar flex-center">
+            <i class="fas fa-search"></i>
+            <input id="search" class="search__input" type="text" placeholder="City, Zip Code &#40;US only&#41; or Country Code">
+        </div>
+        <button type="submit" id="search-submit" class="search__submit">Go</button>  
     </div>
     <section id="weather">
         <div class="weather__container transparent-dark-background foreground border-radius">
