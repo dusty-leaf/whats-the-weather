@@ -2,6 +2,7 @@ import config from './scripts/config.js';
 import { animateWeatherGFX, animateSky }from './scripts/animations.js';
 import { displayWeather, displayTemperature, displayLocation, displayClock } from './scripts/displayUI.js';
 import { updateLS, getLS } from './scripts/LS.js';
+import searchBar from './scripts/searchBar.js';
 
 const getWeather = () => {
     const query = getLS('zip') ? `zip=${getLS('zip')},${getLS('country')}` : `q=${getLS('city')},${getLS('country')}`;
@@ -33,5 +34,6 @@ const trackWeather = () => {
 displayClock();
 getWeather();
 trackWeather();
+searchBar();
 
 
