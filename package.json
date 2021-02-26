@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "http-server": "^0.12.3",
+    "https-localhost": "^4.6.4",
     "sass-watch": "^0.1.0"
   }
 }
