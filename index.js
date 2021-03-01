@@ -4,27 +4,24 @@ import { displayWeather, displayTemperature, displayLocation, displayClock } fro
 import { updateLS, getLS } from './scripts/LS.js';
 import searchBar from './scripts/searchBar.js';
 import getLocation from './scripts/location.js';
+import reverseGeocode from './scripts/geocoding.js';
 
-const getWeather = (lat, lon) => {
+const getWeather = (lat, lon) => new Promise(
+    (resolve, reject) => {
     //const query = getLS('zip') ? `zip=${getLS('zip')}` : `q=${getLS('city')},${getLS('country')}`;
     // https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${config.API_KEY}&units=imperial
-    fetch(`https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${config.API_KEY}&units=imperial`)
+    // https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${config.API_KEY}&units=imperial
+    fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&appid=${config.OPENWEATHER_API_KEY}&units=imperial`)
         .then((response) => response.json())
         .then((data) => {
             console.log(data);
-            displayLocation(`${data.name.charAt(0)}${data.name.slice(1).toLowerCase()}`);
-            const weather = data.weather[0].main;
-            updateLS('weather', weather);
-            displayWeather(data.weather[0].icon, weather);
-            displayTemperature(Math.round(data.main.temp), Math.round(data.main.feels_like), Math.round(data.main.temp_max), Math.round(data.main.temp_min));
-            animateSky(weather, data.sys.sunrise, data.sys.sunset, data.coord.lat, data.coord.lon);
-            animateWeatherGFX(weather, data.weather[0].id);
+            resolve(data);
         })
         .catch(error => {
-            console.error(error);
             animateSky("default");
+            reject(error);
         });
-}
+});
 
 const trackWeather = (lat, lon) => {
     setInterval(() => {
@@ -34,15 +31,39 @@ const trackWeather = (lat, lon) => {
 }
 
 const setup = async () => {
-    getLocation()
+    const location = {};
+    await getLocation()
     .then((data) => {
-        const coords = data;
-        return coords;
+        location.lat = data.lat;
+        location.lon = data.lon;
+        console.log(location);
+        return location;
     })
-    .then((coords) => {
-        getWeather(coords.lat, coords.lon);
-        trackWeather(coords.lat, coords.lon);
+    .then(async (location) => {
+        await reverseGeocode(location.lat, location.lon, config.GOOGLE_API_KEY)
+            .then(value => location.name = value);
+        return location;
+    })
+    .then(async (location) => {
+        displayLocation(`${location.name.charAt(0)}${location.name.slice(1).toLowerCase()}`);
+        await getWeather(location.lat, location.lon)
+        .then((data) => {
+            const weather = data.current.weather[0].main;
+            const cur = data.current;
+            const today = data.daily[0];
+            updateLS('weather', weather);
+            displayWeather(weather.icon, weather);
+            displayTemperature(Math.round(cur.temp), Math.round(cur.feels_like), Math.round(today.temp.max), Math.round(today.temp.min));
+            animateSky(weather, today.sunrise, today.sunset, location.lat, location.lon);
+            animateWeatherGFX(weather, weather.id);
+            trackWeather(location.lat, location.lon);
+        });
+        
+    })
+    .catch((err) => {
+        console.error(err);
     });
+
 }
 
 
