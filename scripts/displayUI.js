@@ -30,8 +30,10 @@ const displayWeather = (id, status) => {
 
 // TEMPERATURE 
 
+//temperature, feelslike, highTemp, lowTemp
 const displayTemperature = (temperature, feelslike, highTemp, lowTemp) => {
-    const temps = arguments.forEach(el => Math.round(el));
+    const temps = [temperature, feelslike, highTemp, lowTemp].map(el => Math.round(el));
+    console.log(temps);
     const uiTemperature = document.getElementById("temperature");
     uiTemperature.innerHTML = `${temps[0]}&deg;F`;
 
@@ -49,7 +51,7 @@ const displayTemperature = (temperature, feelslike, highTemp, lowTemp) => {
 
 const displayLocation = (location) => {
     const uiLocation = document.getElementById('location');
-    uiLocation.innerHTML = location;
+    uiLocation.innerHTML = `${location.charAt(0)}${location.slice(1).toLowerCase()}`;
 }
 
 // CLOCK

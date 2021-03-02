@@ -52,17 +52,16 @@ const setup = async () => {
     })
     .then(async (location) => {
         await reverseGeocode(location.lat, location.lon, config.GOOGLE_API_KEY)
-            .then(value => location.name = value);
+        .then(value => location.name = value);
         return location;
     })
     .then(async (location) => {
-        displayLocation(`${location.name.charAt(0)}${location.name.slice(1).toLowerCase()}`);
+        displayLocation(location.name);
         await getWeather(location.lat, location.lon)
         .then((data) => {
             updateDOM(data);
             trackWeather(location.lat, location.lon);
-        });
-        
+        })   
     })
     .catch((err) => {
         console.error(err);
