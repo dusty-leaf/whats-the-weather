@@ -88,11 +88,11 @@ const displayForecast = (forecast) => {
         day.appendChild(icon);
 
         const high = document.createElement('p');
-        high.innerHTML = Math.round(el.temp.max);
+        high.innerHTML = `${Math.round(el.temp.max)}&deg;`;
         day.appendChild(high);
 
         const low = document.createElement('p');
-        low.innerText = Math.round(el.temp.min);
+        low.innerHTML = `${Math.round(el.temp.min)}&deg;`;
         low.classList.add('forecast__container--low');
         day.appendChild(low);
 
