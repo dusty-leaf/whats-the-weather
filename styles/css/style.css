@@ -123,7 +123,7 @@ html input[type=number] {
 }
 #weather .weather__container {
   position: absolute;
-  height: 18rem;
+  height: 22rem;
   width: 15rem;
   color: white;
   text-align: center;
@@ -131,9 +131,12 @@ html input[type=number] {
 #weather .weather__container #temperature {
   font-size: 2rem;
 }
+#weather .weather__container #date,
+#weather .weather__container #clock {
+  font-size: 0.8rem;
+}
 #weather .weather__container #clock {
   font-family: "Inconsolata", monospace;
-  font-size: 0.8rem;
 }
 #weather .weather__container i {
   font-size: 2.4rem;
@@ -142,6 +145,24 @@ html input[type=number] {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+#weather .weather__container #weather-forecast {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-top: 1rem;
+}
+#weather .weather__container #weather-forecast .forecast__container p,
+#weather .weather__container #weather-forecast .forecast__container i {
+  font-size: 0.8rem;
+  padding-right: 0.4rem;
+}
+#weather .weather__container #weather-forecast .forecast__container .forecast__container--low {
+  color: #e0e0e0;
+}
+#weather .weather__container #weather-forecast .forecast__container:not(:last-of-type) {
+  margin-right: 0.4rem;
+  border-right: 1px solid white;
 }
 
 #credit {

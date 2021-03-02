@@ -1,15 +1,11 @@
 // WEATHER
 
-const displayWeather = (id, status) => {
-    const uiWeatherIcon = document.getElementById("weather-icon");
-    const uiWeatherStatus = document.getElementById("weather-status");
-    let classes = [];
-
+const getIcon = (id, status) => {
     switch(status){
-        case 'Thunderstorm': classes = ['fas', 'fa-bolt']; break;
-        case 'Drizzle': classes = ['fas', 'fa-cloud-rain']; break;
-        case 'Rain': classes = ['fas', 'fa-cloud-showers-heavy']; break;
-        case 'Snow': classes = ['fas', 'fa-snowflake']; break;
+        case 'Thunderstorm': return ['fas', 'fa-bolt']; 
+        case 'Drizzle': return ['fas', 'fa-cloud-rain']; 
+        case 'Rain': return ['fas', 'fa-cloud-showers-heavy']; 
+        case 'Snow': return ['fas', 'fa-snowflake']; 
         case 'Mist':
         case 'Smoke':
         case 'Haze':
@@ -18,11 +14,24 @@ const displayWeather = (id, status) => {
         case 'Sand':
         case 'Ash': 
         case 'Squall':
-        case 'Tornado': classes = ['fas', 'fa-smog']; break; //specific tornado icon availible with font-awesome pro
-        case 'Clear': classes = ['fas', 'fa-sun']; break;
-        case 'Clouds': Number.parseInt(id) < 803 ? classes = ['fas', 'fa-cloud-sun'] : classes = ['fas', 'fa-cloud']; break;
-        default: classes = ['fas', 'fa-cloud'];
+        case 'Tornado': return ['fas', 'fa-smog'];  //specific tornado icon availible with font-awesome pro
+        case 'Clear': return ['fas', 'fa-sun'];
+        case 'Clouds': 
+            if(Number.parseInt(id) < 803){
+                return ['fas', 'fa-cloud-sun'] ;
+            } else {
+                return ['fas', 'fa-cloud']
+            };
+        default: return ['fas', 'fa-cloud'];
     }
+}
+
+const displayWeather = (id, status) => {
+    const uiWeatherIcon = document.getElementById("weather-icon");
+    const uiWeatherStatus = document.getElementById("weather-status");
+    let classes = [];
+
+    classes = getIcon(id, status);
 
     classes.forEach(el => uiWeatherIcon.classList.add(el));
     uiWeatherStatus.innerHTML = status;
@@ -33,7 +42,7 @@ const displayWeather = (id, status) => {
 //temperature, feelslike, highTemp, lowTemp
 const displayTemperature = (temperature, feelslike, highTemp, lowTemp) => {
     const temps = [temperature, feelslike, highTemp, lowTemp].map(el => Math.round(el));
-    console.log(temps);
+    
     const uiTemperature = document.getElementById("temperature");
     uiTemperature.innerHTML = `${temps[0]}&deg;F`;
 
@@ -47,11 +56,48 @@ const displayTemperature = (temperature, feelslike, highTemp, lowTemp) => {
     low.innerHTML = `Low: ${temps[3]}&deg;F`;
 }
 
+// FORECAST
+
+const displayForecast = (forecast) => {
+    const temps = forecast.slice(1);
+    console.log(temps);
+    const root = document.getElementById('weather-forecast');
+
+    temps.forEach(el => {
+        
+        const day = document.createElement('div');
+        day.classList.add('forecast__container');
+
+        const icon = document.createElement('i');
+        const iconClasses = getIcon(el.weather[0].id, el.weather[0].main);
+        iconClasses.forEach(el => icon.classList.add(el));
+        day.appendChild(icon);
+
+        const high = document.createElement('p');
+        high.innerHTML = Math.round(el.temp.max);
+        day.appendChild(high);
+
+        const low = document.createElement('p');
+        low.innerText = Math.round(el.temp.min);
+        low.classList.add('forecast__container--low');
+        day.appendChild(low);
+
+        root.appendChild(day);
+    });
+}
+
 // LOCATION 
 
 const displayLocation = (location) => {
     const uiLocation = document.getElementById('location');
     uiLocation.innerHTML = `${location.charAt(0)}${location.slice(1).toLowerCase()}`;
+}
+
+// DATE
+
+const displayDate = () => {
+    const uiDate = document.getElementById('date');
+    uiDate.innerText = new Date().toDateString();
 }
 
 // CLOCK
@@ -65,4 +111,4 @@ const displayClock = () => {
     setInterval(updateClock, 1000);
 }
 
-export { displayWeather, displayTemperature, displayLocation, displayClock };
+export { displayWeather, displayTemperature, displayForecast, displayLocation, displayDate, displayClock };

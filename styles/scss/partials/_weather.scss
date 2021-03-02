@@ -11,7 +11,7 @@
 
   .weather__container {
     position: absolute;
-    height: 18rem;
+    height: 22rem;
     width: 15rem;
     color: white;
     text-align: center;
@@ -20,9 +20,13 @@
       font-size: 2rem;
     }
 
+    #date,
+    #clock {
+      font-size: 0.8rem;
+    }
+
     #clock {
       font-family: "Inconsolata", monospace;
-      font-size: 0.8rem;
     }
 
     i {
@@ -33,6 +37,30 @@
       display: flex;
       align-items: center;
       justify-content: center;
+    }
+
+    #weather-forecast {
+      display: flex;
+      justify-content: center;
+      align-content: center;
+      margin-top: 1rem;
+
+      .forecast__container {
+        p,
+        i {
+          font-size: 0.8rem;
+          padding-right: 0.4rem;
+        }
+
+        .forecast__container--low {
+          color: #e0e0e0;
+        }
+      }
+
+      .forecast__container:not(:last-of-type) {
+        margin-right: 0.4rem;
+        border-right: 1px solid white;
+      }
     }
   }
 }

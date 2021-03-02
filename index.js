@@ -1,6 +1,6 @@
 import config from './scripts/config.js';
 import { animateWeatherGFX, animateSky }from './scripts/animations.js';
-import { displayWeather, displayTemperature, displayLocation, displayClock } from './scripts/displayUI.js';
+import { displayWeather, displayTemperature, displayForecast, displayLocation, displayDate, displayClock } from './scripts/displayUI.js';
 import { updateLS, getLS } from './scripts/LS.js';
 import searchBar from './scripts/searchBar.js';
 import getLocation from './scripts/location.js';
@@ -13,6 +13,7 @@ const updateDOM = (data) => {
     updateLS('weather', weather);
     displayWeather(weather.icon, weather);
     displayTemperature(cur.temp, cur.feels_like, today.temp.max, today.temp.min);
+    displayForecast(data.daily);
     animateSky(weather, today.sunrise, today.sunset, location.lat, location.lon);
     animateWeatherGFX(weather, weather.id);
 }
@@ -71,6 +72,7 @@ const setup = async () => {
 
 
 setup();
+displayDate();
 displayClock();
 
 
