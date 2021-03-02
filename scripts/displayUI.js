@@ -31,17 +31,18 @@ const displayWeather = (id, status) => {
 // TEMPERATURE 
 
 const displayTemperature = (temperature, feelslike, highTemp, lowTemp) => {
+    const temps = arguments.forEach(el => Math.round(el));
     const uiTemperature = document.getElementById("temperature");
-    uiTemperature.innerHTML = `${temperature}&deg;F`;
+    uiTemperature.innerHTML = `${temps[0]}&deg;F`;
 
     const uiFeelsLike = document.getElementById("feelslike");
-    uiFeelsLike.innerHTML = `Feels like ${feelslike}&deg;F`;
+    uiFeelsLike.innerHTML = `Feels like ${temps[1]}&deg;F`;
 
     const high = document.getElementById("high");
-    high.innerHTML = `High: ${highTemp}&deg;F`;
+    high.innerHTML = `High: ${temps[2]}&deg;F`;
 
     const low = document.getElementById("low");
-    low.innerHTML = `Low: ${lowTemp}&deg;F`;
+    low.innerHTML = `Low: ${temps[3]}&deg;F`;
 }
 
 // LOCATION 

@@ -12,7 +12,7 @@ const updateDOM = (data) => {
     const today = data.daily[0];
     updateLS('weather', weather);
     displayWeather(weather.icon, weather);
-    displayTemperature(Math.round(cur.temp), Math.round(cur.feels_like), Math.round(today.temp.max), Math.round(today.temp.min));
+    displayTemperature(cur.temp, cur.feels_like, today.temp.max, today.temp.min);
     animateSky(weather, today.sunrise, today.sunset, location.lat, location.lon);
     animateWeatherGFX(weather, weather.id);
 }
