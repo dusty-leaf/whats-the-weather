@@ -11,8 +11,8 @@
 
   .weather__container {
     position: absolute;
-    height: 22rem;
-    width: 15rem;
+    height: 24rem;
+    width: 18rem;
     color: white;
     text-align: center;
 
@@ -39,11 +39,16 @@
       justify-content: center;
     }
 
+    h4 {
+      margin-top: 1rem;
+    }
+
     #weather-forecast {
       display: flex;
       justify-content: center;
       align-content: center;
       margin-top: 1rem;
+      padding-left: 0.4rem;
 
       .forecast__container {
         p,

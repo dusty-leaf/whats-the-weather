@@ -63,10 +63,24 @@ const displayForecast = (forecast) => {
     console.log(temps);
     const root = document.getElementById('weather-forecast');
 
+    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+    let dayOfTheWeek = new Date().getUTCDay();
+    console.log(dayOfTheWeek);
+
     temps.forEach(el => {
         
         const day = document.createElement('div');
         day.classList.add('forecast__container');
+
+        const name = document.createElement('p');
+        dayOfTheWeek += 1;
+        if(dayOfTheWeek < 7){
+            name.innerText = days[dayOfTheWeek];
+        } else {
+            dayOfTheWeek = 0;
+            name.innerText = days[dayOfTheWeek];
+        }
+        day.appendChild(name);
 
         const icon = document.createElement('i');
         const iconClasses = getIcon(el.weather[0].id, el.weather[0].main);

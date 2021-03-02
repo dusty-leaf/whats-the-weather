@@ -123,8 +123,8 @@ html input[type=number] {
 }
 #weather .weather__container {
   position: absolute;
-  height: 22rem;
-  width: 15rem;
+  height: 24rem;
+  width: 18rem;
   color: white;
   text-align: center;
 }
@@ -146,11 +146,15 @@ html input[type=number] {
   align-items: center;
   justify-content: center;
 }
+#weather .weather__container h4 {
+  margin-top: 1rem;
+}
 #weather .weather__container #weather-forecast {
   display: flex;
   justify-content: center;
   align-content: center;
   margin-top: 1rem;
+  padding-left: 0.4rem;
 }
 #weather .weather__container #weather-forecast .forecast__container p,
 #weather .weather__container #weather-forecast .forecast__container i {
