@@ -6,6 +6,17 @@ import searchBar from './scripts/searchBar.js';
 import getLocation from './scripts/location.js';
 import reverseGeocode from './scripts/geocoding.js';
 
+const updateDOM = (data) => {
+    const weather = data.current.weather[0].main;
+    const cur = data.current;
+    const today = data.daily[0];
+    updateLS('weather', weather);
+    displayWeather(weather.icon, weather);
+    displayTemperature(Math.round(cur.temp), Math.round(cur.feels_like), Math.round(today.temp.max), Math.round(today.temp.min));
+    animateSky(weather, today.sunrise, today.sunset, location.lat, location.lon);
+    animateWeatherGFX(weather, weather.id);
+}
+
 const getWeather = (lat, lon) => new Promise(
     (resolve, reject) => {
     //const query = getLS('zip') ? `zip=${getLS('zip')}` : `q=${getLS('city')},${getLS('country')}`;
@@ -48,14 +59,7 @@ const setup = async () => {
         displayLocation(`${location.name.charAt(0)}${location.name.slice(1).toLowerCase()}`);
         await getWeather(location.lat, location.lon)
         .then((data) => {
-            const weather = data.current.weather[0].main;
-            const cur = data.current;
-            const today = data.daily[0];
-            updateLS('weather', weather);
-            displayWeather(weather.icon, weather);
-            displayTemperature(Math.round(cur.temp), Math.round(cur.feels_like), Math.round(today.temp.max), Math.round(today.temp.min));
-            animateSky(weather, today.sunrise, today.sunset, location.lat, location.lon);
-            animateWeatherGFX(weather, weather.id);
+            updateDOM(data);
             trackWeather(location.lat, location.lon);
         });
         
