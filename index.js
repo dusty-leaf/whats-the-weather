@@ -8,11 +8,11 @@ import reverseGeocode from './scripts/geocoding.js';
 
 const updateDOM = (data) => {
     const weather = data.current.weather[0].main;
-    const cur = data.current;
+    const current = data.current;
     const today = data.daily[0];
     updateLS('weather', weather);
     displayWeather(weather.icon, weather);
-    displayTemperature(cur.temp, cur.feels_like, today.temp.max, today.temp.min);
+    displayTemperature(current.temp, current.feels_like, today.temp.max, today.temp.min);
     displayForecast(data.daily);
     animateSky(weather, today.sunrise, today.sunset, location.lat, location.lon);
     animateWeatherGFX(weather, weather.id);

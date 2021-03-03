@@ -60,12 +60,10 @@ const displayTemperature = (temperature, feelslike, highTemp, lowTemp) => {
 
 const displayForecast = (forecast) => {
     const temps = forecast.slice(1);
-    console.log(temps);
     const root = document.getElementById('weather-forecast');
 
     const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     let dayOfTheWeek = new Date().getUTCDay();
-    console.log(dayOfTheWeek);
 
     temps.forEach(el => {
         
