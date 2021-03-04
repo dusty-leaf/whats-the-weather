@@ -5,6 +5,7 @@ import { updateLS, getLS } from './scripts/LS.js';
 import getLocation from './scripts/location.js';
 import reverseGeocode from './scripts/geocoding.js';
 import autocompleteSearchBar from './scripts/autocompleteSearchBar.js';
+import controls from './scripts/controls.js';
 
 const updateDOM = (data) => {
     const weather = data.current.weather[0].main;
@@ -37,7 +38,10 @@ const getWeather = (lat, lon, unit) => new Promise(
 
 const trackWeather = (lat, lon, unit) => {
     setInterval(() => {
-        getWeather(lat, lon, unit);
+        getWeather(lat, lon, unit)
+        .then((data) => {
+            updateDOM(data);
+        });
     }, 60000);
     
 }
@@ -61,7 +65,7 @@ const setup = async () => {
         await getWeather(location.lat, location.lon, 'imperial')
         .then((data) => {
             updateDOM(data);
-            trackWeather(location.lat, location.lon);
+            trackWeather(location.lat, location.lon, 'imperial');
         })   
     })
     .catch((err) => {
@@ -75,4 +79,5 @@ setup();
 displayDate();
 displayClock();
 autocompleteSearchBar();
+controls();
 
