@@ -25,6 +25,14 @@ html {
   font-size: 48px;
 }
 
+.font-active {
+  color: white;
+}
+
+.font-inactive {
+  color: #e0e0e0;
+}
+
 .hidden {
   display: none;
 }

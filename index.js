@@ -18,12 +18,12 @@ const updateDOM = (data) => {
     animateWeatherGFX(weather, weather.id);
 }
 
-const getWeather = (lat, lon) => new Promise(
+const getWeather = (lat, lon, unit) => new Promise(
     (resolve, reject) => {
     //const query = getLS('zip') ? `zip=${getLS('zip')}` : `q=${getLS('city')},${getLS('country')}`;
     // https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${config.API_KEY}&units=imperial
     // https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${config.API_KEY}&units=imperial
-    fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&appid=${config.OPENWEATHER_API_KEY}&units=imperial`)
+    fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&appid=${config.OPENWEATHER_API_KEY}&units=${unit}`)
         .then((response) => response.json())
         .then((data) => {
             console.log(data);
@@ -35,9 +35,9 @@ const getWeather = (lat, lon) => new Promise(
         });
 });
 
-const trackWeather = (lat, lon) => {
+const trackWeather = (lat, lon, unit) => {
     setInterval(() => {
-        getWeather(lat, lon);
+        getWeather(lat, lon, unit);
     }, 60000);
     
 }
@@ -58,7 +58,7 @@ const setup = async () => {
     })
     .then(async (location) => {
         displayLocation(location.name);
-        await getWeather(location.lat, location.lon)
+        await getWeather(location.lat, location.lon, 'imperial')
         .then((data) => {
             updateDOM(data);
             trackWeather(location.lat, location.lon);
