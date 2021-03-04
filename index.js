@@ -74,6 +74,8 @@ const setup = async () => {
 
 }
 
+const googleapis = document.getElementById('googleapis');
+googleapis.src = `https://maps.googleapis.com/maps/api/js?key=${config.GOOGLE_API_KEY}&libraries=places`
 
 setup();
 displayDate();
