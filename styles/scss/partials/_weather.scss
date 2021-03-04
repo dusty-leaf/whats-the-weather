@@ -16,6 +16,13 @@
     color: white;
     text-align: center;
 
+    .weather__controls {
+      position: absolute;
+      top: 0;
+      left: 90%;
+      display: flex;
+    }
+
     #temperature {
       font-size: 2rem;
     }

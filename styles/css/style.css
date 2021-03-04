@@ -128,6 +128,12 @@ html input[type=number] {
   color: white;
   text-align: center;
 }
+#weather .weather__container .weather__controls {
+  position: absolute;
+  top: 0;
+  left: 90%;
+  display: flex;
+}
 #weather .weather__container #temperature {
   font-size: 2rem;
 }

@@ -2,9 +2,9 @@ import config from './scripts/config.js';
 import { animateWeatherGFX, animateSky }from './scripts/animations.js';
 import { displayWeather, displayTemperature, displayForecast, displayLocation, displayDate, displayClock } from './scripts/displayUI.js';
 import { updateLS, getLS } from './scripts/LS.js';
-import searchBar from './scripts/searchBar.js';
 import getLocation from './scripts/location.js';
 import reverseGeocode from './scripts/geocoding.js';
+import autocompleteSearchBar from './scripts/autocompleteSearchBar.js';
 
 const updateDOM = (data) => {
     const weather = data.current.weather[0].main;
@@ -74,11 +74,5 @@ const setup = async () => {
 setup();
 displayDate();
 displayClock();
+autocompleteSearchBar();
 
-
-/* const uiSearchSubmit = document.getElementById('search-submit');
-uiSearchSubmit.addEventListener('click', () => {
-    searchBar();
-    getWeather();
-});
- */

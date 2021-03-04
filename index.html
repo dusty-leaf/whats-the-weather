@@ -8,18 +8,26 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet"> 
     <link href="https://fonts.googleapis.com/css2?family=Inconsolata&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" type="text/css" href="styles/css/style.css">
+    <script 
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyANh0MiQniJabA2sbuMIQy0UIFWiFhpiWg&libraries=places">
+    </script>
     <title id="title">Homepage</title>
 </head>
 <body id="body">
     <div class="search__container transparent-dark-background foreground flex-center border-radius">
         <div class="search-bar flex-center">
             <i class="fas fa-search"></i>
-            <input id="search" class="search__input" type="text" placeholder="Zip Code">
+            <input id="search" class="search__input" type="text" placeholder="City/town">
         </div>
         <button type="submit" id="search-submit" class="search__submit">Go</button>  
     </div>
     <section id="weather">
         <div class="weather__container transparent-dark-background foreground border-radius">
+            <div class="weather__controls">
+                <button id="F">F</button>
+                <p>/</p>
+                <button id="C">C</button>
+            </div>
             <h2 id="location" class="margin-top"></h2>
             <p id="date"></p>
             <p id="clock"></p>
