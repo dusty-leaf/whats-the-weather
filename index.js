@@ -1,18 +1,31 @@
 import config from './scripts/config.js';
 import { animateWeatherGFX, animateSky }from './scripts/animations.js';
 import { displayWeather, displayTemperature, displayForecast, displayLocation, displayDate, displayClock } from './scripts/displayUI.js';
-import { updateLS, getLS } from './scripts/LS.js';
+import { setLS, getLS } from './scripts/LS.js';
 import getLocation from './scripts/location.js';
 import reverseGeocode from './scripts/geocoding.js';
 import autocompleteSearchBar from './scripts/autocompleteSearchBar.js';
 import controls from './scripts/controls.js';
 
+const updateLS = (data) => {
+    const current = data.current;
+    const today = data.daily[0];
+
+    setLS([
+        { key: 'current', value: current.temp },
+        { key: 'feelslike', value: current.feels_like },
+        { key: 'max', value: today.temp.max },
+        { key: 'min', value: today.temp.min },
+        { key: 'forecast', value: JSON.stringify(data.daily)}
+    ]);
+
+}
+
 const updateDOM = (data) => {
     const weather = data.current.weather[0].main;
     const current = data.current;
     const today = data.daily[0];
-    updateLS('weather', weather);
-    displayWeather(weather.icon, weather);
+    setLS([{ key: 'weather', value: weather }]);
     displayTemperature(current.temp, current.feels_like, today.temp.max, today.temp.min);
     displayForecast(data.daily);
     animateSky(weather, today.sunrise, today.sunset, location.lat, location.lon);
@@ -36,17 +49,23 @@ const getWeather = (lat, lon, unit) => new Promise(
         });
 });
 
+let keepDataUpdated;
+
 const trackWeather = (lat, lon, unit) => {
-    setInterval(() => {
+    keepDataUpdated = setInterval(() => {
         getWeather(lat, lon, unit)
         .then((data) => {
+            updateLS(data);
             updateDOM(data);
         });
     }, 60000);
     
 }
 
+
+
 const setup = async () => {
+    const units = 'imperial';
     const location = {};
     await getLocation()
     .then((data) => {
@@ -62,10 +81,12 @@ const setup = async () => {
     })
     .then(async (location) => {
         displayLocation(location.name);
-        await getWeather(location.lat, location.lon, 'imperial')
+        await getWeather(location.lat, location.lon, units)
         .then((data) => {
             updateDOM(data);
-            trackWeather(location.lat, location.lon, 'imperial');
+            updateLS(data);
+            if(keepDataUpdated){ keepDataUpdated.clearInterval(); };
+            trackWeather(location.lat, location.lon, units);
         })   
     })
     .catch((err) => {
@@ -79,6 +100,8 @@ googleapis.src = `https://maps.googleapis.com/maps/api/js?key=${config.GOOGLE_AP
 googleapis.addEventListener('load', () => {
     autocompleteSearchBar();
 });
+
+setLS([{key: 'unit', value: 'imperial'}]);
 
 setup();
 displayDate();

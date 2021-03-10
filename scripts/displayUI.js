@@ -1,4 +1,9 @@
+import { getLS } from "./LS.js";
+
 // WEATHER
+const toCelsius = (num) => {
+    return (num - 32) * 5 / 9;
+}
 
 const getIcon = (id, status) => {
     switch(status){
@@ -41,7 +46,15 @@ const displayWeather = (id, status) => {
 
 //temperature, feelslike, highTemp, lowTemp
 const displayTemperature = (temperature, feelslike, highTemp, lowTemp) => {
-    const temps = [temperature, feelslike, highTemp, lowTemp].map(el => Math.round(el));
+
+    const unit = getLS('unit');
+
+    let temps = [temperature, feelslike, highTemp, lowTemp].map((el) => {
+        if(unit === 'celsius'){
+            el = toCelsius(el);
+        }
+        return Math.round(el);
+    });
     
     const uiTemperature = document.getElementById("temperature");
     uiTemperature.innerHTML = `${temps[0]}&deg;F`;
@@ -60,6 +73,8 @@ const displayTemperature = (temperature, feelslike, highTemp, lowTemp) => {
 
 const displayForecast = (forecast) => {
     const temps = forecast.slice(1);
+    const unit = getLS('unit');
+
     const root = document.getElementById('weather-forecast');
     while(root.firstChild){
         root.firstChild.remove();
@@ -68,7 +83,10 @@ const displayForecast = (forecast) => {
     const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
     let dayOfTheWeek = new Date().getUTCDay();
 
+
     temps.forEach(el => {
+        const max = (unit === 'celsius') ? toCelsius(el.temp.max) : el.temp.max;
+        const min = (unit === 'celsius') ? toCelsius(el.temp.min) : el.temp.min;
         
         const day = document.createElement('div');
         day.classList.add('forecast__container');
@@ -89,11 +107,11 @@ const displayForecast = (forecast) => {
         day.appendChild(icon);
 
         const high = document.createElement('p');
-        high.innerHTML = `${Math.round(el.temp.max)}&deg;`;
+        high.innerHTML = `${Math.round(max)}&deg;`;
         day.appendChild(high);
 
         const low = document.createElement('p');
-        low.innerHTML = `${Math.round(el.temp.min)}&deg;`;
+        low.innerHTML = `${Math.round(min)}&deg;`;
         low.classList.add('forecast__container--low');
         day.appendChild(low);
 
