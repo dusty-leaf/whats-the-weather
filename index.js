@@ -26,6 +26,7 @@ const updateDOM = (data) => {
     const current = data.current;
     const today = data.daily[0];
     setLS([{ key: 'weather', value: weather }]);
+    displayWeather(current.weather[0].id, weather);
     displayTemperature(current.temp, current.feels_like, today.temp.max, today.temp.min);
     displayForecast(data.daily);
     animateSky(weather, today.sunrise, today.sunset, location.lat, location.lon);

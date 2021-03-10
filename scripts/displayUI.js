@@ -55,18 +55,20 @@ const displayTemperature = (temperature, feelslike, highTemp, lowTemp) => {
         }
         return Math.round(el);
     });
+
+    const deg = (unit === 'celsius') ? 'C' : 'F';
     
     const uiTemperature = document.getElementById("temperature");
-    uiTemperature.innerHTML = `${temps[0]}&deg;F`;
+    uiTemperature.innerHTML = `${temps[0]}&deg;${deg}`;
 
     const uiFeelsLike = document.getElementById("feelslike");
-    uiFeelsLike.innerHTML = `Feels like ${temps[1]}&deg;F`;
+    uiFeelsLike.innerHTML = `Feels like ${temps[1]}&deg;${deg}`;
 
     const high = document.getElementById("high");
-    high.innerHTML = `High: ${temps[2]}&deg;F`;
+    high.innerHTML = `High: ${temps[2]}&deg;${deg}`;
 
     const low = document.getElementById("low");
-    low.innerHTML = `Low: ${temps[3]}&deg;F`;
+    low.innerHTML = `Low: ${temps[3]}&deg;${deg}`;
 }
 
 // FORECAST
