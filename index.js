@@ -78,12 +78,12 @@ const displayAll = async (location, units) => {
 
 
 const setup = async () => {
-    let units = 'imperial';
-    /* if(getLS('unit')){
+    let units;
+    if(getLS('unit')){
         units = getLS('unit');
     } else {
-        units = 'celsius';
-    } */
+        units = 'imperial';
+    }
     const location = {};
     await getLocation()
     .then((data) => {
@@ -131,6 +131,8 @@ const updateLocation = async (location) => {
         console.error(err);
     });  
 }
+
+
 
 const searchInput = document.getElementById('search');
 const searchSubmit = document.getElementById('search-submit');

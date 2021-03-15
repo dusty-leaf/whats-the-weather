@@ -122,9 +122,28 @@ const displayForecast = (forecast) => {
 
 // LOCATION 
 
+/* const getLocationName = (string) => {
+    const locality = string.slice(0, string.indexOf(','));
+    const localityArr = locality.split(' ');
+    console.log(localityArr);
+    const capitalized = localityArr.map((el) => {
+        console.log(el[0]);
+        el[0].toUpperCase();
+    });
+    const name = capitalized.join(' ');
+    console.log(name);
+    return name;
+} */
+
 const displayLocation = (location) => {
     const uiLocation = document.getElementById('location');
-    uiLocation.innerHTML = `${location.charAt(0)}${location.slice(1).toLowerCase()}`;
+    const locationArr = location.toLowerCase().split(' ');
+    if(locationArr.length === 1){
+        uiLocation.innerHTML = `${location[0].toUpperCase()}${location.slice(1)}`;
+        return;
+    }
+    const capitalized = locationArr.map(el => el[0].toUpperCase() + el.substring(1));
+    uiLocation.innerHTML = `${capitalized.join(' ')}`;
 }
 
 // DATE
