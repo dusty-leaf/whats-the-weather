@@ -1,4 +1,4 @@
-import { displayClock, displayForecast, displayTemperature } from "./displayUI.js";
+import { displayForecast, displayTemperature } from "./displayUI.js";
 import { getLS, setLS } from "./LS.js";
 
 const controls = () => {
@@ -13,11 +13,15 @@ const controls = () => {
     farenheitButton.addEventListener('click', () => {
         setLS([{key: 'unit', value: 'imperial'}]);
         toggleDisplayUnits();
+        farenheitButton.classList.toggle('hidden');
+        celsiusButton.classList.toggle('hidden');
     });
 
     celsiusButton.addEventListener('click', () => {
         setLS([{key: 'unit', value: 'celsius'}]);
         toggleDisplayUnits();
+        farenheitButton.classList.toggle('hidden');
+        celsiusButton.classList.toggle('hidden');
     });
 }
 

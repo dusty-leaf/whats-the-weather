@@ -92,14 +92,16 @@ html {
 .search__container .search-bar input:active {
   outline: none;
 }
-.search__container .search__submit {
+
+.btn {
   height: 1.45rem;
   width: 1.45rem;
   border-radius: 50%;
   border: 1px;
 }
-.search__container .search__submit:active,
-.search__container .search__submit:hover {
+
+.btn:active,
+.btn:hover {
   background-color: white;
 }
 
@@ -138,7 +140,7 @@ html input[type=number] {
 }
 #weather .weather__container .weather__controls {
   position: absolute;
-  top: 0;
+  top: 1%;
   left: 90%;
   display: flex;
 }
