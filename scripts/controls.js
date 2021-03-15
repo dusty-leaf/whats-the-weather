@@ -1,7 +1,7 @@
 import { displayForecast, displayTemperature } from "./displayUI.js";
 import { getLS, setLS } from "./LS.js";
 
-const controls = () => {
+const updateDisplayUnits = () => {
     const farenheitButton = document.getElementById('F');
     const celsiusButton = document.getElementById('C');
 
@@ -25,4 +25,4 @@ const controls = () => {
     });
 }
 
-export default controls;
+export default updateDisplayUnits;

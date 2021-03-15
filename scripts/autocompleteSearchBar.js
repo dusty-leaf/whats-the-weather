@@ -10,6 +10,7 @@ const autocompleteSearchBar  = () => {
     google.maps.event.clearInstanceListeners(searchbar);
     google.maps.event.addListener(autocomplete, 'place_changed', function(){
             let place = autocomplete.getPlace();
+            console.log(place);
     });
 }
 

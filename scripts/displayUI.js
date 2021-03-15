@@ -44,7 +44,6 @@ const displayWeather = (id, status) => {
 
 // TEMPERATURE 
 
-//temperature, feelslike, highTemp, lowTemp
 const displayTemperature = (temperature, feelslike, highTemp, lowTemp) => {
 
     const unit = getLS('unit');

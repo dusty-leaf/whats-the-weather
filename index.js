@@ -3,9 +3,9 @@ import { animateWeatherGFX, animateSky }from './scripts/animations.js';
 import { displayWeather, displayTemperature, displayForecast, displayLocation, displayDate, displayClock } from './scripts/displayUI.js';
 import { setLS, getLS } from './scripts/LS.js';
 import getLocation from './scripts/location.js';
-import reverseGeocode from './scripts/geocoding.js';
+import { geocode, reverseGeocode } from './scripts/geocoding.js';
 import autocompleteSearchBar from './scripts/autocompleteSearchBar.js';
-import controls from './scripts/controls.js';
+import updateDisplayUnits from './scripts/controls.js';
 
 const updateLS = (data) => {
     const current = data.current;
@@ -63,10 +63,27 @@ const trackWeather = (lat, lon, unit) => {
     
 }
 
+const displayAll = async (location, units) => {
+    await getWeather(location.lat, location.lon, units)
+    .then((data) => {
+        updateDOM(data);
+        updateLS(data);
+        if(keepDataUpdated){ clearInterval(keepDataUpdated); };
+        trackWeather(location.lat, location.lon, units);
+    })
+    .catch((err) => {
+        console.error(err);
+    });
+};
 
 
 const setup = async () => {
-    const units = 'imperial';
+    let units = 'imperial';
+    /* if(getLS('unit')){
+        units = getLS('unit');
+    } else {
+        units = 'celsius';
+    } */
     const location = {};
     await getLocation()
     .then((data) => {
@@ -82,13 +99,7 @@ const setup = async () => {
     })
     .then(async (location) => {
         displayLocation(location.name);
-        await getWeather(location.lat, location.lon, units)
-        .then((data) => {
-            updateDOM(data);
-            updateLS(data);
-            if(keepDataUpdated){ keepDataUpdated.clearInterval(); };
-            trackWeather(location.lat, location.lon, units);
-        })   
+        displayAll(location, units);
     })
     .catch((err) => {
         console.error(err);
@@ -102,10 +113,42 @@ googleapis.addEventListener('load', () => {
     autocompleteSearchBar();
 });
 
+
+const updateLocation = async (location) => {
+    const updatedLocation = {};
+    const units = getLS('unit');
+    await geocode(location)
+    .then(data => {
+        console.log(data);
+        updatedLocation.lat = data.results[0].geometry.location.lat;
+        updatedLocation.lon = data.results[0].geometry.location.lng;
+        return updatedLocation;
+    })
+    .then((location) => {
+        displayAll(location, units);
+    })
+    .catch((err) => {
+        console.error(err);
+    });  
+}
+
+const searchInput = document.getElementById('search');
+const searchSubmit = document.getElementById('search-submit');
+searchSubmit.addEventListener('click', () => {
+    const regex = /\s|,\s/g;
+    displayLocation(searchInput.value.slice(0, searchInput.value.indexOf(',')));
+    const newLocation = searchInput.value.replaceAll(regex, '+');
+    updateLocation(newLocation);
+});
+
+
+
+
 setLS([{key: 'unit', value: 'imperial'}]);
 
 setup();
 displayDate();
 displayClock();
-controls();
+updateDisplayUnits();
+
 
