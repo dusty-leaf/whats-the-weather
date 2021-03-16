@@ -141,8 +141,11 @@ searchSubmit.addEventListener('click', () => {
 });
 
 toggleLoader();
-setLS([{key: 'unit', value: 'imperial'}]);
-setup();
-displayDate();
+if(!getLS('unit')){
+    setLS([{key: 'unit', value: 'imperial'}]);
+}
 displayClock();
+displayDate();
 updateDisplayUnits();
+setup();
+

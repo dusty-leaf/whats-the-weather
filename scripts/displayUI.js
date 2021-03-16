@@ -122,19 +122,6 @@ const displayForecast = (forecast) => {
 
 // LOCATION 
 
-/* const getLocationName = (string) => {
-    const locality = string.slice(0, string.indexOf(','));
-    const localityArr = locality.split(' ');
-    console.log(localityArr);
-    const capitalized = localityArr.map((el) => {
-        console.log(el[0]);
-        el[0].toUpperCase();
-    });
-    const name = capitalized.join(' ');
-    console.log(name);
-    return name;
-} */
-
 const displayLocation = (location) => {
     const uiLocation = document.getElementById('location');
     const locationArr = location.toLowerCase().split(' ');
@@ -157,6 +144,7 @@ const displayDate = () => {
 
 const displayClock = () => {
     const uiClock = document.getElementById("clock");
+    uiClock.innerHTML = `${new Date().toLocaleTimeString()}`;
     const updateClock = () => {
         uiClock.innerHTML = `${new Date().toLocaleTimeString()}`; // change here for new locations
     };
