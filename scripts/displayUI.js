@@ -158,7 +158,7 @@ const displayDate = () => {
 const displayClock = () => {
     const uiClock = document.getElementById("clock");
     const updateClock = () => {
-        uiClock.innerHTML = `${new Date().toLocaleTimeString()}`;
+        uiClock.innerHTML = `${new Date().toLocaleTimeString()}`; // change here for new locations
     };
     
     setInterval(updateClock, 1000);

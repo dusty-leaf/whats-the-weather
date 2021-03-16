@@ -1,11 +1,11 @@
 import config from './scripts/config.js';
-import { animateWeatherGFX, animateSky }from './scripts/animations.js';
+import { animateWeatherGFX, animateSky, clearParticles }from './scripts/animations.js';
 import { displayWeather, displayTemperature, displayForecast, displayLocation, displayDate, displayClock } from './scripts/displayUI.js';
 import { setLS, getLS } from './scripts/LS.js';
 import getLocation from './scripts/location.js';
 import { geocode, reverseGeocode } from './scripts/geocoding.js';
 import autocompleteSearchBar from './scripts/autocompleteSearchBar.js';
-import updateDisplayUnits from './scripts/controls.js';
+import { updateDisplayUnits, toggleLoader } from './scripts/controls.js';
 
 const updateLS = (data) => {
     const current = data.current;
@@ -26,6 +26,7 @@ const updateDOM = (data) => {
     const current = data.current;
     const today = data.daily[0];
     setLS([{ key: 'weather', value: weather }]);
+    clearParticles();
     displayWeather(current.weather[0].id, weather);
     displayTemperature(current.temp, current.feels_like, today.temp.max, today.temp.min);
     displayForecast(data.daily);
@@ -38,7 +39,7 @@ const getWeather = (lat, lon, unit) => new Promise(
     //const query = getLS('zip') ? `zip=${getLS('zip')}` : `q=${getLS('city')},${getLS('country')}`;
     // https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${config.API_KEY}&units=imperial
     // https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${config.API_KEY}&units=imperial
-    fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&appid=${config.OPENWEATHER_API_KEY}&units=${unit}`)
+    fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&appid=${config.OPENWEATHER_API_KEY}&units=imperial`)
         .then((response) => response.json())
         .then((data) => {
             console.log(data);
@@ -52,9 +53,9 @@ const getWeather = (lat, lon, unit) => new Promise(
 
 let keepDataUpdated;
 
-const trackWeather = (lat, lon, unit) => {
+const trackWeather = (lat, lon) => {
     keepDataUpdated = setInterval(() => {
-        getWeather(lat, lon, unit)
+        getWeather(lat, lon)
         .then((data) => {
             updateLS(data);
             updateDOM(data);
@@ -63,13 +64,13 @@ const trackWeather = (lat, lon, unit) => {
     
 }
 
-const displayAll = async (location, units) => {
-    await getWeather(location.lat, location.lon, units)
+const displayAll = async (location) => {
+    await getWeather(location.lat, location.lon)
     .then((data) => {
         updateDOM(data);
         updateLS(data);
         if(keepDataUpdated){ clearInterval(keepDataUpdated); };
-        trackWeather(location.lat, location.lon, units);
+        trackWeather(location.lat, location.lon);
     })
     .catch((err) => {
         console.error(err);
@@ -78,12 +79,6 @@ const displayAll = async (location, units) => {
 
 
 const setup = async () => {
-    let units;
-    if(getLS('unit')){
-        units = getLS('unit');
-    } else {
-        units = 'imperial';
-    }
     const location = {};
     await getLocation()
     .then((data) => {
@@ -99,7 +94,8 @@ const setup = async () => {
     })
     .then(async (location) => {
         displayLocation(location.name);
-        displayAll(location, units);
+        displayAll(location);
+        toggleLoader();
     })
     .catch((err) => {
         console.error(err);
@@ -115,8 +111,8 @@ googleapis.addEventListener('load', () => {
 
 
 const updateLocation = async (location) => {
+    toggleLoader();
     const updatedLocation = {};
-    const units = getLS('unit');
     await geocode(location)
     .then(data => {
         console.log(data);
@@ -125,7 +121,8 @@ const updateLocation = async (location) => {
         return updatedLocation;
     })
     .then((location) => {
-        displayAll(location, units);
+        displayAll(location);
+        toggleLoader();
     })
     .catch((err) => {
         console.error(err);
@@ -143,14 +140,9 @@ searchSubmit.addEventListener('click', () => {
     updateLocation(newLocation);
 });
 
-
-
-
+toggleLoader();
 setLS([{key: 'unit', value: 'imperial'}]);
-
 setup();
 displayDate();
 displayClock();
 updateDisplayUnits();
-
-

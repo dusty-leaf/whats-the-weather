@@ -321,4 +321,12 @@ const animateSky = (weather, sunrise, sunset) => {
   return;
 }
 
-export { animateWeatherGFX, animateSky };
+const clearParticles = () => {
+    const particles = Array.from(document.getElementsByClassName('particle'));
+    if(particles.length > 0){
+        particles.forEach(el => el.remove());
+    }
+    
+}
+
+export { animateWeatherGFX, animateSky, clearParticles };

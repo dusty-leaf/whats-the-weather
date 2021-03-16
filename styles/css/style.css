@@ -34,7 +34,7 @@ html {
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 .transparent-dark-background {
@@ -91,6 +91,11 @@ html {
 .search__container .search-bar input:focus,
 .search__container .search-bar input:active {
   outline: none;
+}
+
+#loader {
+  background-color: #4d4d4d;
+  z-index: 10;
 }
 
 .btn {
@@ -307,6 +312,13 @@ html input[type=number] {
   background: linear-gradient(to top, rgba(186, 171, 147, 0.5), rgba(186, 171, 147, 0));
 }
 
+.loading {
+  animation-name: loader-spin;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
 @keyframes cloud-speed-1 {
   from {
     left: -20%;
@@ -485,6 +497,23 @@ html input[type=number] {
   }
   100% {
     bottom: -10%;
+  }
+}
+@keyframes loader-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(90deg);
+  }
+  50% {
+    transform: rotate(180deg);
+  }
+  75% {
+    transform: rotate(270deg);
+  }
+  100% {
+    transform: rotate(360deg);
   }
 }
 

@@ -108,6 +108,13 @@
   );
 }
 
+.loading {
+  animation-name: loader-spin;
+  animation-duration: 1s;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
 @keyframes cloud-speed-1 {
   from {
     left: -20%;
@@ -331,5 +338,23 @@
 
   100% {
     bottom: -10%;
+  }
+}
+
+@keyframes loader-spin {
+  0%{
+    transform: rotate(0deg);
+  }
+  25%{
+    transform: rotate(90deg);
+  }
+  50%{
+    transform: rotate(180deg);
+  }
+  75%{
+    transform: rotate(270deg)
+  }
+  100%{
+    transform: rotate(360deg);
   }
 }

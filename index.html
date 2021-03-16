@@ -15,11 +15,11 @@
     <div class="search__container transparent-dark-background foreground flex-center border-radius">
         <div class="search-bar flex-center">
             <i class="fas fa-search"></i>
-            <input id="search" class="search__input" type="text" placeholder="City/town">
+            <input id="search" class="search__input" type="text" placeholder="City or town">
         </div>
         <button type="submit" id="search-submit" class="btn">Go</button>  
     </div>
-    <section id="weather">
+    <section id="weather" class="transparent-dark-background">
         <div class="weather__container transparent-dark-background foreground border-radius">
             <div class="weather__controls">
                 <button id="F" class="btn hidden">F&deg;</button>
@@ -38,6 +38,9 @@
             <div id="weather-forecast"></div>
         </div>
         <p id="credit"></p>
+        <div id="loader" class="weather__container flex-center border-radius hidden">
+            <span><i class="fas fa-circle-notch loader__icon loading"></i></span>
+        </div>
     </section>
     <script type="module" src="./index.js"></script>
 </body>

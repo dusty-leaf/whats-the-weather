@@ -25,4 +25,9 @@ const updateDisplayUnits = () => {
     });
 }
 
-export default updateDisplayUnits;
+const toggleLoader = () => {
+    const loader = document.getElementById('loader');
+    loader.classList.toggle('hidden');
+}
+
+export { updateDisplayUnits, toggleLoader };

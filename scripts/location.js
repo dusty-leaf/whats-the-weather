@@ -10,7 +10,7 @@ const getLocation = () => new Promise(
         }
 
         if(!navigator.geolocation){
-            console.log('Geolocation is not supported by your browser.');
+            alert('Geolocation is not supported by your browser.');
         } else {
             window.navigator.geolocation.getCurrentPosition(success, error);
         }

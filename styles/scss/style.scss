@@ -4,6 +4,7 @@
 @use './base/typography';
 @use './base/utilities';
 @use './components/searchbar';
+@use './components/loader';
 @use './components/button';
 @use './layout/navigation';
 @use './partials/weather';
