@@ -5,7 +5,7 @@ import { setLS, getLS } from './scripts/LS.js';
 import getLocation from './scripts/location.js';
 import { geocode, reverseGeocode } from './scripts/geocoding.js';
 import autocompleteSearchBar from './scripts/autocompleteSearchBar.js';
-import { updateDisplayUnits, toggleLoader } from './scripts/controls.js';
+import { toggleDisplayUnits, toggleLoader, toggleHidden } from './scripts/controls.js';
 import { showError, clearError } from './scripts/errorHandler.js';
 
 const updateLS = (data) => {
@@ -114,6 +114,8 @@ googleapis.addEventListener('load', () => {
 
 const updateLocation = async (location) => {
     toggleLoader(true);
+    clearError();
+    toggleHidden(document.getElementById('allow'));
     const updatedLocation = {};
     await geocode(location)
     .then(data => {
@@ -148,6 +150,6 @@ if(!getLS('unit')){
 }
 displayClock();
 displayDate();
-updateDisplayUnits();
+toggleDisplayUnits();
 setup();
 

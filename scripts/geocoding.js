@@ -9,7 +9,7 @@ const geocode = (location) => new Promise(
                 resolve(data);
             })
             .catch(err => {
-                showError('Unable to reach third-party API. Please wait a few minutes, then refresh the page.')
+                showError('Unable to reach API server. Please wait a few minutes, then refresh the page.')
                 reject(err);
             });
     }
@@ -24,7 +24,7 @@ const reverseGeocode =  (lat, lon, API) => new Promise(
                 resolve(data.results[0].address_components[0].long_name);
             })
             .catch(err => {
-                showError('Unable to reach third-party API. Please wait a few minutes, then refresh the page.')
+                showError('Unable to reach API server. Please wait a few minutes, then refresh the page.')
                 reject(err);
             });
     }

@@ -1,4 +1,21 @@
 #loader {
     background-color: #4d4d4d;
     z-index: 10;
+
+    span {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+#error {
+    margin: 0 1rem;
+}
+
+
+#allow {
+    height: 2rem;
+    width: 4rem;
+    margin: 0 auto;
 }
