@@ -12,8 +12,8 @@ const getLocation = () => new Promise(
         if(!navigator.geolocation){
             alert('Geolocation is not supported by your browser.');
         } else {
-            const allow = document.getElementById('allow');
-            allow.addEventListener('click', () => {
+            const continueBtn = document.getElementById('continue');
+            continueBtn.addEventListener('click', () => {
                 window.navigator.geolocation.getCurrentPosition(success, error);
             });
         }

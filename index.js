@@ -115,7 +115,7 @@ googleapis.addEventListener('load', () => {
 const updateLocation = async (location) => {
     toggleLoader(true);
     clearError();
-    toggleHidden(document.getElementById('allow'));
+    toggleHidden(document.getElementById('continue'));
     const updatedLocation = {};
     await geocode(location)
     .then(data => {

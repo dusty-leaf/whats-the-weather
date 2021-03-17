@@ -115,7 +115,7 @@ html {
   margin: 0 1rem;
 }
 
-#allow {
+#continue {
   height: 2rem;
   width: 4rem;
   margin: 0 auto;
@@ -212,6 +212,10 @@ html input[type=number] {
 #weather .weather__container #weather-forecast .forecast__container:not(:last-of-type) {
   margin-right: 0.4rem;
   border-right: 1px solid white;
+}
+#weather #weather__background {
+  margin-top: 5rem;
+  overflow: hidden;
 }
 
 #credit {
