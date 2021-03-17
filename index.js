@@ -6,6 +6,7 @@ import getLocation from './scripts/location.js';
 import { geocode, reverseGeocode } from './scripts/geocoding.js';
 import autocompleteSearchBar from './scripts/autocompleteSearchBar.js';
 import { updateDisplayUnits, toggleLoader } from './scripts/controls.js';
+import { showError, clearError } from './scripts/errorHandler.js';
 
 const updateLS = (data) => {
     const current = data.current;
@@ -46,7 +47,8 @@ const getWeather = (lat, lon, unit) => new Promise(
             resolve(data);
         })
         .catch(error => {
-            animateSky("default");
+            showError('Unable to reach weather service at this time. Please wait a few minutes, then refresh the page.');
+            //animateSky("default");
             reject(error);
         });
 });
@@ -111,7 +113,7 @@ googleapis.addEventListener('load', () => {
 
 
 const updateLocation = async (location) => {
-    toggleLoader();
+    toggleLoader(true);
     const updatedLocation = {};
     await geocode(location)
     .then(data => {

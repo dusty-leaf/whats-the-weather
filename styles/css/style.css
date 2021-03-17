@@ -33,6 +33,10 @@ html {
   color: #e0e0e0;
 }
 
+.font-bold {
+  font-weight: bold;
+}
+
 .hidden {
   display: none !important;
 }
@@ -167,8 +171,9 @@ html input[type=number] {
   align-items: center;
   justify-content: center;
 }
-#weather .weather__container h4 {
+#weather .weather__container #forecast__title {
   margin-top: 1rem;
+  font-size: 1.2rem;
 }
 #weather .weather__container #weather-forecast {
   display: flex;

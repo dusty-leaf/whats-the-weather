@@ -25,8 +25,13 @@ const updateDisplayUnits = () => {
     });
 }
 
-const toggleLoader = () => {
+const toggleLoader = (checkIfLoaderIsAlreadyRunning) => {
     const loader = document.getElementById('loader');
+
+    if(checkIfLoaderIsAlreadyRunning && !loader.classList.contains('hidden')){
+        return;
+    }
+
     loader.classList.toggle('hidden');
 }
 

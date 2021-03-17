@@ -1,4 +1,5 @@
 import config from './config.js';
+import { showError } from './errorHandler.js';
 
 const geocode = (location) => new Promise(
     (resolve, reject) => {
@@ -7,7 +8,10 @@ const geocode = (location) => new Promise(
             .then((data) => {
                 resolve(data);
             })
-            .catch(err => reject(err));
+            .catch(err => {
+                showError('Unable to reach third-party API. Please wait a few minutes, then refresh the page.')
+                reject(err);
+            });
     }
 );
 
@@ -19,9 +23,11 @@ const reverseGeocode =  (lat, lon, API) => new Promise(
             .then((data) => {
                 resolve(data.results[0].address_components[0].long_name);
             })
-            .catch(err => reject(err));
-        }
-        
+            .catch(err => {
+                showError('Unable to reach third-party API. Please wait a few minutes, then refresh the page.')
+                reject(err);
+            });
+    }
 );
 
 export { geocode, reverseGeocode };
