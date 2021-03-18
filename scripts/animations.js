@@ -40,7 +40,7 @@ const animateWeatherGFX = (weather, weatherID) => {
             //clouds provided by https://www.youtube.com/watch?v=FWW38GuIo7M
             cloud.src = `../images/cloud${x + 1}.png`; //
             cloud.alt = ""; //allows screen readers to ignore clouds
-            cloud.classList.add('cloud', `speed-${clouds[x]}`);
+            cloud.classList.add('cloud', `speed-${clouds[x]}`, 'js-gfx');
             background.appendChild(cloud);
             setTimeout(() => {
                 cloud.remove();
@@ -51,7 +51,7 @@ const animateWeatherGFX = (weather, weatherID) => {
 
     const drawParticles = (type, num) =>{
     
-        let classes = type === 'Rain' ? ['fas', 'fa-tint', 'rain', 'particle'] : ['fas', 'fa-snowflake', 'snow', 'particle'];
+        let classes = type === 'Rain' ? ['fas', 'fa-tint', 'rain', 'particle', 'js-gfx'] : ['fas', 'fa-snowflake', 'snow', 'particle', 'js-gfx'];
         let speed = type === 'Rain' ? 500 : 2000;
 
         for(let x = 0; x < num; x++){
@@ -91,14 +91,14 @@ const animateWeatherGFX = (weather, weatherID) => {
         }
 
         const atmosphereLayer1 = document.createElement('div');
-        atmosphereLayer1.classList.add('atmosphere', 'layer-1', `${weatherClass}-1`, 'fade');
+        atmosphereLayer1.classList.add('atmosphere', 'layer-1', `${weatherClass}-1`, 'fade', 'js-gfx');
         background.appendChild(atmosphereLayer1);
         setTimeout(() => {
             atmosphereLayer1.remove();
         }, 60000);
 
         const atmosphereLayer2 = document.createElement('div');
-        atmosphereLayer2.classList.add('atmosphere', 'layer-2', `${weatherClass}-2`, 'fade');
+        atmosphereLayer2.classList.add('atmosphere', 'layer-2', `${weatherClass}-2`, 'fade', 'js-gfx');
         background.appendChild(atmosphereLayer2);
         setTimeout(() => {
             atmosphereLayer2.remove();
@@ -322,7 +322,7 @@ const animateSky = (weather, sunrise, sunset) => {
 }
 
 const clearParticles = () => {
-    const particles = Array.from(document.getElementsByClassName('particle'));
+    const particles = Array.from(document.getElementsByClassName('js-gfx'));
     if(particles.length > 0){
         particles.forEach(el => el.remove());
     }

@@ -4,6 +4,10 @@
   box-sizing: border-box;
 }
 
+body {
+  height: 100vh;
+}
+
 html {
   font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
   font-family: "Inter", sans-serif;
@@ -71,6 +75,7 @@ html {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
+  min-height: 40px;
   width: 16.45rem;
   height: 2.25rem;
   z-index: 10;
@@ -117,20 +122,36 @@ html {
 
 #continue {
   height: 2rem;
-  width: 4rem;
+  width: 4.4rem;
   margin: 0 auto;
 }
 
 .btn {
+  border: 1px;
+  font-family: "Inter", sans-serif;
+}
+
+.btn-round {
   height: 1.45rem;
   width: 1.45rem;
   border-radius: 50%;
-  border: 1px;
 }
 
 .btn:active,
-.btn:hover {
+.btn:hover,
+.btn:focus {
+  outline: none;
+  border: none;
   background-color: white;
+}
+
+footer {
+  position: absolute;
+  bottom: 0;
+  background-color: #4d4d4d;
+  height: 2rem;
+  width: 100%;
+  z-index: 11;
 }
 
 html {
@@ -214,7 +235,8 @@ html input[type=number] {
   border-right: 1px solid white;
 }
 #weather #weather__background {
-  margin-top: 5rem;
+  position: absolute;
+  margin-top: 10rem;
   overflow: hidden;
 }
 

@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inconsolata&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" type="text/css" href="styles/css/style.css">
     <script async id="googleapis"></script>
-    <title id="title">Homepage</title>
+    <title id="title">Whats The Weather?</title>
 </head>
 <body id="body">
     <div class="search__container transparent-dark-background foreground flex-center border-radius">
@@ -17,14 +17,14 @@
             <i class="fas fa-search"></i>
             <input id="search" class="search__input" type="text" placeholder="City or town">
         </div>
-        <button type="submit" id="search-submit" class="btn font-bold">Go</button>  
+        <button type="submit" id="search-submit" class="btn btn-round font-bold">Go</button>  
     </div>
     <section id="weather" class="transparent-dark-background">
         <img id="weather__background" src="images/—Pngtree—cartoon hills png download_4586597.png">
         <div class="weather__container transparent-dark-background foreground border-radius">
             <div class="weather__controls">
-                <button id="F" class="btn hidden font-bold">F&deg;</button>
-                <button id="C" class="btn font-bold">C&deg;</button>
+                <button id="F" class="btn btn-round hidden font-bold">F&deg;</button>
+                <button id="C" class="btn btn-round font-bold">C&deg;</button>
             </div>
             <h2 id="location" class="margin-top"></h2>
             <p id="date"></p>
@@ -45,7 +45,10 @@
             <button id="continue" class="font-bold">Continue</button>
         </div>
     </section>
-    <a href='https://pngtree.com/so/hillside'>hillside png from pngtree.com</a>
+    <footer>
+        <p class="credit">Background image: <a href='https://pngtree.com/so/hillside'>hillside png from pngtree.com</a></p>
+    </footer>
+    <script src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
     <script type="module" src="./index.js"></script>
 </body>
 </html>

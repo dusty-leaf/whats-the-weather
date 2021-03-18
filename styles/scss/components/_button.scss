@@ -1,11 +1,18 @@
 .btn {
+  border: 1px;
+  font-family: "Inter", sans-serif;
+}
+
+.btn-round {
   height: 1.45rem;
   width: 1.45rem;
   border-radius: 50%;
-  border: 1px;
 }
 
 .btn:active,
-.btn:hover {
+.btn:hover,
+.btn:focus {
+  outline: none;
+  border: none;
   background-color: white;
 }
