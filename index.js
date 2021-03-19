@@ -28,6 +28,7 @@ const updateDOM = (data) => {
     const today = data.daily[0];
     setLS([{ key: 'weather', value: weather }]);
     clearParticles();
+    displayClock(data.timezone);
     displayWeather(current.weather[0].id, weather);
     displayTemperature(current.temp, current.feels_like, today.temp.max, today.temp.min);
     displayForecast(data.daily);
@@ -145,11 +146,11 @@ searchSubmit.addEventListener('click', () => {
 });
 
 
+
 toggleLoader();
 if(!getLS('unit')){
     setLS([{key: 'unit', value: 'imperial'}]);
 }
-displayClock();
 displayDate();
 toggleDisplayUnits();
 setup();

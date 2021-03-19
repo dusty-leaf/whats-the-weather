@@ -141,15 +141,20 @@ const displayDate = () => {
 }
 
 // CLOCK
-
-const displayClock = () => {
-    const uiClock = document.getElementById("clock");
-    uiClock.innerHTML = `${new Date().toLocaleTimeString()}`;
-    const updateClock = () => {
-        uiClock.innerHTML = `${new Date().toLocaleTimeString()}`; // change here for new locations
-    };
+let tick;
+const displayClock = (timezone) => {
     
-    setInterval(updateClock, 1000);
-}
+    const DateTime = luxon.DateTime;
+    const clock = document.getElementById("clock");
+
+    const getTime = () => { return DateTime.now().setZone(timezone).toLocaleString(DateTime.TIME_WITH_SECONDS); }
+    
+    clock.innerText = `${getTime()}`;
+
+    if(tick){ clearInterval(tick); }
+
+    tick = setInterval(() => { clock.innerText = `${getTime()}`; }, 1000);
+       
+};
 
 export { displayWeather, displayTemperature, displayForecast, displayLocation, displayDate, displayClock };
