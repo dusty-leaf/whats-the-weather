@@ -1,8 +1,9 @@
 #weather {
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   background-size: cover;
   background-repeat: no-repeat;
+  background-color: #65b7f6;
   overflow: hidden;
   position: relative;
   display: flex;
@@ -79,7 +80,7 @@
 
   #weather__background {
     position: absolute;
-    margin-top: 10rem;
+    margin-top: 20rem;
     overflow: hidden;
   }
 }

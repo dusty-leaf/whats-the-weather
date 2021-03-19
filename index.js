@@ -144,6 +144,7 @@ searchSubmit.addEventListener('click', () => {
     updateLocation(newLocation);
 });
 
+
 toggleLoader();
 if(!getLS('unit')){
     setLS([{key: 'unit', value: 'imperial'}]);

@@ -6,4 +6,9 @@
 
 body {
   height: 100vh;
+  position: relative;
+
+  @media screen and (max-height: 760px) {
+    height: 760px;
+  }
 }

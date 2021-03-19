@@ -13,4 +13,8 @@ html {
   input[type="number"] {
     -moz-appearance: textfield;
   }
+
+  @media screen and (max-height: 760px) {
+    overflow: scroll;
+  }
 }

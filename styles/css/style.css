@@ -6,6 +6,12 @@
 
 body {
   height: 100vh;
+  position: relative;
+}
+@media screen and (max-height: 760px) {
+  body {
+    height: 760px;
+  }
 }
 
 html {
@@ -128,7 +134,9 @@ html {
 
 .btn {
   border: 1px;
+  font-size: 0.6rem;
   font-family: "Inter", sans-serif;
+  color: #4d4d4d;
 }
 
 .btn-round {
@@ -168,12 +176,18 @@ html input::-webkit-inner-spin-button {
 html input[type=number] {
   -moz-appearance: textfield;
 }
+@media screen and (max-height: 760px) {
+  html {
+    overflow: scroll;
+  }
+}
 
 #weather {
-  height: 100vh;
-  width: 100vw;
+  height: 100%;
+  width: 100%;
   background-size: cover;
   background-repeat: no-repeat;
+  background-color: #65b7f6;
   overflow: hidden;
   position: relative;
   display: flex;
@@ -236,7 +250,7 @@ html input[type=number] {
 }
 #weather #weather__background {
   position: absolute;
-  margin-top: 10rem;
+  margin-top: 20rem;
   overflow: hidden;
 }
 
