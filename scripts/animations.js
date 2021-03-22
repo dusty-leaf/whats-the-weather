@@ -174,7 +174,7 @@ const getNumClouds = (num) => {
 const animateSky = (weather, sunrise, sunset) => {
   // sunrise or sunset are treated as an hour that is broken up into stages.
   // each stage corresponds to a color from colors[]
-  // the current time is checked against at list of stages, and then a color
+  // the current time is checked against a list of stages, and then a color
   // is assigned based on what % of the way between two stages the current time is
  
   const background = document.getElementById("weather"); //"content" // canvas
@@ -224,7 +224,7 @@ const animateSky = (weather, sunrise, sunset) => {
   const hour = 3600; // 3600 = seconds per hour
 
   //get current time
-  let currentTime = Math.floor(Date.now() / 1000); //change time here for testing i.e +(hour * 3)
+  let currentTime = Math.floor(Date.now() / 1000) + (hour * 8.8); //change time here for testing i.e +(hour * 3)
 
   // generate an array of times for each color 
   const getStages = (startTime, endTime, numStages) => {
@@ -308,6 +308,7 @@ const animateSky = (weather, sunrise, sunset) => {
       let nearestStages = getNearestStages(stages, currentTime);
       if(nearestStages === -1){
           setColor(colors[0]);
+          return;
       }
       setColor(calculateColor(colors.slice().reverse(), nearestStages));
       console.log('dusk');

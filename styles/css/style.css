@@ -77,6 +77,10 @@ html {
   display: grid;
 }
 
+.display-block {
+  display: block;
+}
+
 .search__container {
   position: absolute;
   left: 50%;
@@ -137,6 +141,7 @@ html {
   font-size: 0.6rem;
   font-family: "Inter", sans-serif;
   color: #4d4d4d;
+  cursor: pointer;
 }
 
 .btn-round {
