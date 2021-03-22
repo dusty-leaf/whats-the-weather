@@ -135,9 +135,12 @@ const displayLocation = (location) => {
 
 // DATE
 
-const displayDate = () => {
+const displayDate = (timezone) => {
+    
+    const DateTime = luxon.DateTime;
     const uiDate = document.getElementById('date');
-    uiDate.innerText = new Date().toDateString();
+
+    uiDate.innerText = `${DateTime.now().setZone(timezone).toFormat("cccc',' LLLL d")}`;
 }
 
 // CLOCK
