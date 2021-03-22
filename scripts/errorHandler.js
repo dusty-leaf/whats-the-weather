@@ -1,6 +1,6 @@
 const showError = (str) => {
     const error = document.getElementById('error');
-    error.innerHTML = `${str}`;
+    error.innerHTML = `<p>${str}</p>`;
 }
 
 const clearError = () => {
