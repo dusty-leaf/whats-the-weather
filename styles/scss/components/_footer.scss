@@ -7,13 +7,16 @@ footer {
   z-index: 11;
   color: white;
   font-size: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 
-  div {
+  /*  div {
     margin-top: 0.2rem;
-  }
+  } */
 
   p {
-    padding-left: 0.2rem;
+    padding: 0 0.2rem;
   }
 
   a {
@@ -23,5 +26,9 @@ footer {
   a:hover,
   a:active {
     color: white;
+  }
+
+  #dev-credit {
+    font-size: 0.7rem;
   }
 }
