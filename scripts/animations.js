@@ -224,7 +224,7 @@ const animateSky = (weather, sunrise, sunset) => {
   const hour = 3600; // 3600 = seconds per hour
 
   //get current time
-  let currentTime = Math.floor(Date.now() / 1000) + (hour * 8.8); //change time here for testing i.e +(hour * 3)
+  let currentTime = Math.floor(Date.now() / 1000); //change time here for testing i.e +(hour * 3)
 
   // generate an array of times for each color 
   const getStages = (startTime, endTime, numStages) => {
