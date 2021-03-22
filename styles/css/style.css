@@ -47,6 +47,10 @@ html {
   font-weight: bold;
 }
 
+.font-small {
+  font-size: 0.5rem;
+}
+
 .hidden {
   display: none !important;
 }
@@ -162,9 +166,24 @@ footer {
   position: absolute;
   bottom: 0;
   background-color: #4d4d4d;
-  height: 2rem;
+  height: 2.1rem;
   width: 100%;
   z-index: 11;
+  color: white;
+  font-size: 0.5rem;
+}
+footer div {
+  margin-top: 0.2rem;
+}
+footer p {
+  padding-left: 0.2rem;
+}
+footer a {
+  color: #4287f5;
+}
+footer a:hover,
+footer a:active {
+  color: white;
 }
 
 html {

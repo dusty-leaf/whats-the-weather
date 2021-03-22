@@ -2,7 +2,26 @@ footer {
   position: absolute;
   bottom: 0;
   background-color: #4d4d4d;
-  height: 2rem;
+  height: 2.1rem;
   width: 100%;
   z-index: 11;
+  color: white;
+  font-size: 0.5rem;
+
+  div {
+    margin-top: 0.2rem;
+  }
+
+  p {
+    padding-left: 0.2rem;
+  }
+
+  a {
+    color: #4287f5;
+  }
+
+  a:hover,
+  a:active {
+    color: white;
+  }
 }
