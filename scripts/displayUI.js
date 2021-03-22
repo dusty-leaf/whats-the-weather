@@ -1,11 +1,21 @@
 import { getLS } from "./LS.js";
+import { getDateTime, toCelsius, isDay } from './utilities.js';
 
 // WEATHER
-const toCelsius = (num) => {
-    return (num - 32) * 5 / 9;
-}
 
-const getIcon = (id, status) => {
+const getIcon = (id, status, timezone) => {
+
+    let clear;
+    let clouds;
+
+    if(isDay(timezone)){
+        clear = ['fas', 'fa-sun'];
+        clouds = ['fas', 'fa-cloud-sun'];
+    } else {
+        clear = ['fas', 'fa-moon'];
+        clouds = ['fas', 'fa-cloud-moon'];
+    }
+
     switch(status){
         case 'Thunderstorm': return ['fas', 'fa-bolt']; 
         case 'Drizzle': return ['fas', 'fa-cloud-rain']; 
@@ -20,10 +30,10 @@ const getIcon = (id, status) => {
         case 'Ash': 
         case 'Squall':
         case 'Tornado': return ['fas', 'fa-smog'];  //specific tornado icon availible with font-awesome pro
-        case 'Clear': return ['fas', 'fa-sun'];
+        case 'Clear': return clear;
         case 'Clouds': 
             if(Number.parseInt(id) < 803){
-                return ['fas', 'fa-cloud-sun'] ;
+                return  clouds;
             } else {
                 return ['fas', 'fa-cloud']
             };
@@ -31,12 +41,13 @@ const getIcon = (id, status) => {
     }
 }
 
-const displayWeather = (id, status) => {
+const displayWeather = (id, status, timezone) => {
     const uiWeatherIcon = document.getElementById("weather-icon");
+    uiWeatherIcon.classList.remove(...uiWeatherIcon.classList)
     const uiWeatherStatus = document.getElementById("weather-status");
     let classes = [];
 
-    classes = getIcon(id, status);
+    classes = getIcon(id, status, timezone);
 
     classes.forEach(el => uiWeatherIcon.classList.add(el));
     uiWeatherStatus.innerHTML = status;
@@ -137,10 +148,9 @@ const displayLocation = (location) => {
 
 const displayDate = (timezone) => {
     
-    const DateTime = luxon.DateTime;
     const uiDate = document.getElementById('date');
 
-    uiDate.innerText = `${DateTime.now().setZone(timezone).toFormat("cccc',' LLLL d")}`;
+    uiDate.innerText = `${getDateTime(timezone).toFormat("cccc',' LLLL d")}`;
 }
 
 // CLOCK
@@ -149,8 +159,9 @@ const displayClock = (timezone) => {
     
     const DateTime = luxon.DateTime;
     const clock = document.getElementById("clock");
+    
 
-    const getTime = () => { return DateTime.now().setZone(timezone).toLocaleString(DateTime.TIME_WITH_SECONDS); }
+    const getTime = () => { return getDateTime(timezone).toLocaleString(DateTime.TIME_WITH_SECONDS); }
     
     clock.innerText = `${getTime()}`;
 

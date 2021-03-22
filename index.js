@@ -26,11 +26,12 @@ const updateDOM = (data) => {
     const weather = data.current.weather[0].main;
     const current = data.current;
     const today = data.daily[0];
+    const tz = data.timezone;
     setLS([{ key: 'weather', value: weather }]);
     clearParticles();
-    displayClock(data.timezone);
-    displayDate(data.timezone);
-    displayWeather(current.weather[0].id, weather);
+    displayClock(tz);
+    displayDate(tz);
+    displayWeather(current.weather[0].id, weather, tz);
     displayTemperature(current.temp, current.feels_like, today.temp.max, today.temp.min);
     displayForecast(data.daily);
     animateSky(weather, today.sunrise, today.sunset, location.lat, location.lon);
