@@ -1,8 +1,11 @@
 // WEATHER
-
+let lightningInterval;
 const animateWeatherGFX = (weather, weatherID) => {
 
     const background = document.getElementById('weather');
+
+    //reset
+    background.style.background = '';
 
     const drawClouds = (numClouds) => {
 
@@ -71,9 +74,20 @@ const animateWeatherGFX = (weather, weatherID) => {
     }
 
     const drawLightning = () => {
+        const lightning = document.createElement('div');
+        lightning.classList.add('lightning', 'js-gfx');
+        background.appendChild(lightning);
+
+        if(lightningInterval){ clearInterval(lightning); }
         setInterval(() => {
-            background.classList.toggle('lightning');
-        }, 3000);
+            setTimeout(() => {
+                lightning.classList.add('lightning-animation');
+                setTimeout(() => {
+                    lightning.classList.remove('lightning-animation');
+                }, 2000);
+            }, (Math.random() * (22000 - 12000) + 12000));
+            
+        }, 12000);
         
     }
 
@@ -301,6 +315,10 @@ const animateSky = (weather, sunrise, sunset) => {
       //sunrise
       let stages = getStages(sunrise, sunrise + hour, colors.length);
       let nearestStages = getNearestStages(stages, currentTime);
+      if(nearestStages === -1){
+        setColor(colors[colors.length - 1]);
+        return;
+      }
       setColor(calculateColor(colors, nearestStages));   
   } else if (currentTime >= (sunset - hour) && currentTime < sunset){
       //sunset

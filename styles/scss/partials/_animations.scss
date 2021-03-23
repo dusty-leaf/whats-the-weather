@@ -50,7 +50,18 @@
 }
 
 .lightning {
-  animation: flash 1s linear;
+  background: #f2f2f2;
+  opacity: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.lightning-animation {
+  animation: flash 2s linear;
 }
 
 .atmosphere {
@@ -301,16 +312,15 @@
 }
 
 @keyframes flash {
-  from {
+  0% {
     opacity: 0;
   }
 
-  90% {
+  50% {
     opacity: 1;
-    background: #fff;
   }
 
-  to {
+  100% {
     opacity: 0;
   }
 }
@@ -342,19 +352,19 @@
 }
 
 @keyframes loader-spin {
-  0%{
+  0% {
     transform: rotate(0deg);
   }
-  25%{
+  25% {
     transform: rotate(90deg);
   }
-  50%{
+  50% {
     transform: rotate(180deg);
   }
-  75%{
-    transform: rotate(270deg)
+  75% {
+    transform: rotate(270deg);
   }
-  100%{
+  100% {
     transform: rotate(360deg);
   }
 }

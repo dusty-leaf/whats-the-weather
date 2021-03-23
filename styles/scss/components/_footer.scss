@@ -31,4 +31,13 @@ footer {
   #dev-credit {
     font-size: 0.7rem;
   }
+
+  @media screen and (max-width: 1200px) {
+    height: 2.3rem;
+    display: grid;
+  }
+
+  @media screen and (max-width: 900px) {
+    height: 3rem;
+  }
 }

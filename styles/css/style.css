@@ -191,6 +191,17 @@ footer a:active {
 footer #dev-credit {
   font-size: 0.7rem;
 }
+@media screen and (max-width: 1200px) {
+  footer {
+    height: 2.3rem;
+    display: grid;
+  }
+}
+@media screen and (max-width: 900px) {
+  footer {
+    height: 3rem;
+  }
+}
 
 html {
   scroll-behavior: smooth;
@@ -369,7 +380,18 @@ html input[type=number] {
 }
 
 .lightning {
-  animation: flash 1s linear;
+  background: #f2f2f2;
+  opacity: 0;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.lightning-animation {
+  animation: flash 2s linear;
 }
 
 .atmosphere {
@@ -562,14 +584,13 @@ html input[type=number] {
   }
 }
 @keyframes flash {
-  from {
+  0% {
     opacity: 0;
   }
-  90% {
+  50% {
     opacity: 1;
-    background: #fff;
   }
-  to {
+  100% {
     opacity: 0;
   }
 }
