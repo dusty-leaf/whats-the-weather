@@ -31,3 +31,11 @@
 .display-block {
   display: block;
 }
+
+.half-opacity {
+  opacity: 0.5;
+}
+
+.paused {
+  animation-play-state: paused;
+}

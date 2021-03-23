@@ -12,10 +12,14 @@
   border-radius: 50%;
 }
 
-.btn:active,
-.btn:hover,
-.btn:focus {
+.btn:active:enabled,
+.btn:hover:enabled,
+.btn:focus:enabled {
   outline: none;
   border: none;
   background-color: white;
+}
+
+.btn:disabled {
+  cursor: default;
 }

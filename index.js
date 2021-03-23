@@ -1,5 +1,5 @@
 import config from './scripts/config.js';
-import { animateWeatherGFX, animateSky, clearParticles }from './scripts/animations.js';
+import { animateWeatherGFX, animateSky, clearParticles, toggleParticleAnimations }from './scripts/animations.js';
 import { displayWeather, displayTemperature, displayForecast, displayLocation, displayDate, displayClock } from './scripts/displayUI.js';
 import { setLS, getLS } from './scripts/LS.js';
 import getLocation from './scripts/location.js';
@@ -7,6 +7,7 @@ import { geocode, reverseGeocode } from './scripts/geocoding.js';
 import autocompleteSearchBar from './scripts/autocompleteSearchBar.js';
 import { toggleDisplayUnits, toggleLoader, toggleHidden } from './scripts/controls.js';
 import { showError, clearError } from './scripts/errorHandler.js';
+import { isDay } from './scripts/utilities.js';
 
 const updateLS = (data) => {
     const current = data.current;
@@ -27,15 +28,15 @@ const updateDOM = (data) => {
     const current = data.current;
     const today = data.daily[0];
     const tz = data.timezone;
+    // clearParticles();
     setLS([{ key: 'weather', value: weather }]);
-    clearParticles();
     displayClock(tz);
     displayDate(tz);
     displayWeather(current.weather[0].id, weather, tz);
     displayTemperature(current.temp, current.feels_like, today.temp.max, today.temp.min);
     displayForecast(data.daily);
     animateSky(weather, today.sunrise, today.sunset, location.lat, location.lon);
-    animateWeatherGFX(weather, weather.id);
+    animateWeatherGFX('Rain', weather.id, tz);
 }
 
 const getWeather = (lat, lon, unit) => new Promise(
@@ -57,15 +58,26 @@ const getWeather = (lat, lon, unit) => new Promise(
 });
 
 let keepDataUpdated;
+let msElasped = 0;
+let msInterval;
 
-const trackWeather = (lat, lon) => {
+const trackWeather = (lat, lon, elapsed) => {
+    if(msElasped){ msElasped = 0; }
+    if(msInterval){ clearInterval(msInterval); }
+
+    const duration = elapsed ? 60000 - elapsed : 60000; // 1 minute default
+    console.log(duration);
     keepDataUpdated = setInterval(() => {
         getWeather(lat, lon)
         .then((data) => {
             updateLS(data);
             updateDOM(data);
         });
-    }, 60000);
+    }, duration);
+    msInterval = setInterval(() => {
+        msElasped += 1000;
+        console.log(msElasped);
+    }, 1000);
     
 }
 
@@ -76,6 +88,7 @@ const displayAll = async (location) => {
         updateLS(data);
         if(keepDataUpdated){ clearInterval(keepDataUpdated); };
         trackWeather(location.lat, location.lon);
+        settingsBtn.disabled = false;
     })
     .catch((err) => {
         console.error(err);
@@ -89,6 +102,10 @@ const setup = async () => {
     .then((data) => {
         location.lat = data.lat;
         location.lon = data.lon;
+        setLS([
+            { key: 'lat', value: data.lat },
+            { key: 'lon', value: data.lon }
+        ]);
         console.log(location);
         return location;
     })
@@ -125,6 +142,10 @@ const updateLocation = async (location) => {
         console.log(data);
         updatedLocation.lat = data.results[0].geometry.location.lat;
         updatedLocation.lon = data.results[0].geometry.location.lng;
+        setLS([
+            { key: lat, value: data.results[0].geometry.location.lat },
+            { key: lon, value: data.results[0].geometry.location.lng }
+        ]);
         return updatedLocation;
     })
     .then((location) => {
@@ -147,7 +168,39 @@ searchSubmit.addEventListener('click', () => {
     updateLocation(newLocation);
 });
 
+const settingsBtn = document.getElementById('settings');
+settingsBtn.disabled = true;
 
+const settingsContainer = document.getElementById('settings-menu');
+
+let isPaused = false;
+
+const togglePaused = () => {
+    
+    if(isPaused){ return false; }
+    return true;
+}
+
+
+settingsBtn.addEventListener('click', () => {
+    
+    if(!isPaused){
+        isPaused = togglePaused();
+        clearInterval(keepDataUpdated);
+        clearInterval(msInterval);
+        toggleParticleAnimations();
+        settingsContainer.classList.toggle('hidden');
+        return;
+    }
+
+    if(isPaused === true){
+        isPaused = togglePaused();
+        trackWeather(getLS('lat'), getLS('lon'), msElasped);
+        toggleParticleAnimations();
+        settingsContainer.classList.toggle('hidden');
+        return;
+    }
+});
 
 toggleLoader();
 if(!getLS('unit')){

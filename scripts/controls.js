@@ -33,10 +33,10 @@ const toggleDisplayUnits = () => {
     });
 }
 
-const toggleLoader = (checkIfLoaderIsAlreadyRunning) => {
+const toggleLoader = (IsLoaderAlreadyRunning) => {
     const loader = document.getElementById('loader');
 
-    if(checkIfLoaderIsAlreadyRunning && !loader.classList.contains('hidden')){
+    if(IsLoaderAlreadyRunning && !loader.classList.contains('hidden')){
         return;
     }
 

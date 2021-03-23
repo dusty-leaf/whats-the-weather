@@ -19,9 +19,10 @@
         </div>
         <button type="submit" id="search-submit" class="btn btn-round font-bold">Go</button>  
     </div>
+    <button id="settings" class="btn btn-round"><i class="fas fa-cog"></i></button>
     <section id="weather">
         <img id="weather__background" src="images/—Pngtree—cartoon hills png download_4586597.png">
-        <div class="weather__container transparent-dark-background foreground border-radius">
+        <div class="container transparent-dark-background foreground border-radius">
             <div class="weather__controls">
                 <button id="F" class="btn btn-round hidden font-bold">F&deg;</button>
                 <button id="C" class="btn btn-round font-bold">C&deg;</button>
@@ -39,7 +40,7 @@
             <div id="weather-forecast"></div>
         </div>
         <p id="credit"></p>
-        <div id="loader" class="weather__container grid border-radius hidden">
+        <div id="loader" class="container grid border-radius hidden">
             <span><i class="fas fa-circle-notch loader__icon fa-spin"></i></span>
             <div id="error">
                 <h2>Welcome</h2>
@@ -47,6 +48,7 @@
             </div>
             <button id="continue" class="btn border-radius font-bold">Continue</button>
         </div>
+        <div id="settings-menu" class="container hidden border-radius"></div>
     </section>
     <footer>
         <div>

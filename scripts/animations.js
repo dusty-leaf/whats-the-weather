@@ -1,12 +1,14 @@
+import { isDay, getDateTime } from './utilities.js';
+
 // WEATHER
 let lightningInterval;
-const animateWeatherGFX = (weather, weatherID) => {
+const animateWeatherGFX = (weather, weatherID, timezone) => {
+
+    // reset
+    clearParticles();
 
     const background = document.getElementById('weather');
-
-    //reset
-    background.style.background = '';
-
+    
     const drawClouds = (numClouds) => {
 
         let num = numClouds;
@@ -37,6 +39,9 @@ const animateWeatherGFX = (weather, weatherID) => {
 
         let clouds = shuffle([1,2,3,4,5]);
 
+        const day = isDay(timezone);
+        console.log(day);
+
         // create clouds
         for(let x = 0; x < num; x++){
             let cloud = document.createElement('img');
@@ -44,10 +49,11 @@ const animateWeatherGFX = (weather, weatherID) => {
             cloud.src = `../images/cloud${x + 1}.png`; //
             cloud.alt = ""; //allows screen readers to ignore clouds
             cloud.classList.add('cloud', `speed-${clouds[x]}`, 'js-gfx');
+            if(!day){ cloud.classList.add('half-opacity'); }
             background.appendChild(cloud);
-            setTimeout(() => {
+            /* setTimeout(() => {
                 cloud.remove();
-            }, 60000);
+            }, 60000); */
         }
         
     }
@@ -66,9 +72,9 @@ const animateWeatherGFX = (weather, weatherID) => {
             particle.style.animationDuration = `${Math.floor(speed + (Math.random() * 1000))}ms`;
             classes.forEach(el => particle.classList.add(el));
             background.appendChild(particle);
-            setTimeout(() => {
+            /* setTimeout(() => {
                 particle.remove();
-            }, 60000); 
+            }, 60000);  */
         }
         
     }
@@ -107,36 +113,36 @@ const animateWeatherGFX = (weather, weatherID) => {
         const atmosphereLayer1 = document.createElement('div');
         atmosphereLayer1.classList.add('atmosphere', 'layer-1', `${weatherClass}-1`, 'fade', 'js-gfx');
         background.appendChild(atmosphereLayer1);
-        setTimeout(() => {
+        /* setTimeout(() => {
             atmosphereLayer1.remove();
-        }, 60000);
+        }, 60000); */
 
         const atmosphereLayer2 = document.createElement('div');
         atmosphereLayer2.classList.add('atmosphere', 'layer-2', `${weatherClass}-2`, 'fade', 'js-gfx');
         background.appendChild(atmosphereLayer2);
-        setTimeout(() => {
+        /* setTimeout(() => {
             atmosphereLayer2.remove();
-        }, 60000);
+        }, 60000); */
     }
     
 
     //switch statment that draws weather affects based on weather
     // https://openweathermap.org/weather-conditions
 // num = weatherID
-const getNumClouds = (num) => {
-    switch (num) {
-      case 801:
-        return 2;
-      case 802:
-        return 3;
-      case 803:
-        return 4;
-      case 804:
-        return 5;
-      default:
-        return 1;
-    }
-  };
+    const getNumClouds = (num) => {
+        switch (num) {
+        case 801:
+            return 2;
+        case 802:
+            return 3;
+        case 803:
+            return 4;
+        case 804:
+            return 5;
+        default:
+            return 1;
+        }
+    };
 
   // switch statment that draws weather affects based on weather
   // https://openweathermap.org/weather-conditions
@@ -192,6 +198,11 @@ const animateSky = (weather, sunrise, sunset) => {
   // is assigned based on what % of the way between two stages the current time is
  
   const background = document.getElementById("weather"); //"content" // canvas
+  const hills = document.getElementById('weather__background');
+
+  // reset
+  background.style.background = '';
+  hills.style.opacity = 1;
 
   // colors - dark (night) to light (day)
   const clearSkies = [
@@ -334,6 +345,7 @@ const animateSky = (weather, sunrise, sunset) => {
       //night
       console.log('night');
       setColor(colors[0]);
+      hills.style.opacity = 0.5;
   }
 
   
@@ -345,7 +357,14 @@ const clearParticles = () => {
     if(particles.length > 0){
         particles.forEach(el => el.remove());
     }
-    
 }
 
-export { animateWeatherGFX, animateSky, clearParticles };
+const toggleParticleAnimations = () => {
+    const particles = Array.from(document.getElementsByClassName('js-gfx'));
+    if(particles.length > 0){
+        particles.forEach(el => el.classList.toggle('paused'));
+    }
+}
+
+
+export { animateWeatherGFX, animateSky, clearParticles, toggleParticleAnimations };

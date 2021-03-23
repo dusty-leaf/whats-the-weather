@@ -1,0 +1,26 @@
+#settings {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 0.2rem;
+  z-index: 10;
+  font-size: 1rem;
+
+  i {
+    /* manual off-set to center button due to font-awesome wonkyness */
+    color: #4d4d4d;
+    padding-top: 0.1rem;
+  }
+
+  /* needs fixing */
+  :disabled {
+    i {
+      opacity: 0.5;
+    }
+  }
+}
+
+#settings-menu {
+  z-index: 10;
+  background-color: #4d4d4d;
+}
