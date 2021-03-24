@@ -20,20 +20,34 @@ const state = {
     }
 };
 
+const toggleIsPaused = () => {
+    if(state.isPaused){ return false; }
+    return true;
+}
 
-/* const updateLS = (data) => {
-    const current = data.current;
-    const today = data.daily[0];
+const toggleAppPause = () => {
+    const searchInput = document.getElementById('search');
+    const searchSubmit = document.getElementById('search-submit');
 
-    setLS([
-        { key: 'current', value: current.temp },
-        { key: 'feelslike', value: current.feels_like },
-        { key: 'max', value: today.temp.max },
-        { key: 'min', value: today.temp.min },
-        { key: 'forecast', value: JSON.stringify(data.daily)}
-    ]);
+    if(!state.isPaused){
+        state.setProperty('isPaused', toggleIsPaused());
+        searchInput.disabled = true;
+        searchSubmit.disabled = true;
+        clearTimeout(state.refreshData);
+        clearInterval(state.updateTimeRemainingInCycle);
+        toggleParticleAnimations();
+        settingsContainer.classList.toggle('hidden');
+        return;
+    }
 
-} */
+    state.setProperty('isPaused', toggleIsPaused());
+    searchInput.disabled = false;
+    searchSubmit.disabled = false;
+    updateWeather(state.lat, state.lon, true);
+    toggleParticleAnimations();
+    settingsContainer.classList.toggle('hidden');
+    return;
+}
 
 const updateDOM = () => {
     
@@ -68,40 +82,39 @@ const getWeather = (lat, lon, unit) => new Promise(
 
 /* let refreshData;
 let timeRemainingInCycle = 60000;
-let trackTimeRemainingInCycle; */
+let updateTimeRemainingInCycle; */
 
 state.setMultipleProperties([
     ['refreshData', ''],
     ['timeRemainingInCycle', 60000],
-    ['trackTimeRemainingInCycle', '']
+    ['updateTimeRemainingInCycle', '']
 ])
 
-// msElapsed should reset at 60, but not on each trackWeather recall (unless we're changing locations)
+// msElapsed should reset at 60, but not on each updateWeather recall (unless we're changing locations)
 
-// trackWeather fetches fresh weather data every 60 seconds
+// updateWeather fetches fresh weather data every 60 seconds
 // (in sync with background animations)
-// trackTimeRemeainingInCycle saves the number of ms elapsed since
+// updateTimeRemeainingInCycle saves the number of ms elapsed since
 // the start of the cycle (in 100ms increments) in case the app is paused,
 // after which the refreshData is called again with the remaining time
 // (psuedo-pause/resume)
-const trackWeather = (lat, lon, AppWasPaused) => {
+const updateWeather = (lat, lon, wasPaused) => {
     
-    if(!AppWasPaused){ state.timeRemainingInCycle = 60000; }
+    if(!wasPaused){ state.timeRemainingInCycle = 60000; }
 
     state.refreshData = setTimeout(() => {
         getWeather(lat, lon)
         .then((data) => {
-            updateLS(data);
             updateDOM(data);
-            clearInterval(state.trackTimeRemainingInCycle);
-            trackWeather(lat, lon);
+            clearInterval(state.updateTimeRemainingInCycle);
+            updateWeather(lat, lon);
         });
     }, state.timeRemainingInCycle);
 
-    state.trackTimeRemainingInCycle = setInterval(() => {
+    state.updateTimeRemainingInCycle = setInterval(() => {
         state.timeRemainingInCycle  -= 100;
         if(state.timeRemainingInCycle  <= 0){
-            clearInterval(state.trackTimeRemainingInCycle);
+            clearInterval(state.updateTimeRemainingInCycle);
         }
     }, 100);
     
@@ -124,10 +137,9 @@ const updateAll = async () => {
         ]);
         console.log(state);
         updateDOM(data);
-        //updateLS(data);
         if(state.refreshData !== undefined){ clearTimeout(state.refreshData); };
-        // trackWeather(location.lat, location.lon);
-        trackWeather(state.lat, state.lon);
+        // updateWeather(location.lat, location.lon);
+        updateWeather(state.lat, state.lon);
         settingsBtn.disabled = false;
     })
     .catch((err) => {
@@ -228,36 +240,14 @@ settingsBtn.disabled = true;
 
 const settingsContainer = document.getElementById('settings__container');
 
-// let isPaused = false;
+
 state.setProperty(['isPaused', false]);
 
-const toggleIsPaused = () => {
-    
-    if(state.isPaused){ return false; }
-    return true;
-}
-
-const toggleAppPause = () => {
-    if(!state.isPaused){
-        state.isPaused = toggleIsPaused();
-        clearTimeout(state.refreshData);
-        clearInterval(state.trackTimeRemainingInCycle);
-        toggleParticleAnimations();
-        settingsContainer.classList.toggle('hidden');
-        return;
-    }
-
-    if(state.isPaused === true){
-        state.isPaused = toggleIsPaused();
-        trackWeather(state.lat, state.lon, true);
-        toggleParticleAnimations();
-        settingsContainer.classList.toggle('hidden');
-        return;
-    }
-}
 
 
-settingsBtn.addEventListener('click', toggleAppPause);
+settingsBtn.addEventListener('click', () => {
+    toggleAppPause(state);
+});
 
 toggleLoader();
 /* if(!getLS('unit')){

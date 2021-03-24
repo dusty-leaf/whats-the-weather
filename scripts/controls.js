@@ -1,6 +1,21 @@
 import { displayForecast, displayTemperature } from "./displayUI.js";
 import { getLS, setLS } from "./LS.js";
 
+const settingsButtons = Array.from(document.getElementsByClassName('settings__button'));
+const icon = document.getElementById('settings__icon');
+
+settingsButtons.forEach(el => {
+    el.addEventListener('mouseover', () => {
+        icon.className = `fas fa-${el.id}`;
+    });
+});
+
+settingsButtons.forEach(el => {
+    el.addEventListener('mouseout', () => {
+        icon.className = 'fas fa-cloud-sun';
+    });
+});
+
 const toggleHidden = (element) => {
     element.classList.toggle('hidden');
 }
@@ -33,10 +48,10 @@ const toggleDisplayUnits = () => {
     });
 }
 
-const toggleLoader = (IsLoaderAlreadyRunning) => {
+const toggleLoader = (isLoaderAlreadyRunning) => {
     const loader = document.getElementById('loader');
 
-    if(IsLoaderAlreadyRunning && !loader.classList.contains('hidden')){
+    if(isLoaderAlreadyRunning && !loader.classList.contains('hidden')){
         return;
     }
 
