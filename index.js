@@ -121,11 +121,10 @@ const updateAll = async () => {
             ['today', today],
             ['tz', tz],
             ['forecast', data.daily]
-
-        ])
+        ]);
         console.log(state);
         updateDOM(data);
-        updateLS(data);
+        //updateLS(data);
         if(state.refreshData !== undefined){ clearTimeout(state.refreshData); };
         // trackWeather(location.lat, location.lon);
         trackWeather(state.lat, state.lon);
@@ -165,6 +164,8 @@ const setup = async () => {
         displayLocation(state.location);
         //updateAll(location);
         updateAll();
+    })
+    .then(() => {
         toggleLoader();
     })
     .catch((err) => {
@@ -183,21 +184,27 @@ googleapis.addEventListener('load', () => {
 const updateLocation = async (location) => {
     toggleLoader(true);
     clearError();
-    toggleHidden(document.getElementById('continue'));
+    //toggleHidden(document.getElementById('continue'));
     const updatedLocation = {};
     await geocode(location)
     .then(data => {
         console.log(data);
-        updatedLocation.lat = data.results[0].geometry.location.lat;
-        updatedLocation.lon = data.results[0].geometry.location.lng;
+        state.setMultipleProperties([
+            ['lat', data.results[0].geometry.location.lat],
+            ['lon', data.results[0].geometry.location.lng]
+        ]);
+        /* updatedLocation.lat = data.results[0].geometry.location.lat;
+        updatedLocation.lon = data.results[0].geometry.location.lng; */
         /* setLS([
             { key: lat, value: data.results[0].geometry.location.lat },
             { key: lon, value: data.results[0].geometry.location.lng }
         ]); */
-        return updatedLocation;
+        // return updatedLocation;
     })
-    .then((location) => {
-        updateAll(location);
+    .then(async () => {
+        updateAll();
+    })
+    .then(() => {
         toggleLoader();
     })
     .catch((err) => {
