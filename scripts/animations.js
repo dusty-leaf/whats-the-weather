@@ -40,7 +40,6 @@ const animateWeatherGFX = (weather, weatherID, timezone) => {
         let clouds = shuffle([1,2,3,4,5]);
 
         const day = isDay(timezone);
-        console.log(day);
 
         // create clouds
         for(let x = 0; x < num; x++){
@@ -314,13 +313,13 @@ const animateSky = (weather, sunrise, sunset) => {
   //assign those values to the background
   const setColor = (color) => {
       const fr = .9;
-      background.style.background = `linear-gradient(to top, rgb(${color[0]}, ${color[1]}, ${color[2]}), rgb(${Math.floor(color[0] * fr)}, ${Math.floor(color[1] * fr)}, ${Math.floor(color[2] *fr)})`;
-      console.log(`-----rgb(${color[0]}, ${color[1]}, ${color[2]})-----`);
+      background.style.background = `
+        linear-gradient(to top, rgb(${color[0]}, ${color[1]}, ${color[2]}), rgb(${Math.floor(color[0] * fr)}, ${Math.floor(color[1] * fr)}, ${Math.floor(color[2] *fr)})
+      `;
   }
 
   if(currentTime > (sunrise + hour) && currentTime < (sunset - hour)){
       //day
-      console.log('day');
       setColor(colors[colors.length - 1]);
   } else if (currentTime < (sunrise + hour)){
       //sunrise
@@ -340,10 +339,8 @@ const animateSky = (weather, sunrise, sunset) => {
           return;
       }
       setColor(calculateColor(colors.slice().reverse(), nearestStages));
-      console.log('dusk');
   } else {
       //night
-      console.log('night');
       setColor(colors[0]);
       hills.style.opacity = 0.5;
   }

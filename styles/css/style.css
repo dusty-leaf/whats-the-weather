@@ -146,9 +146,7 @@ html {
 }
 
 #continue {
-  height: 2rem;
-  width: 4.4rem;
-  margin: 0 auto;
+  margin: 0.4rem auto;
 }
 
 .btn {
@@ -156,7 +154,13 @@ html {
   font-size: 0.6rem;
   font-family: "Inter", sans-serif;
   color: #4d4d4d;
+  border: 1px solid #4d4d4d;
   cursor: pointer;
+}
+
+.btn-rect {
+  height: 2rem;
+  width: 4.4rem;
 }
 
 .btn-round {
@@ -338,9 +342,17 @@ html input[type=number] {
   opacity: 0.5;
 }
 
-#settings-menu {
+#settings__container {
   z-index: 10;
   background-color: #4d4d4d;
+}
+
+#settings__menu {
+  width: 100%;
+}
+
+.settings__button {
+  margin: 0.2rem auto;
 }
 
 /* #setup {

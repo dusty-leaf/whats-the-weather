@@ -9,7 +9,19 @@ import { toggleDisplayUnits, toggleLoader, toggleHidden } from './scripts/contro
 import { showError, clearError } from './scripts/errorHandler.js';
 import { isDay } from './scripts/utilities.js';
 
-const updateLS = (data) => {
+const state = {
+    setProperty: function(key, val){
+        state[key] = val;
+    },
+    setMultipleProperties: function(arr){
+        arr.forEach((el) => {
+            state[el[0]] = el[1];
+        })
+    }
+};
+
+
+/* const updateLS = (data) => {
     const current = data.current;
     const today = data.daily[0];
 
@@ -21,22 +33,19 @@ const updateLS = (data) => {
         { key: 'forecast', value: JSON.stringify(data.daily)}
     ]);
 
-}
+} */
 
-const updateDOM = (data) => {
-    const weather = data.current.weather[0].main;
-    const current = data.current;
-    const today = data.daily[0];
-    const tz = data.timezone;
+const updateDOM = () => {
+    
     // clearParticles();
-    setLS([{ key: 'weather', value: weather }]);
-    displayClock(tz);
-    displayDate(tz);
-    displayWeather(current.weather[0].id, weather, tz);
-    displayTemperature(current.temp, current.feels_like, today.temp.max, today.temp.min);
-    displayForecast(data.daily);
-    animateSky(weather, today.sunrise, today.sunset, location.lat, location.lon);
-    animateWeatherGFX(weather, weather.id, tz);
+    // setLS([{ key: 'weather', value: weather }]);
+    displayClock(state.tz);
+    displayDate(state.tz);
+    displayWeather(state.current.weather[0].id, state.weather, state.tz);
+    displayTemperature(state.current.temp, state.current.feels_like, state.today.temp.max, state.today.temp.min);
+    displayForecast(state.forecast);
+    animateSky(state.weather, state.today.sunrise, state.today.sunset, state.lat, state.lon);
+    animateWeatherGFX(state.weather, state.weather.id, state.tz);
 }
 
 const getWeather = (lat, lon, unit) => new Promise(
@@ -57,9 +66,15 @@ const getWeather = (lat, lon, unit) => new Promise(
         });
 });
 
-let refreshData;
+/* let refreshData;
 let timeRemainingInCycle = 60000;
-let trackTimeRemainingInCycle;
+let trackTimeRemainingInCycle; */
+
+state.setMultipleProperties([
+    ['refreshData', ''],
+    ['timeRemainingInCycle', 60000],
+    ['trackTimeRemainingInCycle', '']
+])
 
 // msElapsed should reset at 60, but not on each trackWeather recall (unless we're changing locations)
 
@@ -71,36 +86,49 @@ let trackTimeRemainingInCycle;
 // (psuedo-pause/resume)
 const trackWeather = (lat, lon, AppWasPaused) => {
     
-    if(!AppWasPaused){ timeRemainingInCycle = 60000; }
-    console.log(timeRemainingInCycle);
+    if(!AppWasPaused){ state.timeRemainingInCycle = 60000; }
 
-    refreshData = setTimeout(() => {
+    state.refreshData = setTimeout(() => {
         getWeather(lat, lon)
         .then((data) => {
             updateLS(data);
             updateDOM(data);
-            clearInterval(trackTimeRemainingInCycle);
+            clearInterval(state.trackTimeRemainingInCycle);
             trackWeather(lat, lon);
         });
-    }, timeRemainingInCycle);
+    }, state.timeRemainingInCycle);
 
-    trackTimeRemainingInCycle = setInterval(() => {
-        timeRemainingInCycle  -= 100;
-        console.log(timeRemainingInCycle);
-        if(timeRemainingInCycle  <= 0){
-            clearInterval(trackTimeRemainingInCycle);
+    state.trackTimeRemainingInCycle = setInterval(() => {
+        state.timeRemainingInCycle  -= 100;
+        if(state.timeRemainingInCycle  <= 0){
+            clearInterval(state.trackTimeRemainingInCycle);
         }
     }, 100);
     
 }
 
-const displayAll = async (location) => {
-    await getWeather(location.lat, location.lon)
+const updateAll = async () => {
+    await getWeather(state.lat, state.lon)
     .then((data) => {
+        const weather = data.current.weather[0].main;
+        const current = data.current;
+        const today = data.daily[0];
+        const tz = data.timezone;
+
+        state.setMultipleProperties([
+            ['weather', weather],
+            ['current', current],
+            ['today', today],
+            ['tz', tz],
+            ['forecast', data.daily]
+
+        ])
+        console.log(state);
         updateDOM(data);
         updateLS(data);
-        if(refreshData){ clearTimeout(refreshData); };
-        trackWeather(location.lat, location.lon);
+        if(state.refreshData !== undefined){ clearTimeout(state.refreshData); };
+        // trackWeather(location.lat, location.lon);
+        trackWeather(state.lat, state.lon);
         settingsBtn.disabled = false;
     })
     .catch((err) => {
@@ -110,26 +138,33 @@ const displayAll = async (location) => {
 
 
 const setup = async () => {
-    const location = {};
+    // const location = {};
     await getLocation()
     .then((data) => {
-        location.lat = data.lat;
-        location.lon = data.lon;
-        setLS([
-            { key: 'lat', value: data.lat },
-            { key: 'lon', value: data.lon }
+        console.log(data);
+        // location.lat = data.lat;
+       //  location.lon = data.lon;
+        state.setMultipleProperties([
+            ['lat', data.lat],
+            ['lon', data.lon]
         ]);
-        console.log(location);
+        console.log(state);
+        // return location;
+    })
+    // (location)
+    .then(async () => {
+        // await reverseGeocode(location.lat, location.lon, config.GOOGLE_API_KEY)
+        await reverseGeocode(state.lat, state.lon, config.GOOGLE_API_KEY)
+        // .then(value => location.name = value);
+        .then(value => state.location = value);
         return location;
     })
-    .then(async (location) => {
-        await reverseGeocode(location.lat, location.lon, config.GOOGLE_API_KEY)
-        .then(value => location.name = value);
-        return location;
-    })
-    .then(async (location) => {
-        displayLocation(location.name);
-        displayAll(location);
+    // (location)
+    .then(async () => {
+        // displayLocation(location.name);
+        displayLocation(state.location);
+        //updateAll(location);
+        updateAll();
         toggleLoader();
     })
     .catch((err) => {
@@ -155,14 +190,14 @@ const updateLocation = async (location) => {
         console.log(data);
         updatedLocation.lat = data.results[0].geometry.location.lat;
         updatedLocation.lon = data.results[0].geometry.location.lng;
-        setLS([
+        /* setLS([
             { key: lat, value: data.results[0].geometry.location.lat },
             { key: lon, value: data.results[0].geometry.location.lng }
-        ]);
+        ]); */
         return updatedLocation;
     })
     .then((location) => {
-        displayAll(location);
+        updateAll(location);
         toggleLoader();
     })
     .catch((err) => {
@@ -184,29 +219,30 @@ searchSubmit.addEventListener('click', () => {
 const settingsBtn = document.getElementById('settings');
 settingsBtn.disabled = true;
 
-const settingsContainer = document.getElementById('settings-menu');
+const settingsContainer = document.getElementById('settings__container');
 
-let isPaused = false;
+// let isPaused = false;
+state.setProperty(['isPaused', false]);
 
 const toggleIsPaused = () => {
     
-    if(isPaused){ return false; }
+    if(state.isPaused){ return false; }
     return true;
 }
 
 const toggleAppPause = () => {
-    if(!isPaused){
-        isPaused = toggleIsPaused();
-        clearTimeout(refreshData);
-        clearInterval(trackTimeRemainingInCycle);
+    if(!state.isPaused){
+        state.isPaused = toggleIsPaused();
+        clearTimeout(state.refreshData);
+        clearInterval(state.trackTimeRemainingInCycle);
         toggleParticleAnimations();
         settingsContainer.classList.toggle('hidden');
         return;
     }
 
-    if(isPaused === true){
-        isPaused = toggleIsPaused();
-        trackWeather(getLS('lat'), getLS('lon'), true);
+    if(state.isPaused === true){
+        state.isPaused = toggleIsPaused();
+        trackWeather(state.lat, state.lon, true);
         toggleParticleAnimations();
         settingsContainer.classList.toggle('hidden');
         return;
@@ -217,9 +253,9 @@ const toggleAppPause = () => {
 settingsBtn.addEventListener('click', toggleAppPause);
 
 toggleLoader();
-if(!getLS('unit')){
+/* if(!getLS('unit')){
     setLS([{key: 'unit', value: 'imperial'}]);
-}
+} */
 toggleDisplayUnits();
 setup();
 

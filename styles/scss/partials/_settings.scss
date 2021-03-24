@@ -20,7 +20,15 @@
   }
 }
 
-#settings-menu {
+#settings__container {
   z-index: 10;
   background-color: #4d4d4d;
+}
+
+#settings__menu {
+  width: 100%;
+}
+
+.settings__button {
+  margin: 0.2rem auto;
 }

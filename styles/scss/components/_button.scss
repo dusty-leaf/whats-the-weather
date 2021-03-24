@@ -3,7 +3,13 @@
   font-size: 0.6rem;
   font-family: "Inter", sans-serif;
   color: #4d4d4d;
+  border: 1px solid #4d4d4d;
   cursor: pointer;
+}
+
+.btn-rect {
+  height: 2rem;
+  width: 4.4rem;
 }
 
 .btn-round {
