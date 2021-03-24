@@ -36,7 +36,7 @@ const updateDOM = (data) => {
     displayTemperature(current.temp, current.feels_like, today.temp.max, today.temp.min);
     displayForecast(data.daily);
     animateSky(weather, today.sunrise, today.sunset, location.lat, location.lon);
-    animateWeatherGFX('Rain', weather.id, tz);
+    animateWeatherGFX(weather, weather.id, tz);
 }
 
 const getWeather = (lat, lon, unit) => new Promise(
@@ -57,27 +57,40 @@ const getWeather = (lat, lon, unit) => new Promise(
         });
 });
 
-let keepDataUpdated;
-let msElasped = 0;
-let msInterval;
+let refreshData;
+let timeRemainingInCycle = 60000;
+let trackTimeRemainingInCycle;
 
-const trackWeather = (lat, lon, elapsed) => {
-    if(msElasped){ msElasped = 0; }
-    if(msInterval){ clearInterval(msInterval); }
+// msElapsed should reset at 60, but not on each trackWeather recall (unless we're changing locations)
 
-    const duration = elapsed ? 60000 - elapsed : 60000; // 1 minute default
-    console.log(duration);
-    keepDataUpdated = setInterval(() => {
+// trackWeather fetches fresh weather data every 60 seconds
+// (in sync with background animations)
+// trackTimeRemeainingInCycle saves the number of ms elapsed since
+// the start of the cycle (in 100ms increments) in case the app is paused,
+// after which the refreshData is called again with the remaining time
+// (psuedo-pause/resume)
+const trackWeather = (lat, lon, AppWasPaused) => {
+    
+    if(!AppWasPaused){ timeRemainingInCycle = 60000; }
+    console.log(timeRemainingInCycle);
+
+    refreshData = setTimeout(() => {
         getWeather(lat, lon)
         .then((data) => {
             updateLS(data);
             updateDOM(data);
+            clearInterval(trackTimeRemainingInCycle);
+            trackWeather(lat, lon);
         });
-    }, duration);
-    msInterval = setInterval(() => {
-        msElasped += 1000;
-        console.log(msElasped);
-    }, 1000);
+    }, timeRemainingInCycle);
+
+    trackTimeRemainingInCycle = setInterval(() => {
+        timeRemainingInCycle  -= 100;
+        console.log(timeRemainingInCycle);
+        if(timeRemainingInCycle  <= 0){
+            clearInterval(trackTimeRemainingInCycle);
+        }
+    }, 100);
     
 }
 
@@ -86,7 +99,7 @@ const displayAll = async (location) => {
     .then((data) => {
         updateDOM(data);
         updateLS(data);
-        if(keepDataUpdated){ clearInterval(keepDataUpdated); };
+        if(refreshData){ clearTimeout(refreshData); };
         trackWeather(location.lat, location.lon);
         settingsBtn.disabled = false;
     })
@@ -175,32 +188,33 @@ const settingsContainer = document.getElementById('settings-menu');
 
 let isPaused = false;
 
-const togglePaused = () => {
+const toggleIsPaused = () => {
     
     if(isPaused){ return false; }
     return true;
 }
 
-
-settingsBtn.addEventListener('click', () => {
-    
+const toggleAppPause = () => {
     if(!isPaused){
-        isPaused = togglePaused();
-        clearInterval(keepDataUpdated);
-        clearInterval(msInterval);
+        isPaused = toggleIsPaused();
+        clearTimeout(refreshData);
+        clearInterval(trackTimeRemainingInCycle);
         toggleParticleAnimations();
         settingsContainer.classList.toggle('hidden');
         return;
     }
 
     if(isPaused === true){
-        isPaused = togglePaused();
-        trackWeather(getLS('lat'), getLS('lon'), msElasped);
+        isPaused = toggleIsPaused();
+        trackWeather(getLS('lat'), getLS('lon'), true);
         toggleParticleAnimations();
         settingsContainer.classList.toggle('hidden');
         return;
     }
-});
+}
+
+
+settingsBtn.addEventListener('click', toggleAppPause);
 
 toggleLoader();
 if(!getLS('unit')){
