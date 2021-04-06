@@ -1,3 +1,5 @@
+import config from './config.js';
+
 const autocompleteSearchBar  = () => {
     const searchbar = document.getElementById('search');
 
@@ -13,5 +15,12 @@ const autocompleteSearchBar  = () => {
             console.log(place);
     });
 }
+
+const googleapis = document.getElementById('googleapis');
+googleapis.src = `https://maps.googleapis.com/maps/api/js?key=${config.GOOGLE_API_KEY}&libraries=places`
+googleapis.addEventListener('load', () => {
+    autocompleteSearchBar();
+});
+
 
 export default autocompleteSearchBar;

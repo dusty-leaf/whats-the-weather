@@ -1,5 +1,38 @@
 import { displayForecast, displayTemperature } from "./displayUI.js";
+import { toggleParticleAnimations } from "./animations.js";
+import { updateWeather } from "./weather.js";
 import { getLS, setLS } from "./LS.js";
+import state from '../index.js';
+
+const toggleIsPaused = (state) => {
+    if(state.isPaused){ return false; }
+    return true;
+}
+
+const toggleAppPause = (state) => {
+    const searchInput = document.getElementById('search');
+    const searchSubmit = document.getElementById('search-submit');
+    const settingsContainer = document.getElementById('settings__container');
+
+    if(!state.isPaused){
+        state.setProperty('isPaused', toggleIsPaused(state));
+        searchInput.disabled = true;
+        searchSubmit.disabled = true;
+        clearTimeout(state.refreshData);
+        clearInterval(state.updateTimeRemainingInCycle);
+        toggleParticleAnimations();
+        settingsContainer.classList.toggle('hidden');
+        return;
+    }
+
+    state.setProperty('isPaused', toggleIsPaused(state));
+    searchInput.disabled = false;
+    searchSubmit.disabled = false;
+    toggleParticleAnimations();
+    settingsContainer.classList.toggle('hidden');
+    updateWeather(state, true);
+    return;
+}
 
 const settingsButtons = Array.from(document.getElementsByClassName('settings__button'));
 const icon = document.getElementById('settings__icon');
@@ -14,6 +47,11 @@ settingsButtons.forEach(el => {
     el.addEventListener('mouseout', () => {
         icon.className = 'fas fa-cloud-sun';
     });
+});
+
+const closeMenu = document.getElementById('settings__close');
+closeMenu.addEventListener('click', () => {
+    toggleAppPause(state)
 });
 
 const toggleHidden = (element) => {
@@ -48,6 +86,13 @@ const toggleDisplayUnits = () => {
     });
 }
 
+// half second delay to finish rendering DOM before loader disappears
+const toggleLoaderWithBuffer = (isLoaderAlreadyRunning) => {
+    setTimeout(() => {
+        toggleLoader(isLoaderAlreadyRunning);
+    }, 500);
+}
+
 const toggleLoader = (isLoaderAlreadyRunning) => {
     const loader = document.getElementById('loader');
 
@@ -60,4 +105,4 @@ const toggleLoader = (isLoaderAlreadyRunning) => {
 
 
 
-export { toggleDisplayUnits, toggleLoader, toggleHidden };
+export { toggleDisplayUnits, toggleLoader, toggleHidden, toggleIsPaused, toggleAppPause, toggleLoaderWithBuffer };

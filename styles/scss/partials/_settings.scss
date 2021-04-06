@@ -5,11 +5,12 @@
   margin: 0.2rem;
   z-index: 10;
   font-size: 1rem;
+  border: 1px solid #4d4d4d;
 
   i {
     /* manual off-set to center button due to font-awesome wonkyness */
     color: #4d4d4d;
-    padding-top: 0.1rem;
+    padding-top: 0.15rem;
   }
 
   /* needs fixing */
