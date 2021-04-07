@@ -1,6 +1,17 @@
 import WeatherApp from './scripts/WeatherApp.js';
+import AutocompleteSearchBar from './scripts/AutocompleteSearchBar.js';
+
+// on page load, create a new instance of WeatherApp with blank/default state
+// call app.initialize() to fetch initial data and update state
+const app = new WeatherApp();
+app.initialize();
+
+// on page load, create a new google autocomplete search bar
+const autocompleteSearchBar = new AutocompleteSearchBar(document.getElementById('search'), document.getElementById('googleScript'));
+//autocompleteSearchBar.initialize();
 
 
+// --- OLD  ---
 /* import { setLS, getLS } from './scripts/LS.js';
 import getLocation from './scripts/location.js';
 import { geocode, reverseGeocode } from './scripts/geocoding.js';
@@ -11,16 +22,10 @@ import { getWeather, updateWeather } from "./scripts/weather.js";
 import { isDay } from './scripts/utilities.js';
 import menu from './scripts/menu.js'; */
 
-// on page load, create a new instance of WeatherApp with blank/default state
-const app = new WeatherApp();
-
-app.toggleLoader();
-// call app.initialize() to fetch initial data and update state
-app.initialize();
 
 
 
-export default app.state;
+//export default app.state;
 
 /* const updateAll = async (state) => {
     await getWeather(state)

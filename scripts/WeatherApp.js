@@ -6,7 +6,6 @@ import { displayWeather, displayTemperature, displayForecast, displayLocation, d
 
 class WeatherApp {
     constructor(){
-
         this.state = {
             // initial properties on creation
             isPaused: false,
@@ -45,9 +44,6 @@ class WeatherApp {
     async getWeather(){
         return new Promise(
             (resolve, reject) => {
-                //const query = getLS('zip') ? `zip=${getLS('zip')}` : `q=${getLS('city')},${getLS('country')}`;
-                // https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${config.API_KEY}&units=imperial
-                // https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${config.API_KEY}&units=imperial
                 fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${this.state.lat}&lon=${this.state.lon}&exclude=minutely,hourly&appid=${config.OPENWEATHER_API_KEY}&units=imperial`)
                 .then((response) => response.json())
                 .then((data) => {
@@ -121,24 +117,26 @@ class WeatherApp {
     }
 
     async initialize(){
-        const state = this.state;
-        //const app = this;
+
+        // enable Loader while data is being fetched
+        this.toggleLoader();
+        
 
         await this.getLocationData()
         .then(data => {
-            console.log(data);
             this.state.setMultipleProperties([
                 ['lat', data.lat],
                 ['lon', data.lon]
             ]);
         })
         .then(async () => {
-            await Geocoding.reverseGeocode(state.lat, state.lon, config.GOOGLE_API_KEY)
-            .then(data => state.location = data);
+            await Geocoding.reverseGeocode(this.state.lat, this.state.lon, config.GOOGLE_API_KEY)
+            .then(data => this.state.location = data);
         })
         .then(async () => {
             await this.updateWeatherData()
             .then(() => {
+                // rerender DOM with updated state and disable Loader
                 this.render();
                 this.toggleLoader();
             })
