@@ -1,7 +1,7 @@
-import WeatherApp from './scripts/WeatherApp.js';
-
-
-/* import { setLS, getLS } from './scripts/LS.js';
+import config from './scripts/config.js';
+import { animateWeatherGFX, animateSky, clearParticles, toggleParticleAnimations }from './scripts/animations.js';
+import { displayWeather, displayTemperature, displayForecast, displayLocation, displayDate, displayClock } from './scripts/displayUI.js';
+import { setLS, getLS } from './scripts/LS.js';
 import getLocation from './scripts/location.js';
 import { geocode, reverseGeocode } from './scripts/geocoding.js';
 import autocompleteSearchBar from './scripts/autocompleteSearchBar.js';
@@ -9,20 +9,38 @@ import { toggleDisplayUnits, toggleLoader, toggleHidden, toggleIsPaused, toggleA
 import { showError, clearError } from './scripts/errorHandler.js';
 import { getWeather, updateWeather } from "./scripts/weather.js";
 import { isDay } from './scripts/utilities.js';
-import menu from './scripts/menu.js'; */
+import menu from './scripts/menu.js';
 
-// on page load, create a new instance of WeatherApp with blank/default state
-const app = new WeatherApp();
+const state = {
+    setProperty: function(key, val){
+        state[key] = val;
+    },
+    setMultipleProperties: function(arr){
+        arr.forEach((el) => {
+            state[el[0]] = el[1];
+        })
+    }
+};
 
-app.toggleLoader();
-// call app.initialize() to fetch initial data and update state
-app.initialize();
+state.setMultipleProperties([
+    ['isPaused', false],
+    ['refreshData', ''],
+    ['timeRemainingInCycle', 60000],
+    ['updateTimeRemainingInCycle', '']
+]);
 
+const updateDOM = (state) => {
+    const weather = state.toggledWeather ? state.toggledWeather : state.weather;
+    displayClock(state.tz);
+    displayDate(state.tz);
+    displayWeather(state.current.weather[0].id, state.weather, state.tz);
+    displayTemperature(state.current.temp, state.current.feels_like, state.today.temp.max, state.today.temp.min);
+    displayForecast(state.forecast);
+    animateSky(weather, state.today.sunrise, state.today.sunset, state.lat, state.lon);
+    animateWeatherGFX(weather, state.weather.id, state.tz);
+}
 
-
-export default app.state;
-
-/* const updateAll = async (state) => {
+const updateAll = async (state) => {
     await getWeather(state)
     .then((data) => {
         state.setMultipleProperties([
@@ -109,4 +127,4 @@ toggleDisplayUnits();
 setup();
 menu(state);
 
-export default state; */
+export default state;
