@@ -1,5 +1,13 @@
 import WeatherApp from './scripts/WeatherApp.js';
 import AutocompleteSearchBar from './scripts/AutocompleteSearchBar.js';
+import ErrorHandler from './scripts/ErrorHandler.js';
+import Animations from './scripts/Animations.js';
+
+/* // set up ErrorHandler to display any errors
+const errorElement = new ErrorHandler(document.getElementById('error')); */
+
+/* // on page load, initialize Animatons with background element
+const animations = new Animations(document.getElementById('weather')); */
 
 // on page load, create a new instance of WeatherApp with blank/default state
 // call app.initialize() to fetch initial data and update state
@@ -8,7 +16,7 @@ app.initialize();
 
 // on page load, create a new google autocomplete search bar
 const autocompleteSearchBar = new AutocompleteSearchBar(document.getElementById('search'), document.getElementById('googleScript'));
-//autocompleteSearchBar.initialize();
+
 
 
 // --- OLD  ---
