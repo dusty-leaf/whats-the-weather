@@ -28,6 +28,10 @@ class Utilities {
         }
         return a;
     }
+
+    static toggleHidden(element){
+        element.classList.toggle('hidden');
+    }
 }
 
 export default Utilities;

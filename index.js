@@ -1,7 +1,7 @@
 import WeatherApp from './scripts/WeatherApp.js';
 import AutocompleteSearchBar from './scripts/AutocompleteSearchBar.js';
-import ErrorHandler from './scripts/ErrorHandler.js';
-import Animations from './scripts/Animations.js';
+/* import ErrorHandler from './scripts/ErrorHandler.js';
+import Animations from './scripts/Animations.js'; */
 
 /* // set up ErrorHandler to display any errors
 const errorElement = new ErrorHandler(document.getElementById('error')); */
@@ -9,13 +9,47 @@ const errorElement = new ErrorHandler(document.getElementById('error')); */
 /* // on page load, initialize Animatons with background element
 const animations = new Animations(document.getElementById('weather')); */
 
-// on page load, create a new instance of WeatherApp with blank/default state
-// call app.initialize() to fetch initial data and update state
+
+
+/* // on page load, create a new google autocomplete search bar
+const autocompleteSearchBar = new AutocompleteSearchBar(document.getElementById('search'), document.getElementById('googleScript')); */
+
+// DOM elements
+const elements = {
+    autocompleteSearchBar: new AutocompleteSearchBar(document.getElementById('search'), document.getElementById('googleScript')),
+    toggleSettingsMenuButton: document.getElementById('settings'),
+    closeSettingsMenuButton: document.getElementById('settings__close'),
+    settingsButtons: Array.from(document.getElementsByClassName('settings__button')),
+    settingsMenuIcon: document.getElementById('settings__icon')
+}
+
+// Event Listeners
+elements.toggleSettingsMenuButton.addEventListener('click', () => {
+    app.toggleAppPause();
+});
+
+elements.closeSettingsMenuButton.addEventListener('click', () => {
+    app.toggleAppPause();
+});
+
+elements.settingsButtons.forEach(el => {
+    el.addEventListener('mouseover', () => {
+        elements.settingsMenuIcon.className = `fas fa-${el.id}`;
+    });
+});
+
+elements.settingsButtons.forEach(el => {
+    el.addEventListener('mouseout', () => {
+        elements.settingsMenuIcon.className = 'fas fa-cloud-sun';
+    });
+});
+
+// on page load, create a new instance of WeatherApp
+// call app.initialize() to fetch initial data
 const app = new WeatherApp();
 app.initialize();
 
-// on page load, create a new google autocomplete search bar
-const autocompleteSearchBar = new AutocompleteSearchBar(document.getElementById('search'), document.getElementById('googleScript'));
+
 
 
 

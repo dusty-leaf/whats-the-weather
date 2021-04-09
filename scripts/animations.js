@@ -38,7 +38,7 @@ class Animations {
     } */
 
     static background = document.getElementsByClassName('js-animations')[0];
-    lightningInterval;
+    static lightningInterval;
 
     static defaultColorPalette = [
         [56, 51, 105],

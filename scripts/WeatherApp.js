@@ -3,6 +3,7 @@ import Geocoding from "./Geocoding.js";
 import ErrorHandler from './ErrorHandler.js';
 import Animations from './Animations.js';
 import RenderMethods from './RenderMethods.js';
+import Utilities from './Utilities.js';
 //import { displayWeather, displayTemperature, displayForecast, displayLocation, displayDate, displayClock } from './displayUI.js';
 // import ErrorHandler from './ErrorHandler.js';
 
@@ -156,6 +157,8 @@ class WeatherApp {
         });
     }
 
+    // CONTROLS
+
     toggleLoader(isLoaderAlreadyRunning){
         const loaderElement = document.getElementById('loader');
     
@@ -164,6 +167,38 @@ class WeatherApp {
         }
     
         loaderElement.classList.toggle('hidden');
+    }
+
+    toggleIsPaused(){
+        if(this.state.isPaused){ return false; }
+        return true;
+    }
+
+    toggleAppPause(){
+        const searchInput = document.getElementById('search');
+        const searchSubmit = document.getElementById('search-submit');
+        const settingsContainer = document.getElementById('settings__container');
+    
+        if(!this.state.isPaused){
+            this.state.isPaused = this.toggleIsPaused();
+            searchInput.disabled = true;
+            searchSubmit.disabled = true;
+            clearTimeout(this.state.refreshData);
+            clearInterval(this.state.updateTimeRemainingInCycle);
+            Animations.toggleParticleAnimations();
+            Utilities.toggleHidden(settingsContainer);
+            //settingsContainer.classList.toggle('hidden');
+            return;
+        }
+    
+        this.state.isPaused = this.toggleIsPaused();
+        searchInput.disabled = false;
+        searchSubmit.disabled = false;
+        Animations.toggleParticleAnimations();
+        Utilities.toggleHidden(settingsContainer);
+        //settingsContainer.classList.toggle('hidden');
+        this.keepWeatherDataUpdated(true);
+        return;
     }
 
     async initialize(){
@@ -194,7 +229,7 @@ class WeatherApp {
             this.keepWeatherDataUpdated();
             this.toggleLoader();
         })
-        .catch(error => this.errorHandler.showError(error));
+        .catch(error => ErrorHandler.showError(error));
     }
 }
 
