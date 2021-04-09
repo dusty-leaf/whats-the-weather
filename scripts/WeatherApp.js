@@ -9,7 +9,7 @@ import RenderMethods from './RenderMethods.js';
 // import { animateWeatherGFX, animateSky, clearParticles, toggleParticleAnimations }from './animations.js';
 
 class WeatherApp {
-    constructor(errorElement, animations){
+    constructor(){ //errorElement, animations)
         this.state = {
             // initial properties on creation
             isPaused: false,
@@ -18,11 +18,18 @@ class WeatherApp {
             upgetDateTimeRemainingInCycle: '',
             clockInterval: '',
             weather: '',
+            id: '',
+            temperature: 0,
+            feels_like: 0,
+            max: '',
+            min: '',
             toggledWeather: '',
             unit: 'imperial',
-            current: '',
-            today: '',
+            //current: '',
+            //today: '',
             timezone: '',
+            sunrise: 0,
+            sunset: 0,
             forecast: '',
             lat: 0,
             lon: 0,
@@ -33,20 +40,21 @@ class WeatherApp {
                 });
             }
         }; 
-        this.errorHandler = new ErrorHandler(document.getElementById('error'));
-        this.animations = new Animations(document.getElementById('weather'));
+        //this.errorHandler = new ErrorHandler(document.getElementById('error'));
+        //this.animations = new Animations(document.getElementById('weather'));
     }
 
     render() {
         const weather = this.state.toggledWeather ? this.state.toggledWeather : this.state.weather;
-        RenderMethods.displayDate(this.state.timezone);
-        RenderMethods.displayClock(this.state.timezone, this.state.clockInterval);
-        RenderMethods.displayLocation(this.state.location);
-        RenderMethods.displayWeather(this.state.current.weather[0].id, this.state.weather, this.state.timezone);
-        RenderMethods.displayTemperature(this.state.current.temp, this.state.current.feels_like, this.state.today.temp.max, this.state.today.temp.min, this.state.unit);
-        RenderMethods.displayForecast(this.state.forecast, this.state.unit);
-        this.animations.animateSky(weather, this.state.today.sunrise, this.state.today.sunset, this.state.lat, this.state.lon);
-        this.animations.animateWeatherGFX(weather, this.state.weather.id, this.state.timezone);
+        const data = this.state;
+        RenderMethods.displayDate(data); // this.state.timezone
+        RenderMethods.displayClock(data); // this.state.timezone, this.state.clockInterval
+        RenderMethods.displayLocation(data); // this.state.location
+        RenderMethods.displayWeather(data); // this.state.current.weather[0].id, this.state.weather, this.state.timezone
+        RenderMethods.displayTemperature(data); //this.state.current.temp, this.state.current.feels_like, this.state.today.temp.max, this.state.today.temp.min, this.state.unit
+        RenderMethods.displayForecast(data); // this.state.forecast, this.state.unit
+        Animations.animateSky(weather, data); // this.state.today.sunrise, this.state.today.sunset this.state.lat, this.state.lon
+        Animations.animateWeatherGFX(weather, data); // this.state.id, this.state.timezone
     }
 
     async getWeather(){
@@ -68,13 +76,20 @@ class WeatherApp {
     }
 
     async updateWeatherData(){
-        await this.getWeather(this.state)
+        return await this.getWeather(this.state)
         .then((data) => {
             this.state.setMultipleProperties([
                 ['weather', data.current.weather[0].main],
-                ['current', data.current],
+                ['id', data.current.weather[0].id],
+                ['temperature', data.current.temp],
+                //['current', data.current],
+                ['feels_like', data.current.feels_like],
+                ['max', data.daily[0].temp.max],
+                ['min', data.daily[0].temp.min],
                 ['today', data.daily[0]],
                 ['timezone', data.timezone],
+                ['sunrise', data.daily[0].sunrise],
+                ['sunset', data.daily[0].sunset],
                 ['forecast', data.daily]
             ]);
         }); 
@@ -91,15 +106,8 @@ class WeatherApp {
         if(!wasPaused){ this.state.timeRemainingInCycle = 60000; }
 
         this.state.refreshData = setTimeout(() => {
-            this.getWeather()
-            .then((data) => {
-                this.state.setMultipleProperties([
-                    ['weather', data.current.weather[0].main],
-                    ['current', data.current],
-                    ['today', data.daily[0]],
-                    ['timezone', data.timezone],
-                    ['forecast', data.daily]
-                ]);
+            this.updateWeatherData()
+            .then(() => {
                 this.render();
                 clearInterval(this.state.updateTimeRemainingInCycle);
                 this.keepWeatherDataUpdated();

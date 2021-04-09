@@ -40,23 +40,24 @@ class RenderMethods {
         }
     }
 
-    static displayWeather(id, status, timezone){
+    // this.state.current.weather[0].id, this.state.weather, this.state.timezone
+    static displayWeather({id, weather, timezone}){
         const uiWeatherIcon = document.getElementById("weather-icon");
         uiWeatherIcon.classList.remove(...uiWeatherIcon.classList)
         const uiWeatherStatus = document.getElementById("weather-status");
         let classes = [];
     
-        classes = this.getIcon(id, status, timezone);
+        classes = this.getIcon(id, weather, timezone);
     
         classes.forEach(el => uiWeatherIcon.classList.add(el));
-        uiWeatherStatus.innerHTML = status;
+        uiWeatherStatus.innerHTML = weather;
     }
 
-    static displayTemperature(temperature, feelslike, highTemp, lowTemp, unit){
+    static displayTemperature({temperature, feels_like, max, min, unit}){
 
         //const unit = getLS('unit');
     
-        let temps = [temperature, feelslike, highTemp, lowTemp].map((el) => {
+        let temps = [temperature, feels_like, max, min].map((el) => {
             if(unit === 'celsius'){
                 el = toCelsius(el);
             }
@@ -78,7 +79,7 @@ class RenderMethods {
         low.innerHTML = `Low: ${temps[3]}&deg;${deg}`;
     }
 
-    static displayForecast(forecast, unit){
+    static displayForecast({forecast, unit}){
         const temps = forecast.slice(1);
         //const unit = getLS('unit');
     
@@ -126,7 +127,7 @@ class RenderMethods {
         });
     }
 
-    static displayLocation(location){
+    static displayLocation({location}){
         const uiLocation = document.getElementById('location');
         const locationArr = location.toLowerCase().split(' ');
         if(locationArr.length === 1){
@@ -137,12 +138,12 @@ class RenderMethods {
         uiLocation.innerHTML = `${capitalized.join(' ')}`;
     }
 
-    static displayDate(timezone){
+    static displayDate({timezone}){
         const uiDate = document.getElementById('date');
         uiDate.innerText = `${Utilities.getDateTime(timezone).toFormat("cccc',' LLLL d")}`;
     }
 
-    static displayClock(timezone, clockInterval){
+    static displayClock({timezone, clockInterval}){
     
         const DateTime = luxon.DateTime;
         const clock = document.getElementById("clock");

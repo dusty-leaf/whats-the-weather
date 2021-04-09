@@ -1,7 +1,7 @@
 import Utilities from './Utilities.js';
 
 class Animations {
-    constructor(background){
+    /* constructor(background){
         this.background = background;
         this.clearSkies = [
             [56, 51, 105],
@@ -35,23 +35,59 @@ class Animations {
             [215, 215, 215]
         ];
         this.lightningInterval = '';
-    }
+    } */
 
-    clearParticles(){
+    static background = document.getElementsByClassName('js-animations')[0];
+    lightningInterval;
+
+    static defaultColorPalette = [
+        [56, 51, 105],
+        [106, 57, 116],
+        [152, 63, 117],
+        [192, 74, 109],
+        [221, 95, 94],
+        [233, 104, 109],
+        [244, 113, 124],
+        [255, 122, 139],
+        [242, 130, 188],
+        [206, 149, 227],
+        [155, 168, 247],
+        [101, 183, 246]
+    ];
+
+    static defaultGrayScalePalette = [
+        [40, 39, 49],
+        [51, 50, 59],
+        [62, 61, 70],
+        [73, 72, 81],
+        [85, 84, 92],
+        [97, 96, 103],
+        [9, 108, 115],
+        [122, 121, 127],
+        [134, 134, 139],
+        [147, 147, 151],
+        [161, 160, 164],
+        [174, 173, 176],
+        [187, 187, 189],
+        [201, 201, 202],
+        [215, 215, 215]
+    ];
+
+    static clearParticles(){
         const particles = Array.from(document.getElementsByClassName('js-gfx'));
         if(particles.length > 0){
             particles.forEach(el => el.remove());
         }
     }
 
-    toggleParticleAnimations(){
+    static toggleParticleAnimations(){
         const particles = Array.from(document.getElementsByClassName('js-gfx'));
         if(particles.length > 0){
             particles.forEach(el => el.classList.toggle('paused'));
         }
     }
 
-    drawParticle(type, num){
+    static drawParticle(type, num){
     
         let classes = type === 'Rain' ? ['fas', 'fa-tint', 'rain', 'particle', 'js-gfx'] : ['fas', 'fa-snowflake', 'snow', 'particle', 'js-gfx'];
         let speed = type === 'Rain' ? 500 : 2000;
@@ -72,7 +108,7 @@ class Animations {
         
     }
 
-    getNumClouds(num){
+    static getNumClouds(num){
         switch (num) {
         case 801:
             return 2;
@@ -87,7 +123,7 @@ class Animations {
         }
     };
 
-    drawClouds(numClouds, timezone){
+    static drawClouds(numClouds, timezone){
     
         let num = numClouds;
 
@@ -121,7 +157,7 @@ class Animations {
         
     }
 
-    drawLightning(){
+    static drawLightning(){
         const lightning = document.createElement('div');
         lightning.classList.add('lightning', 'js-gfx');
         this.background.appendChild(lightning);
@@ -139,7 +175,7 @@ class Animations {
         
     }
 
-    drawAtmosphere(type){
+    static drawAtmosphere(type){
         let weatherClass = '';
 
         if(!type){
@@ -168,7 +204,7 @@ class Animations {
     }
     
 
-    animateWeatherGFX(weather, weatherID, timezone){
+    static animateWeatherGFX(weather, {id, timezone}){
 
         // reset
         this.clearParticles();
@@ -177,7 +213,7 @@ class Animations {
 
         switch (weather) {
             case 'Clouds':
-              this.drawClouds(this.getNumClouds(weatherID));
+              this.drawClouds(this.getNumClouds(id));
               break;
             case 'Thunderstorm':
               this.drawClouds(5, timezone);
@@ -220,7 +256,7 @@ class Animations {
     }
 
     // generate an array of times for each color 
-    getStages(startTime, endTime, numStages){
+    static getStages(startTime, endTime, numStages){
         const arr = [];
         const range = endTime - startTime;
         const fraction = range / numStages;
@@ -232,7 +268,7 @@ class Animations {
 
     // determine which two stages the current time is between or return -1 if current time is not between any
     // returns an array of objects containing the two stages as well as their indices
-    getNearestStages(stages, currentTime){
+    static getNearestStages(stages, currentTime){
         for(let i = 0; i < stages.length - 1; i++){
             //console.log(`current: ${current} - stage-${i}: ${stages[i]} / stage${i + 1}: ${stages[i + 1]}`);
             if(currentTime >= stages[i] && currentTime <= stages[i + 1]){
@@ -245,12 +281,12 @@ class Animations {
     }
 
     // calculate what % between nearest two stages current time is
-    percentToNextStage(a, b, c){
+    static percentToNextStage(a, b, c){
         return ((c - a) / (b - a)) * 100;
     }
 
     // calculate the color based on what % between nearest two stages current time is
-    calculateColor(colors, nearestStages){
+    static calculateColor(colors, nearestStages){
       
         const calc = (colorA, colorB, multiplicand) => {
             const val = Math.floor((colorA - colorB) * multiplicand + colorA);
@@ -279,19 +315,18 @@ class Animations {
     }
 
     //assign those values to the background
-    setColor(color){
+    static setColor(color){
         const fr = .9;
         this.background.style.background = `
           linear-gradient(to top, rgb(${color[0]}, ${color[1]}, ${color[2]}), rgb(${Math.floor(color[0] * fr)}, ${Math.floor(color[1] * fr)}, ${Math.floor(color[2] *fr)})
         `;
     }
 
-    animateSky(weather, sunrise, sunset){
+    static animateSky(weather, {sunrise, sunset}, colorPalette = this.defaultColorPalette, grayScalePalette = this.defaultGrayScalePalette){
         // sunrise or sunset are treated as an hour that is broken up into stages.
         // each stage corresponds to a color from colors[]
         // the current time is checked against a list of stages, and then a color
         // is assigned based on what % of the way between two stages the current time is
-       
         const hills = document.getElementById('weather__background');
       
         // reset
@@ -301,10 +336,11 @@ class Animations {
         let colors = [];
       
         if(weather === 'Clear' || weather === 'Clouds'){
-            colors = this.clearSkies;
+            colors = colorPalette;
         } else {
-            colors = this.graySkies;
+            colors = grayScalePalette;
         }
+
       
         const hour = 3600; // 3600 = seconds per hour
       

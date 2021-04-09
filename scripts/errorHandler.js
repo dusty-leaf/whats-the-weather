@@ -1,14 +1,12 @@
 class ErrorHandler {
-    constructor(root){
-        this.root = root;
-    }
+    static root = document.getElementsByClassName('js-error')[0];
 
-    showError(str){
+    static showError(str){
         console.log(str);
         this.root.innerHTML = `<p>${str}</p>`;
     }
 
-    clearError(){
+    static clearError(){
         showError('');
     }
 }
