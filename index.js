@@ -1,53 +1,77 @@
 import WeatherApp from './scripts/WeatherApp.js';
 import AutocompleteSearchBar from './scripts/AutocompleteSearchBar.js';
-/* import ErrorHandler from './scripts/ErrorHandler.js';
-import Animations from './scripts/Animations.js'; */
+import Utilities from './scripts/Utilities.js';
+import RenderMethods from './scripts/RenderMethods.js';
 
-/* // set up ErrorHandler to display any errors
-const errorElement = new ErrorHandler(document.getElementById('error')); */
-
-/* // on page load, initialize Animatons with background element
-const animations = new Animations(document.getElementById('weather')); */
-
-
-
-/* // on page load, create a new google autocomplete search bar
-const autocompleteSearchBar = new AutocompleteSearchBar(document.getElementById('search'), document.getElementById('googleScript')); */
-
-// DOM elements
-const elements = {
-    autocompleteSearchBar: new AutocompleteSearchBar(document.getElementById('search'), document.getElementById('googleScript')),
-    toggleSettingsMenuButton: document.getElementById('settings'),
-    closeSettingsMenuButton: document.getElementById('settings__close'),
-    settingsButtons: Array.from(document.getElementsByClassName('settings__button')),
-    settingsMenuIcon: document.getElementById('settings__icon')
-}
-
-// Event Listeners
-elements.toggleSettingsMenuButton.addEventListener('click', () => {
-    app.toggleAppPause();
-});
-
-elements.closeSettingsMenuButton.addEventListener('click', () => {
-    app.toggleAppPause();
-});
-
-elements.settingsButtons.forEach(el => {
-    el.addEventListener('mouseover', () => {
-        elements.settingsMenuIcon.className = `fas fa-${el.id}`;
-    });
-});
-
-elements.settingsButtons.forEach(el => {
-    el.addEventListener('mouseout', () => {
-        elements.settingsMenuIcon.className = 'fas fa-cloud-sun';
-    });
-});
 
 // on page load, create a new instance of WeatherApp
-// call app.initialize() to fetch initial data
 const app = new WeatherApp();
-app.initialize();
+
+
+// on page load, create new autocomplete search bar
+const search = new AutocompleteSearchBar(document.getElementById('search'), document.getElementById('googleScript'));
+
+
+// user controls
+const buttons = {
+    toggleSettingsMenu: document.getElementById('settings'),
+    closeSettingsMenu: document.getElementById('settings__close'),
+    settingsOptions: Array.from(document.getElementsByClassName('settings__button')),
+    start: document.getElementById('continue'),
+    toggleFarenheit: document.getElementById('F'),
+    toggleCelsius: document.getElementById('C')
+}
+
+const icons = {
+    settingsMenu: document.getElementById('settings__icon'),
+}
+
+
+// Initial app state
+app.toggleLoader();
+buttons.toggleSettingsMenu.disabled = true;
+
+
+// Event Listeners
+buttons.start.addEventListener('click', () => {
+    // call app.initialize() to fetch initial data
+    app.initialize();
+    buttons.toggleSettingsMenu.disabled = false;
+
+});
+
+buttons.toggleSettingsMenu.addEventListener('click', () => {
+    app.toggleAppPause();
+});
+
+buttons.closeSettingsMenu.addEventListener('click', () => {
+    app.toggleAppPause();
+});
+
+buttons.settingsOptions.forEach(el => {
+    el.addEventListener('mouseover', () => {
+        icons.settingsMenu.className = `fas fa-${el.id}`;
+    });
+});
+
+buttons.settingsOptions.forEach(el => {
+    el.addEventListener('mouseout', () => {
+        icons.settingsMenu.className = 'fas fa-cloud-sun';
+    });
+});
+
+buttons.toggleFarenheit.addEventListener('click', () => {
+    app.state.unit = 'imperial';
+    app.toggleDisplayUnits(buttons.toggleFarenheit, buttons.toggleCelsius);
+});
+
+buttons.toggleCelsius.addEventListener('click', () => {
+    app.state.unit = 'celsius';
+    app.toggleDisplayUnits(buttons.toggleFarenheit, buttons.toggleCelsius);
+});
+
+
+
 
 
 

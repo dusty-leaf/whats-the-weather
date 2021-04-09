@@ -59,7 +59,7 @@ class RenderMethods {
     
         let temps = [temperature, feels_like, max, min].map((el) => {
             if(unit === 'celsius'){
-                el = toCelsius(el);
+                el = Utilities.toCelsius(el);
             }
             return Math.round(el);
         });
@@ -93,8 +93,8 @@ class RenderMethods {
     
     
         temps.forEach(el => {
-            const max = (unit === 'celsius') ? toCelsius(el.temp.max) : el.temp.max;
-            const min = (unit === 'celsius') ? toCelsius(el.temp.min) : el.temp.min;
+            const max = (unit === 'celsius') ? Utilities.toCelsius(el.temp.max) : el.temp.max;
+            const min = (unit === 'celsius') ? Utilities.toCelsius(el.temp.min) : el.temp.min;
             
             const day = document.createElement('div');
             day.classList.add('forecast__container');

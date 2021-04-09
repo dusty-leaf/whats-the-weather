@@ -58,17 +58,17 @@ class WeatherApp {
         Animations.animateWeatherGFX(weather, data); // this.state.id, this.state.timezone
     }
 
-    async getWeather(){
+    async getWeather({lat, lon}){
         return new Promise(
             (resolve, reject) => {
-                fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${this.state.lat}&lon=${this.state.lon}&exclude=minutely,hourly&appid=${config.OPENWEATHER_API_KEY}&units=imperial`)
+                fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&appid=${config.OPENWEATHER_API_KEY}&units=imperial`)
                 .then((response) => response.json())
                 .then((data) => {
                     console.log(data);
                     resolve(data);
                 })
                 .catch(error => {
-                    this.errorHandler.showError('Unable to reach weather service at this time. Please wait a few minutes, then refresh the page.');
+                    ErrorHandler.showError('Unable to reach weather service at this time. Please wait a few minutes, then refresh the page.');
                     //animateSky("default");
                     reject(error);
                 });
@@ -136,18 +136,18 @@ class WeatherApp {
                 }
             
                 if(!window.navigator.geolocation){
-                    this.errorHandler.showError('Geolocation is not supported by your browser.');
+                    ErrorHandler.showError('Geolocation is not supported by your browser.');
                 } else {
-                    const continueBtn = document.getElementById('continue');
-                    continueBtn.addEventListener('click', () => {
-                        window.navigator.geolocation.getCurrentPosition(success, error);
-                    });
+                    /* const continueBtn = document.getElementById('continue');
+                    continueBtn.addEventListener('click', () => { */
+                    window.navigator.geolocation.getCurrentPosition(success, error);
+                    // });
                 }
             }
         );
     }
 
-    async updateLocationData(){
+    async updateLocationData(location){
         await Geocoding.geocode(location)
         .then(data => {
             this.state.setMultipleProperties([
@@ -201,10 +201,17 @@ class WeatherApp {
         return;
     }
 
+    toggleDisplayUnits(farenheitButton, celsiusButton){
+        RenderMethods.displayTemperature(this.state);
+        RenderMethods.displayForecast(this.state);
+        Utilities.toggleHidden(farenheitButton);
+        Utilities.toggleHidden(celsiusButton);
+    }
+
     async initialize(){
 
         // enable Loader while data is being fetched
-        this.toggleLoader();
+        //this.toggleLoader();
         
         // get user latitude and longitude coords from geolocator API
         await this.getLocationData()

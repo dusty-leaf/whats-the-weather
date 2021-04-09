@@ -87,7 +87,7 @@ class Animations {
         }
     }
 
-    static drawParticle(type, num){
+    static drawParticles(type, num){
     
         let classes = type === 'Rain' ? ['fas', 'fa-tint', 'rain', 'particle', 'js-gfx'] : ['fas', 'fa-snowflake', 'snow', 'particle', 'js-gfx'];
         let speed = type === 'Rain' ? 500 : 2000;
