@@ -1,7 +1,8 @@
 import WeatherApp from './scripts/WeatherApp.js';
 import AutocompleteSearchBar from './scripts/AutocompleteSearchBar.js';
-import Utilities from './scripts/Utilities.js';
-import RenderMethods from './scripts/RenderMethods.js';
+
+
+// --- ELEMENTS ---
 
 
 // on page load, create a new instance of WeatherApp
@@ -12,14 +13,15 @@ const app = new WeatherApp();
 const search = new AutocompleteSearchBar(document.getElementById('search'), document.getElementById('googleScript'));
 
 
-// user controls
+// elements with user interactions
 const buttons = {
     toggleSettingsMenu: document.getElementById('settings'),
     closeSettingsMenu: document.getElementById('settings__close'),
     settingsOptions: Array.from(document.getElementsByClassName('settings__button')),
     start: document.getElementById('continue'),
     toggleFarenheit: document.getElementById('F'),
-    toggleCelsius: document.getElementById('C')
+    toggleCelsius: document.getElementById('C'),
+    reset: document.querySelector('.js-reset')
 }
 
 const icons = {
@@ -32,7 +34,11 @@ app.toggleLoader();
 buttons.toggleSettingsMenu.disabled = true;
 
 
-// Event Listeners
+
+// --- USER CONTROLS ---
+
+
+// start app
 buttons.start.addEventListener('click', () => {
     // call app.initialize() to fetch initial data
     app.initialize();
@@ -40,6 +46,8 @@ buttons.start.addEventListener('click', () => {
 
 });
 
+
+// open & close settings menu
 buttons.toggleSettingsMenu.addEventListener('click', () => {
     app.toggleAppPause();
 });
@@ -48,6 +56,8 @@ buttons.closeSettingsMenu.addEventListener('click', () => {
     app.toggleAppPause();
 });
 
+
+// settings menu icon animations
 buttons.settingsOptions.forEach(el => {
     el.addEventListener('mouseover', () => {
         icons.settingsMenu.className = `fas fa-${el.id}`;
@@ -60,6 +70,26 @@ buttons.settingsOptions.forEach(el => {
     });
 });
 
+
+// change the weather animations to user choice
+buttons.settingsOptions.forEach(el => {
+    el.addEventListener('click', () => {
+        app.updateState('toggledWeather', el.dataset.weather);
+        app.toggleAppPause();
+        app.render();
+    });
+})
+
+
+// change the weather animations to reflect current data
+buttons.reset.addEventListener('click', () => {
+    app.updateState('toggledWeather', '');
+    app.toggleAppPause();
+    app.render();
+});
+
+
+// toggle units (display only) to farenheit or celsius
 buttons.toggleFarenheit.addEventListener('click', () => {
     app.updateState('unit', 'imperial');
     app.toggleDisplayUnits(buttons.toggleFarenheit, buttons.toggleCelsius);

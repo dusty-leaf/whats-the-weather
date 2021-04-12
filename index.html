@@ -12,12 +12,12 @@
     <title id="title">Whats The Weather?</title>
 </head>
 <body id="body">
-    <div class="search__container transparent-dark-background foreground flex-center border-radius">
+    <div class="search__container js-searchContainer transparent-dark-background foreground flex-center border-radius">
         <div class="search-bar flex-center">
             <i class="fas fa-search"></i>
-            <input id="search" class="search__input" type="text" placeholder="City or town">
+            <input id="search" class="search__input js-searchInput" type="text" placeholder="City or town">
         </div>
-        <button type="submit" id="search-submit" class="btn btn-round font-bold">Go</button>  
+        <button type="submit" id="search-submit" class="btn btn-round font-bold js-searchSubmit">Go</button>  
     </div>
     <button id="settings" class="btn btn-round"><i class="fas fa-cog"></i></button>
     <section id="weather" class="js-animations">
@@ -63,7 +63,7 @@
                 </div>
             </div>
             <div class="settings__controls">
-                <button id="settings__reset" class="btn btn-rect border-radius font-bold">Reset Page</button>
+                <button id="settings__reset" class="btn btn-rect border-radius font-bold js-reset">Reset Page</button>
                 <button id="settings__close" class="btn btn-rect border-radius font-bold">Close Menu</button>
             </div>
             
