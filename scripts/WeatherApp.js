@@ -35,17 +35,32 @@ class WeatherApp {
             lat: 0,
             lon: 0,
             location: '',
-            setMultipleProperties: function(arr){
+            /* setMultipleProperties: function(arr){
                 arr.forEach((el) => {
                     this[el[0]] = el[1];
                 });
-            }
+            } */
         }; 
         //this.errorHandler = new ErrorHandler(document.getElementById('error'));
         //this.animations = new Animations(document.getElementById('weather'));
     }
 
-    render() {
+    // updateState accepts either a key and a value or an array of keys and values
+    updateState(...args){
+
+        // ex: updateState('key', value)
+        if(args.length === 2){
+            return this.state[args[0]] = args[1];
+        }
+
+        // ex: updateState([['key', value], ['key', value], etc...])
+        args[0].forEach((el) => {
+            this.state[el[0]] = el[1];
+        });
+
+    }
+
+    render(){
         const weather = this.state.toggledWeather ? this.state.toggledWeather : this.state.weather;
         const data = this.state;
         RenderMethods.displayDate(data); // this.state.timezone
@@ -79,7 +94,8 @@ class WeatherApp {
     async updateWeatherData(){
         return await this.getWeather(this.state)
         .then((data) => {
-            this.state.setMultipleProperties([
+            // this.state.setMultipleProperties
+            this.updateState([
                 ['weather', data.current.weather[0].main],
                 ['id', data.current.weather[0].id],
                 ['temperature', data.current.temp],
@@ -93,6 +109,7 @@ class WeatherApp {
                 ['sunset', data.daily[0].sunset],
                 ['forecast', data.daily]
             ]);
+            console.log(this.state);
         }); 
     }
 
@@ -150,7 +167,7 @@ class WeatherApp {
     async updateLocationData(location){
         await Geocoding.geocode(location)
         .then(data => {
-            this.state.setMultipleProperties([
+            this.updateState([
                 ['lat', data.results[0].geometry.location.lat],
                 ['lon', data.results[0].geometry.location.lng]
             ]);
@@ -217,7 +234,7 @@ class WeatherApp {
         await this.getLocationData()
         .then(data => {
             // update state with coords
-            this.state.setMultipleProperties([
+            this.updateState([
                 ['lat', data.lat],
                 ['lon', data.lon]
             ]);

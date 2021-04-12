@@ -80,6 +80,7 @@ class RenderMethods {
     }
 
     static displayForecast({forecast, unit}){
+        console.log(forecast);
         const temps = forecast.slice(1);
         //const unit = getLS('unit');
     

@@ -61,12 +61,12 @@ buttons.settingsOptions.forEach(el => {
 });
 
 buttons.toggleFarenheit.addEventListener('click', () => {
-    app.state.unit = 'imperial';
+    app.updateState('unit', 'imperial');
     app.toggleDisplayUnits(buttons.toggleFarenheit, buttons.toggleCelsius);
 });
 
 buttons.toggleCelsius.addEventListener('click', () => {
-    app.state.unit = 'celsius';
+    app.updateState('unit', 'celsius');
     app.toggleDisplayUnits(buttons.toggleFarenheit, buttons.toggleCelsius);
 });
 
