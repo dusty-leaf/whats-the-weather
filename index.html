@@ -19,25 +19,25 @@
         </div>
         <button type="submit" id="search-submit" class="btn btn-round font-bold js-searchSubmit">Go</button>  
     </div>
-    <button id="settings" class="btn btn-round"><i class="fas fa-cog"></i></button>
+    <button id="settings" class="btn btn-round js-toggleSettingsMenu"><i class="fas fa-cog"></i></button>
     <section id="weather" class="js-animations">
         <img id="weather__background" src="images/—Pngtree—cartoon hills png download_4586597.png">
         <div class="container transparent-dark-background foreground border-radius">
             <div class="weather__controls">
-                <button id="F" class="btn btn-round hidden font-bold">F&deg;</button>
-                <button id="C" class="btn btn-round font-bold">C&deg;</button>
+                <button id="F" class="btn btn-round hidden font-bold js-toggleFarenheit">F&deg;</button>
+                <button id="C" class="btn btn-round font-bold js-toggleCelsius">C&deg;</button>
             </div>
-            <h2 id="location" class="margin-top"></h2>
-            <p id="date"></p>
+            <h2 id="location" class="margin-top js-location"></h2>
+            <p id="date" class="js-date"></p>
             <p id="clock" class="js-clock"></p>
-            <h1 id="temperature" class="margin-top"></></h1>
-            <i id="weather-icon"></i>
-            <h2 id="weather-status"></h2> 
-            <p id="feelslike" class="margin-top"></></p>
-            <p id="high"></p>
-            <p id="low"></p>
+            <h1 id="temperature" class="margin-top js-temperature"></></h1>
+            <i id="weather-icon" class="js-weatherIcon"></i>
+            <h2 id="weather-status" class="js-weatherStatus"></h2> 
+            <p id="feelslike" class="margin-top js-feelsLike"></></p>
+            <p id="high" class="js-high"></p>
+            <p id="low" class="js-low"></p>
             <h2 id="forecast__title">7 Day Forecast</h2>
-            <div id="weather-forecast"></div>
+            <div id="weather-forecast" class="js-forecast"></div>
         </div>
         <p id="credit"></p>
         <div id="loader" class="container grid border-radius hidden">
@@ -45,7 +45,7 @@
             <div id="error" class="js-error">
                 <h2>Welcome</h2>
                 <p class="margin-top">Please click [Start] to enable the geolocator API to find your location or manually enter a location in the search bar above.</p>
-                <button id="continue" class="btn btn-rect border-radius font-bold">Start</button>
+                <button id="continue" class="btn btn-rect border-radius font-bold js-start">Start</button>
             </div>
         </div>
         <div id="settings__container" class="container hidden border-radius">
@@ -53,18 +53,18 @@
             <p class="margin-top">Use the buttons below to view different background animations.</p>
             <div id="settings__menu" class="margin-top">
                 <div class="settings__button-container">
-                    <button id="cloud-rain" data-weather="Rain" class="settings__button btn btn-rect border-radius font-bold">Rain</button>
-                    <button id="bolt" data-weather="Thunderstorm" class="settings__button btn btn-rect border-radius font-bold">Thunderstorm</button>
-                    <button id="snowflake" data-weather="Snow" class="settings__button btn btn-rect border-radius font-bold">Snow</button>
-                    <button id="smog" data-weather="Fog" class="settings__button btn btn-rect border-radius font-bold">Fog</button>
+                    <button id="cloud-rain" data-weather="Rain" class="settings__button btn btn-rect border-radius font-bold js-settingsOption">Rain</button>
+                    <button id="bolt" data-weather="Thunderstorm" class="settings__button btn btn-rect border-radius font-bold js-settingsOption">Thunderstorm</button>
+                    <button id="snowflake" data-weather="Snow" class="settings__button btn btn-rect border-radius font-bold js-settingsOption">Snow</button>
+                    <button id="smog" data-weather="Fog" class="settings__button btn btn-rect border-radius font-bold js-settingsOption">Fog</button>
                 </div>
                 <div class="settings__icon-container">
-                    <i id="settings__icon" class="fas fa-cloud-sun"></i>
+                    <i id="settings__icon" class="fas fa-cloud-sun js-settingsIcon"></i>
                 </div>
             </div>
             <div class="settings__controls">
                 <button id="settings__reset" class="btn btn-rect border-radius font-bold js-reset">Reset Page</button>
-                <button id="settings__close" class="btn btn-rect border-radius font-bold">Close Menu</button>
+                <button id="settings__close" class="btn btn-rect border-radius font-bold js-closeSettingsMenu">Close Menu</button>
             </div>
             
         </div>

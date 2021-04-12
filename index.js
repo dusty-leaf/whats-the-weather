@@ -5,22 +5,22 @@ import AutocompleteSearchBar from './scripts/AutocompleteSearchBar.js';
 // --- ELEMENTS ---
 
 const buttons = {
-    toggleSettingsMenu: document.getElementById('settings'),
-    closeSettingsMenu: document.getElementById('settings__close'),
-    settingsOptions: Array.from(document.getElementsByClassName('settings__button')),
-    start: document.getElementById('continue'),
-    toggleFarenheit: document.getElementById('F'),
-    toggleCelsius: document.getElementById('C'),
+    toggleSettingsMenu: document.querySelector('.js-toggleSettingsMenu'),
+    closeSettingsMenu: document.querySelector('.js-closeSettingsMenu'),
+    settingsOptions: Array.from(document.querySelectorAll('.js-settingsOption')),
+    start: document.querySelector('.js-start'),
+    toggleFarenheit: document.querySelector('.js-toggleFarenheit'),
+    toggleCelsius: document.querySelector('.js-toggleCelsius'),
     reset: document.querySelector('.js-reset'),
     searchSubmit: document.querySelector('.js-searchSubmit')
 }
 
 const inputs = {
-    search: document.getElementById('search')
+    search: document.querySelector('.js-searchInput')
 }
 
 const icons = {
-    settingsMenu: document.getElementById('settings__icon')
+    settingsMenu: document.querySelector('.js-settingsIcon')
 }
 
 const scripts = {

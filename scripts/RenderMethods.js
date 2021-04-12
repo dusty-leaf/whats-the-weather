@@ -42,9 +42,9 @@ class RenderMethods {
 
     // this.state.current.weather[0].id, this.state.weather, this.state.timezone
     static displayWeather({id, weather, timezone}){
-        const uiWeatherIcon = document.getElementById("weather-icon");
+        const uiWeatherIcon = document.querySelector('.js-weatherIcon');
         uiWeatherIcon.classList.remove(...uiWeatherIcon.classList)
-        const uiWeatherStatus = document.getElementById("weather-status");
+        const uiWeatherStatus = document.querySelector('.js-weatherStatus');
         let classes = [];
     
         classes = this.getIcon(id, weather, timezone);
@@ -66,16 +66,16 @@ class RenderMethods {
     
         const deg = (unit === 'celsius') ? 'C' : 'F';
         
-        const uiTemperature = document.getElementById("temperature");
+        const uiTemperature = document.querySelector('.js-temperature');
         uiTemperature.innerHTML = `${temps[0]}&deg;${deg}`;
     
-        const uiFeelsLike = document.getElementById("feelslike");
+        const uiFeelsLike = document.querySelector('.js-feelsLike');
         uiFeelsLike.innerHTML = `Feels like ${temps[1]}&deg;${deg}`;
     
-        const high = document.getElementById("high");
+        const high = document.querySelector('.js-high');
         high.innerHTML = `High: ${temps[2]}&deg;${deg}`;
     
-        const low = document.getElementById("low");
+        const low = document.querySelector('.js-low');
         low.innerHTML = `Low: ${temps[3]}&deg;${deg}`;
     }
 
@@ -84,7 +84,7 @@ class RenderMethods {
         const temps = forecast.slice(1);
         //const unit = getLS('unit');
     
-        const root = document.getElementById('weather-forecast');
+        const root = document.querySelector('.js-forecast');
         while(root.firstChild){
             root.firstChild.remove();
         }
@@ -129,7 +129,7 @@ class RenderMethods {
     }
 
     static displayLocation({location}){
-        const uiLocation = document.getElementById('location');
+        const uiLocation = document.querySelector('.js-location');
         const locationArr = location.toLowerCase().split(' ');
         if(locationArr.length === 1){
             uiLocation.innerHTML = `${location[0].toUpperCase()}${location.slice(1)}`;
@@ -140,11 +140,11 @@ class RenderMethods {
     }
 
     static displayDate({timezone}){
-        const uiDate = document.getElementById('date');
+        const uiDate = document.querySelector('.js-date');
         uiDate.innerText = `${Utilities.getDateTime(timezone).toFormat("cccc',' LLLL d")}`;
     }
 
-    static displayClock({timezone, clockInterval}){
+   /*  static displayClock({timezone, clockInterval}){
     
         const DateTime = luxon.DateTime;
         const clock = document.getElementById("clock");
@@ -165,7 +165,7 @@ class RenderMethods {
     
         //clockInterval = setInterval(() => { clock.innerText = `${getTime()}`; }, 1000);
            
-    };
+    }; */
 
     static displayTime({timezone, clockElement}){
         const DateTime = luxon.DateTime;
