@@ -1,10 +1,10 @@
 import config from './config.js';
 
 class AutocompleteSearchBar {
-    constructor(searchBar, googleScript){
+    constructor(searchBar, googleScript, options){
         this.searchBar = searchBar;
         this.googleScript = googleScript;
-        this.options =  { types: ['(cities)'] };
+        this.options =  options;
         this.googleScript = googleScript;
         this.googleScript.src = `https://maps.googleapis.com/maps/api/js?key=${config.GOOGLE_API_KEY}&libraries=places`;
         this.googleScript.addEventListener('load', () => {

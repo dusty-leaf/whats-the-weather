@@ -148,16 +148,29 @@ class RenderMethods {
     
         const DateTime = luxon.DateTime;
         const clock = document.getElementById("clock");
+        clock.innerHTML = '';
     
         const getTime = () => { return Utilities.getDateTime(timezone).toLocaleString(DateTime.TIME_WITH_SECONDS); }
         
-        clock.innerText = `${getTime()}`;
+        
+        console.log(clockInterval);
+        if(clockInterval){ 
+            window.clearInterval(clockInterval);
+            console.log('clock interval cleared');
+        }
+
+        // clock.innerText =
+
+        clock.innerText = `${setInterval(() => {getTime();}, 1000)}`;
     
-        if(clockInterval){ clearInterval(clockInterval); }
-    
-        clockInterval = setInterval(() => { clock.innerText = `${getTime()}`; }, 1000);
+        //clockInterval = setInterval(() => { clock.innerText = `${getTime()}`; }, 1000);
            
     };
+
+    static displayTime({timezone, clockElement}){
+        const DateTime = luxon.DateTime;
+        clockElement.innerHTML = Utilities.getDateTime(timezone).toLocaleString(DateTime.TIME_WITH_SECONDS);
+    }
 }
 
 export default RenderMethods;

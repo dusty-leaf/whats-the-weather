@@ -4,16 +4,6 @@ import AutocompleteSearchBar from './scripts/AutocompleteSearchBar.js';
 
 // --- ELEMENTS ---
 
-
-// on page load, create a new instance of WeatherApp
-const app = new WeatherApp();
-
-
-// on page load, create new autocomplete search bar
-const search = new AutocompleteSearchBar(document.getElementById('search'), document.getElementById('googleScript'));
-
-
-// elements with user interactions
 const buttons = {
     toggleSettingsMenu: document.getElementById('settings'),
     closeSettingsMenu: document.getElementById('settings__close'),
@@ -21,13 +11,31 @@ const buttons = {
     start: document.getElementById('continue'),
     toggleFarenheit: document.getElementById('F'),
     toggleCelsius: document.getElementById('C'),
-    reset: document.querySelector('.js-reset')
+    reset: document.querySelector('.js-reset'),
+    searchSubmit: document.querySelector('.js-searchSubmit')
+}
+
+const inputs = {
+    search: document.getElementById('search')
 }
 
 const icons = {
-    settingsMenu: document.getElementById('settings__icon'),
+    settingsMenu: document.getElementById('settings__icon')
 }
 
+const scripts = {
+    google: document.getElementById('js-google')
+}
+
+
+// --- SETUP ---
+
+// on page load, create a new instance of WeatherApp
+const app = new WeatherApp();
+
+
+// on page load, create new autocomplete search bar
+const search = new AutocompleteSearchBar(inputs.search, scripts.google, { types: ['(cities)'] });
 
 // Initial app state
 app.toggleLoader();
@@ -44,6 +52,27 @@ buttons.start.addEventListener('click', () => {
     app.initialize();
     buttons.toggleSettingsMenu.disabled = false;
 
+});
+
+
+// search bar
+buttons.searchSubmit.addEventListener('click', async () => {
+    clearInterval(app.state.clockInterval)
+    const regex = /\s|,\s/g;
+    //displayLocation(searchInput.value.slice(0, searchInput.value.indexOf(',')));
+    app.updateState('location', inputs.search.value.slice(0, inputs.search.value.indexOf(',')));
+    const newLocation = inputs.search.value.replaceAll(regex, '+');
+    app.toggleLoader();
+    await app.updateLocationData(newLocation)
+    .then(async () => {
+        await app.updateWeatherData();
+    })
+    .then(() => {
+        app.render();
+        app.keepWeatherDataUpdated();
+        app.toggleLoader();
+    });
+    
 });
 
 
@@ -71,7 +100,7 @@ buttons.settingsOptions.forEach(el => {
 });
 
 
-// change the weather animations to user choice
+// change the weather animations to reflect user choice
 buttons.settingsOptions.forEach(el => {
     el.addEventListener('click', () => {
         app.updateState('toggledWeather', el.dataset.weather);

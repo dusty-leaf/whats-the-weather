@@ -17,7 +17,7 @@ class WeatherApp {
             refreshData: '',
             timeRemainingInCycle: 60000,
             upgetDateTimeRemainingInCycle: '',
-            clockInterval: '',
+            clockInterval: undefined,
             weather: '',
             id: '',
             temperature: 0,
@@ -35,6 +35,7 @@ class WeatherApp {
             lat: 0,
             lon: 0,
             location: '',
+            clockElement: document.querySelector('.js-clock')
             /* setMultipleProperties: function(arr){
                 arr.forEach((el) => {
                     this[el[0]] = el[1];
@@ -47,7 +48,6 @@ class WeatherApp {
 
     // updateState accepts either a key and a value or an array of keys and values
     updateState(...args){
-
         // ex: updateState('key', value)
         if(args.length === 2){
             return this.state[args[0]] = args[1];
@@ -60,17 +60,34 @@ class WeatherApp {
 
     }
 
+    updateClock(){
+        clearInterval(this.state.clockInterval);
+        RenderMethods.displayTime(this.state);
+        this.updateState('clockInterval', setInterval(() => {
+            RenderMethods.displayTime(this.state);
+        }, 1000));
+    }
+
     render(){
         const weather = this.state.toggledWeather ? this.state.toggledWeather : this.state.weather;
         const data = this.state;
+        
+        // new clock instance
+        this.updateClock();
+
         RenderMethods.displayDate(data); // this.state.timezone
-        RenderMethods.displayClock(data); // this.state.timezone, this.state.clockInterval
+        //RenderMethods.displayClock(data); // this.state.timezone, this.state.clockInterval
         RenderMethods.displayLocation(data); // this.state.location
         RenderMethods.displayWeather(data); // this.state.current.weather[0].id, this.state.weather, this.state.timezone
         RenderMethods.displayTemperature(data); //this.state.current.temp, this.state.current.feels_like, this.state.today.temp.max, this.state.today.temp.min, this.state.unit
         RenderMethods.displayForecast(data); // this.state.forecast, this.state.unit
         Animations.animateSky(weather, data); // this.state.today.sunrise, this.state.today.sunset this.state.lat, this.state.lon
         Animations.animateWeatherGFX(weather, data); // this.state.id, this.state.timezone
+    }
+
+    update(...args){
+        this.updateState(args);
+        this.render();
     }
 
     async getWeather({lat, lon}){

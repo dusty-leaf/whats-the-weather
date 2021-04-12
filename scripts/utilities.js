@@ -30,7 +30,14 @@ class Utilities {
     }
 
     static toggleHidden(element){
-        element.classList.toggle('hidden');
+        return element.classList.toggle('hidden');
+    }
+
+    static toggleDisabled(element){
+        if(element.disabled === true){ 
+            return element.disabled = false;
+        }
+        return element.disabled = true;
     }
 }
 
