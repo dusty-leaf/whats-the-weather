@@ -25,7 +25,7 @@ class WeatherApp {
             max: '',
             min: '',
             toggledWeather: '',
-            unit: 'imperial',
+            unit: localStorage.getItem('unit'),
             //current: '',
             //today: '',
             timezone: '',
@@ -216,21 +216,21 @@ class WeatherApp {
     
         if(!this.state.isPaused){
             this.state.isPaused = this.toggleIsPaused();
-            searchInput.disabled = true;
-            searchSubmit.disabled = true;
+            /* searchInput.disabled = true;
+            searchSubmit.disabled = true; */
             clearTimeout(this.state.refreshData);
             clearInterval(this.state.updateTimeRemainingInCycle);
             Animations.toggleParticleAnimations();
-            Utilities.toggleHidden(settingsContainer);
+            /* Utilities.toggleHidden(settingsContainer); */
             //settingsContainer.classList.toggle('hidden');
             return;
         }
     
         this.state.isPaused = this.toggleIsPaused();
-        searchInput.disabled = false;
-        searchSubmit.disabled = false;
+        /* searchInput.disabled = false;
+        searchSubmit.disabled = false; */
         Animations.toggleParticleAnimations();
-        Utilities.toggleHidden(settingsContainer);
+        // Utilities.toggleHidden(settingsContainer);
         //settingsContainer.classList.toggle('hidden');
         this.keepWeatherDataUpdated(true);
         return;
@@ -239,8 +239,6 @@ class WeatherApp {
     toggleDisplayUnits(farenheitButton, celsiusButton){
         RenderMethods.displayTemperature(this.state);
         RenderMethods.displayForecast(this.state);
-        Utilities.toggleHidden(farenheitButton);
-        Utilities.toggleHidden(celsiusButton);
     }
 
     async initialize(){

@@ -1,5 +1,6 @@
 import WeatherApp from './scripts/WeatherApp.js';
 import AutocompleteSearchBar from './scripts/AutocompleteSearchBar.js';
+import Utilities from './scripts/Utilities.js';
 
 
 // --- ELEMENTS ---
@@ -27,6 +28,23 @@ const scripts = {
     google: document.getElementById('js-google')
 }
 
+const settingsContainerElement = document.querySelector('.js-settingsContainer');
+
+
+// --- DOM Helper Functions ---
+
+const DOMHelpers = {
+    toggleMenu: function(){
+        Utilities.toggleDisabled(inputs.search);
+        Utilities.toggleDisabled(buttons.searchSubmit);
+        Utilities.toggleHidden(settingsContainerElement);
+    },
+    toggleUnitButtons: function(){
+        Utilities.toggleHidden(buttons.toggleFarenheit);
+        Utilities.toggleHidden(buttons.toggleCelsius);
+    }
+}
+
 
 // --- SETUP ---
 
@@ -44,7 +62,6 @@ buttons.toggleSettingsMenu.disabled = true;
 
 
 // --- USER CONTROLS ---
-
 
 // start app
 buttons.start.addEventListener('click', () => {
@@ -78,10 +95,12 @@ buttons.searchSubmit.addEventListener('click', async () => {
 
 // open & close settings menu
 buttons.toggleSettingsMenu.addEventListener('click', () => {
+    DOMHelpers.toggleMenu();
     app.toggleAppPause();
 });
 
 buttons.closeSettingsMenu.addEventListener('click', () => {
+    DOMHelpers.toggleMenu();
     app.toggleAppPause();
 });
 
@@ -104,6 +123,7 @@ buttons.settingsOptions.forEach(el => {
 buttons.settingsOptions.forEach(el => {
     el.addEventListener('click', () => {
         app.updateState('toggledWeather', el.dataset.weather);
+        DOMHelpers.toggleMenu();
         app.toggleAppPause();
         app.render();
         
@@ -115,18 +135,30 @@ buttons.settingsOptions.forEach(el => {
 buttons.reset.addEventListener('click', () => {
     app.updateState('toggledWeather', '');
     app.toggleAppPause();
+    DOMHelpers.toggleMenu();
     app.render();
 });
 
 
+
+// display correct unit button on start based on saved user preference
+if(localStorage.getItem('unit') === 'celsius'){
+    DOMHelpers.toggleUnitButtons();
+}
+
 // toggle units (display only) to farenheit or celsius
 buttons.toggleFarenheit.addEventListener('click', () => {
     app.updateState('unit', 'imperial');
+    localStorage.setItem('unit', 'imperial');
+    DOMHelpers.toggleUnitButtons();
     app.toggleDisplayUnits(buttons.toggleFarenheit, buttons.toggleCelsius);
+
 });
 
 buttons.toggleCelsius.addEventListener('click', () => {
     app.updateState('unit', 'celsius');
+    localStorage.setItem('unit', 'celsius');
+    DOMHelpers.toggleUnitButtons();
     app.toggleDisplayUnits(buttons.toggleFarenheit, buttons.toggleCelsius);
 });
 

@@ -1,9 +1,8 @@
 class ErrorHandler {
-    static root = document.getElementsByClassName('js-error')[0];
+    static rootElement = document.querySelector('.js-error');
 
     static showError(str){
-        console.log(str);
-        this.root.innerHTML = `<p>${str}</p>`;
+        this.rootElement.innerHTML = `<p>${str}</p>`;
     }
 
     static clearError(){
