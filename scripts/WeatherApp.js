@@ -212,6 +212,7 @@ class WeatherApp {
         const searchInput = document.getElementById('search');
         const searchSubmit = document.getElementById('search-submit');
         const settingsContainer = document.getElementById('settings__container');
+
     
         if(!this.state.isPaused){
             this.state.isPaused = this.toggleIsPaused();
@@ -268,6 +269,7 @@ class WeatherApp {
             // rerender DOM with updated state and disable Loader
             this.render();
             this.keepWeatherDataUpdated();
+            ErrorHandler.clearError();
             this.toggleLoader();
         })
         .catch(error => ErrorHandler.showError(error));

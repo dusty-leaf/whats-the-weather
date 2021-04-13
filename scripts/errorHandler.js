@@ -7,7 +7,7 @@ class ErrorHandler {
     }
 
     static clearError(){
-        showError('');
+        this.showError('');
     }
 }
 
