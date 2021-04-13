@@ -1,0 +1,29 @@
+.forecast__title {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+}
+
+#weather-forecast {
+  .forecast__container {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    margin-top: 1rem;
+    padding-left: 0.4rem;
+
+    .forecast__subcontainer:not(:last-of-type) {
+      margin-right: 0.4rem;
+      border-right: 1px solid white;
+    }
+
+    p,
+    i {
+      font-size: 0.8rem;
+      padding-right: 0.4rem;
+    }
+
+    .forecast__container--low {
+      color: #e0e0e0;
+    }
+  }
+}

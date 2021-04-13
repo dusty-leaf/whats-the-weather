@@ -286,29 +286,6 @@ html input[type=number] {
   align-items: center;
   justify-content: center;
 }
-#weather #forecast__title {
-  margin-top: 1rem;
-  font-size: 1.2rem;
-}
-#weather #weather-forecast {
-  display: flex;
-  justify-content: center;
-  align-content: center;
-  margin-top: 1rem;
-  padding-left: 0.4rem;
-}
-#weather #weather-forecast .forecast__container p,
-#weather #weather-forecast .forecast__container i {
-  font-size: 0.8rem;
-  padding-right: 0.4rem;
-}
-#weather #weather-forecast .forecast__container .forecast__container--low {
-  color: #e0e0e0;
-}
-#weather #weather-forecast .forecast__container:not(:last-of-type) {
-  margin-right: 0.4rem;
-  border-right: 1px solid white;
-}
 
 #weather__background {
   position: absolute;
@@ -705,6 +682,30 @@ html input[type=number] {
   100% {
     transform: rotate(360deg);
   }
+}
+.forecast__title {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+}
+
+#weather-forecast .forecast__container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-top: 1rem;
+  padding-left: 0.4rem;
+}
+#weather-forecast .forecast__container .forecast__subcontainer:not(:last-of-type) {
+  margin-right: 0.4rem;
+  border-right: 1px solid white;
+}
+#weather-forecast .forecast__container p,
+#weather-forecast .forecast__container i {
+  font-size: 0.8rem;
+  padding-right: 0.4rem;
+}
+#weather-forecast .forecast__container .forecast__container--low {
+  color: #e0e0e0;
 }
 
 /*# sourceMappingURL=style.css.map */

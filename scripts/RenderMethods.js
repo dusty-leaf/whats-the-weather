@@ -42,22 +42,25 @@ class RenderMethods {
 
     // this.state.current.weather[0].id, this.state.weather, this.state.timezone
     static displayWeather({id, weather, timezone}){
-        const uiWeatherIcon = document.querySelector('.js-weatherIcon');
-        uiWeatherIcon.classList.remove(...uiWeatherIcon.classList)
-        const uiWeatherStatus = document.querySelector('.js-weatherStatus');
+        const weatherIconElement = document.querySelector('.js-weatherIcon');
+        
+        // reset
+        weatherIconElement.classList = 'js-weatherIcon';
+
+        const weatherStatusElement = document.querySelector('.js-weatherStatus');
         let classes = [];
     
         classes = this.getIcon(id, weather, timezone);
     
-        classes.forEach(el => uiWeatherIcon.classList.add(el));
-        uiWeatherStatus.innerHTML = weather;
+        classes.forEach(el => weatherIconElement.classList.add(el));
+        weatherStatusElement.innerHTML = weather;
     }
 
     static displayTemperature({temperature, feels_like, max, min, unit}){
 
         //const unit = getLS('unit');
     
-        let temps = [temperature, feels_like, max, min].map((el) => {
+        let temperatures = [temperature, feels_like, max, min].map((el) => {
             if(unit === 'celsius'){
                 el = Utilities.toCelsius(el);
             }
@@ -66,82 +69,92 @@ class RenderMethods {
     
         const deg = (unit === 'celsius') ? 'C' : 'F';
         
-        const uiTemperature = document.querySelector('.js-temperature');
-        uiTemperature.innerHTML = `${temps[0]}&deg;${deg}`;
+        const temperatureElement = document.querySelector('.js-temperature');
+        temperatureElement.innerHTML = `${temperatures[0]}&deg;${deg}`;
     
-        const uiFeelsLike = document.querySelector('.js-feelsLike');
-        uiFeelsLike.innerHTML = `Feels like ${temps[1]}&deg;${deg}`;
+        const feelsLikeElement = document.querySelector('.js-feelsLike');
+        feelsLikeElement.innerHTML = `Feels like ${temperatures[1]}&deg;${deg}`;
     
-        const high = document.querySelector('.js-high');
-        high.innerHTML = `High: ${temps[2]}&deg;${deg}`;
+        const highTemperatureElement = document.querySelector('.js-highTemperature');
+        highTemperatureElement.innerHTML = `High: ${temperatures[2]}&deg;${deg}`;
     
-        const low = document.querySelector('.js-low');
-        low.innerHTML = `Low: ${temps[3]}&deg;${deg}`;
+        const lowTemperatureElement = document.querySelector('.js-lowTemperature');
+        lowTemperatureElement.innerHTML = `Low: ${temperatures[3]}&deg;${deg}`;
     }
 
     static displayForecast({forecast, unit}){
         
-        const temps = forecast.slice(1);
+        const dailyForecasts = forecast.slice(1);
         //const unit = getLS('unit');
     
-        const root = document.querySelector('.js-forecast');
-        while(root.firstChild){
-            root.firstChild.remove();
+        const rootElement = document.querySelector('.js-forecast');
+        while(rootElement.firstChild){
+            rootElement.firstChild.remove();
         }
+
+        const forecastTitleElement = document.createElement('h2');
+        forecastTitleElement.classList.add('forecast__title');
+        forecastTitleElement.innerText = '7 Day Forecast';
+        rootElement.appendChild(forecastTitleElement);
+
+        const forecastContainerElement = document.createElement('div');
+        forecastContainerElement.classList.add('forecast__container');
+        forecastTitleElement.appendChild(forecastContainerElement);
     
         const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
         let dayOfTheWeek = new Date().getUTCDay();
     
     
-        temps.forEach(el => {
+        dailyForecasts.forEach(el => {
             const max = (unit === 'celsius') ? Utilities.toCelsius(el.temp.max) : el.temp.max;
             const min = (unit === 'celsius') ? Utilities.toCelsius(el.temp.min) : el.temp.min;
             
-            const day = document.createElement('div');
-            day.classList.add('forecast__container');
+            // one forecastSubcontainerElement for each day of the week
+            const forecastSubcontainerElement = document.createElement('div');
+            forecastSubcontainerElement.classList.add('forecast__subcontainer');
     
-            const name = document.createElement('p');
+            const dayNameElement = document.createElement('p');
             dayOfTheWeek += 1;
             if(dayOfTheWeek < 7){
-                name.innerText = days[dayOfTheWeek];
+                dayNameElement.innerText = days[dayOfTheWeek];
             } else {
                 dayOfTheWeek = 0;
-                name.innerText = days[dayOfTheWeek];
+                dayNameElement.innerText = days[dayOfTheWeek];
             }
-            day.appendChild(name);
+            forecastSubcontainerElement.appendChild(dayNameElement);
     
-            const icon = document.createElement('i');
+            const iconElement = document.createElement('i');
             const iconClasses = this.getIcon(el.weather[0].id, el.weather[0].main);
-            iconClasses.forEach(el => icon.classList.add(el));
-            day.appendChild(icon);
+            iconClasses.forEach(el => iconElement.classList.add(el));
+            forecastSubcontainerElement.appendChild(iconElement);
     
-            const high = document.createElement('p');
-            high.innerHTML = `${Math.round(max)}&deg;`;
-            day.appendChild(high);
+            const highTemperatureElement = document.createElement('p');
+            highTemperatureElement.innerHTML = `${Math.round(max)}&deg;`;
+            forecastSubcontainerElement.appendChild(highTemperatureElement);
     
-            const low = document.createElement('p');
-            low.innerHTML = `${Math.round(min)}&deg;`;
-            low.classList.add('forecast__container--low');
-            day.appendChild(low);
+            const lowTemperatureElement = document.createElement('p');
+            lowTemperatureElement.innerHTML = `${Math.round(min)}&deg;`;
+            lowTemperatureElement.classList.add('forecast__container--low');
+            forecastSubcontainerElement.appendChild(lowTemperatureElement);
     
-            root.appendChild(day);
+            forecastContainerElement.appendChild(forecastSubcontainerElement);
         });
     }
 
     static displayLocation({location}){
-        const uiLocation = document.querySelector('.js-location');
+        const locationElement = document.querySelector('.js-location');
         const locationArr = location.toLowerCase().split(' ');
         if(locationArr.length === 1){
-            uiLocation.innerHTML = `${location[0].toUpperCase()}${location.slice(1)}`;
+            locationElement.innerHTML = `${location[0].toUpperCase()}${location.slice(1)}`;
             return;
         }
         const capitalized = locationArr.map(el => el[0].toUpperCase() + el.substring(1));
-        uiLocation.innerHTML = `${capitalized.join(' ')}`;
+        locationElement.innerHTML = `${capitalized.join(' ')}`;
     }
 
     static displayDate({timezone}){
-        const uiDate = document.querySelector('.js-date');
-        uiDate.innerText = `${Utilities.getDateTime(timezone).toFormat("cccc',' LLLL d")}`;
+        const dateElement = document.querySelector('.js-date');
+        dateElement.innerText = `${Utilities.getDateTime(timezone).toFormat("cccc',' LLLL d")}`;
     }
 
    /*  static displayClock({timezone, clockInterval}){

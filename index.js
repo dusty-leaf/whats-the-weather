@@ -106,6 +106,7 @@ buttons.settingsOptions.forEach(el => {
         app.updateState('toggledWeather', el.dataset.weather);
         app.toggleAppPause();
         app.render();
+        
     });
 })
 
