@@ -12,7 +12,6 @@ class AutocompleteSearchBar {
             google.maps.event.clearInstanceListeners(this.searchBar);
             google.maps.event.addListener(this.autocomplete, 'place_changed', () => {
                 let place = this.autocomplete.getPlace();
-                console.log(place);
             });
         });
     }

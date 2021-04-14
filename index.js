@@ -116,6 +116,9 @@ buttons.searchSubmit.addEventListener('click', async () => {
         // clear Loader & re-enable search once new data is rendered
         app.toggleLoader();
         DOMHelpers.toggleSearch();
+
+        // enable settings if manual location pick at app start
+        buttons.toggleSettingsMenu.disabled = false;
     });
     
 });
@@ -162,7 +165,10 @@ buttons.settingsOptions.forEach(el => {
 
 // change the weather animations to reflect current data
 buttons.reset.addEventListener('click', () => {
-    app.updateState('toggledWeather', '');
+    app.updateState([
+        ['toggledWeather', ''],
+        ['timeRemainingInCycle', 60000]
+    ]);
     app.toggleAppPause();
     DOMHelpers.toggleMenu();
     app.render();
@@ -188,5 +194,5 @@ buttons.toggleCelsius.addEventListener('click', () => {
     app.updateState('unit', 'celsius');
     localStorage.setItem('unit', 'celsius');
     DOMHelpers.toggleUnitButtons();
-    app.toggleDisplayUnits(buttons.toggleFarenheit, buttons.toggleCelsius);
+    app.toggleDisplayUnits();
 });

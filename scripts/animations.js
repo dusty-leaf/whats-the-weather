@@ -4,6 +4,7 @@ class Animations {
 
     // the element where animations will be injected
     static background = document.querySelector('.js-animations');
+    static foregroundImageElement = document.querySelector('.js-foregroundImage');
 
     // variable to save/clear lightning animation interval
     static lightningInterval;
@@ -79,7 +80,7 @@ class Animations {
         
     }
 
-    // determine number of clouds based on level of cloudiness (0-100%)
+    // determine number of clouds based on level of cloudiness (0-100%),
     // according to OpenWeather API status codes
     static getNumClouds(num){
         switch (num) {
@@ -268,7 +269,6 @@ class Animations {
             
         
         let mult = this.percentToNextStage(nearestStages[0].stage, nearestStages[1].stage, currentTime) / 100;
-        console.log(`factor: ${mult}`);
   
         let colorA = colors[nearestStages[0].index];
         let colorB = colors[nearestStages[1].index];
@@ -293,19 +293,17 @@ class Animations {
         `;
     }
 
-    static animateSky(weather, {sunrise, sunset}, colorPalette = this.defaultColorPalette, grayScalePalette = this.defaultGrayScalePalette){
+    static paintBackground(weather, {sunrise, sunset}, colorPalette = this.defaultColorPalette, grayScalePalette = this.defaultGrayScalePalette){
 
-        console.log('sky animation updated');
-        
         // --- A Brief Explanation of animateSky() ---
 
         // (time calculatons are done in UNIX time)
 
         // sunrise & sunset are treated as an hour that is broken up into stages
-        //   based on the number of colors in the given palette
-        //   each stage represents a point in time
+        //   based on the number of colors in the given palette;
+        //   each stage represents a point in time.
         
-        // ex: if palette has 16 colors, then hour is broken up into 16 stages (inclusive)
+        // ex: if palette has 16 colors, then hour is broken up into 16 stages
         //   from start to end
         
         // the current time is checked against a list of stages (points in time), 
@@ -314,20 +312,14 @@ class Animations {
         
         // ex: if current time is 20% between stage 1 & stage 2 of the hour, then
         //   the color calculated will be the value that is 20% of the way between 
-        //   palette[1] and palette[2]. 
-        
-        // ex: if palette[1] has an R value of 100, and palette[2] has an R value of 200, 
-        //   then the R value for the new color will be 120
+        //   palette[1] and palette[2], so if palette[1] has an R value of 100, 
+        //   and palette[2] has an R value of 200, then the R value for the new color 
+        //   will be 120.
         
 
-
-        // foregroundImageElement (hills) have opacity ajusted at different times
-        // for aesthetic purposes
-        const foregroundImageElement = document.querySelector('.js-foregroundImage');
-      
         // reset
         this.background.style.background = '';
-        foregroundImageElement.style.opacity = 1;
+        this.foregroundImageElement.style.opacity = 1;
       
         // decide whether to use colors for clear sky or cloudy
         let colors = [];
@@ -342,14 +334,15 @@ class Animations {
         const hour = 3600; 
 
         
-      
         //get current timeUtilities.getDateTime(timezone)
         let currentTime = Math.floor(Date.now() / 1000); //change time here for testing i.e +(hour * 3)
         
         // --- Night ---
         // if the current time is less than sunrise, it's night
         if(currentTime < sunrise){
-            foregroundImageElement.style.opacity = 0.5;
+            // foregroundImageElement (hills) have opacity ajusted at different times
+            //   for aesthetic purposes
+            this.foregroundImageElement.style.opacity = 0.5;
             this.setColor(colors[0]);
             return;
         } 
@@ -360,7 +353,8 @@ class Animations {
             let stages = this.getStages(sunrise, sunrise + hour, colors.length);
             let nearestStages = this.getNearestStages(stages, currentTime);
 
-            foregroundImageElement.style.opacity = 0.75;
+            
+            this.foregroundImageElement.style.opacity = 0.75;
 
             if(nearestStages === -1){
                 this.setColor(colors[colors.length - 1]);
@@ -386,7 +380,7 @@ class Animations {
             let stages = this.getStages(sunset - hour, sunset, colors.length);
             let nearestStages = this.getNearestStages(stages, currentTime);
 
-            foregroundImageElement.style.opacity = 0.75;
+            this.foregroundImageElement.style.opacity = 0.75;
 
             if(nearestStages === -1){
                 this.setColor(colors[0]);
@@ -400,60 +394,10 @@ class Animations {
 
         // --- Night ---
         // no other options
-        foregroundImageElement.style.opacity = 0.5;
+        this.foregroundImageElement.style.opacity = 0.5;
         this.setColor(colors[0]);
         return;
 
-
-        // --- OLD BELOW ---
-
-        // if the current time is more than hour after sunrise
-        // and more than an hour before sunset, it's day
-        if(currentTime > (sunrise + hour) && currentTime < (sunset - hour)){
-            //day
-            console.log('day');
-            this.setColor(colors[colors.length - 1]);
-        // if the current time is less than an hour after sunrise
-        // it's sunrise
-        } else if (currentTime < (sunrise + hour)){
-            //sunrise
-            console.log('sunrise');
-            let stages = this.getStages(sunrise, sunrise + hour, colors.length);
-            let nearestStages = this.getNearestStages(stages, currentTime);
-
-            console.log(nearestStages);
-            foregroundImageElement.style.opacity = 0.75;
-        
-            if(nearestStages === -1){
-              this.setColor(colors[colors.length - 1]);
-              return;
-            }
-
-            this.setColor(this.calculateColor(colors, nearestStages, currentTime));
-            
-        } else if (currentTime >= (sunset - hour) && currentTime < sunset){
-            //sunset
-            console.log('sunset');
-            let stages = this.getStages(sunset - hour, sunset, colors.length);
-            let nearestStages = this.getNearestStages(stages, currentTime);
-
-            foregroundImageElement.style.opacity = 0.75;
-            
-            if(nearestStages === -1){
-                this.setColor(colors[0]);
-                return;
-            }
-            // for sunset, colors should transition from light to dark (reverse order of color palette)
-            this.setColor(this.calculateColor(colors.slice().reverse(), nearestStages, currentTime));
-        } else {
-            //night
-            console.log('night');
-            
-            foregroundImageElement.style.opacity = 0.5;
-            this.setColor(colors[0]);
-        }
-      
-        return;
       }
 }
 

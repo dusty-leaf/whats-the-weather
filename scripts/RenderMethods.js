@@ -40,7 +40,6 @@ class RenderMethods {
         }
     }
 
-    // this.state.current.weather[0].id, this.state.weather, this.state.timezone
     static displayWeather({id, weather, timezone}){
         const weatherIconElement = document.querySelector('.js-weatherIcon');
         
@@ -57,9 +56,6 @@ class RenderMethods {
     }
 
     static displayTemperature({temperature, feels_like, max, min, unit}){
-
-        //const unit = getLS('unit');
-    
         let temperatures = [temperature, feels_like, max, min].map((el) => {
             if(unit === 'celsius'){
                 el = Utilities.toCelsius(el);
@@ -83,9 +79,7 @@ class RenderMethods {
     }
 
     static displayForecast({forecast, unit}){
-        
         const dailyForecasts = forecast.slice(1);
-        //const unit = getLS('unit');
     
         const rootElement = document.querySelector('.js-forecast');
         while(rootElement.firstChild){
@@ -103,7 +97,6 @@ class RenderMethods {
     
         const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
         let dayOfTheWeek = new Date().getUTCDay();
-    
     
         dailyForecasts.forEach(el => {
             const max = (unit === 'celsius') ? Utilities.toCelsius(el.temp.max) : el.temp.max;
@@ -144,10 +137,12 @@ class RenderMethods {
     static displayLocation({location}){
         const locationElement = document.querySelector('.js-location');
         const locationArr = location.toLowerCase().split(' ');
+
         if(locationArr.length === 1){
             locationElement.innerHTML = `${location[0].toUpperCase()}${location.slice(1)}`;
             return;
         }
+
         const capitalized = locationArr.map(el => el[0].toUpperCase() + el.substring(1));
         locationElement.innerHTML = `${capitalized.join(' ')}`;
     }
@@ -156,29 +151,6 @@ class RenderMethods {
         const dateElement = document.querySelector('.js-date');
         dateElement.innerText = `${Utilities.getDateTime(timezone).toFormat("cccc',' LLLL d")}`;
     }
-
-   /*  static displayClock({timezone, clockInterval}){
-    
-        const DateTime = luxon.DateTime;
-        const clock = document.getElementById("clock");
-        clock.innerHTML = '';
-    
-        const getTime = () => { return Utilities.getDateTime(timezone).toLocaleString(DateTime.TIME_WITH_SECONDS); }
-        
-        
-        console.log(clockInterval);
-        if(clockInterval){ 
-            window.clearInterval(clockInterval);
-            console.log('clock interval cleared');
-        }
-
-        // clock.innerText =
-
-        clock.innerText = `${setInterval(() => {getTime();}, 1000)}`;
-    
-        //clockInterval = setInterval(() => { clock.innerText = `${getTime()}`; }, 1000);
-           
-    }; */
 
     static displayTime({timezone, clockElement}){
         const DateTime = luxon.DateTime;

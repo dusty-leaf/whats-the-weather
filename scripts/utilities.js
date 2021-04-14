@@ -42,32 +42,3 @@ class Utilities {
 }
 
 export default Utilities;
-/* const getDateTime = (timezone) => {
-    const getDateTime = luxon.getDateTime;
-    return getDateTime.now().setZone(timezone);
-}
-
-const toCelsius = (num) => {
-    return (num - 32) * 5 / 9;
-}
-
-const isDay = (timezone) => {
-    const hour = getDateTime(timezone).hour;
-
-    if(hour > 5 && hour < 18) { return true; }
-
-    return false;
-}
-
-function shuffle(a) {
-    var j, x, i;
-    for (i = a.length - 1; i > 0; i--) {
-        j = Math.floor(Math.random() * (i + 1));
-        x = a[i];
-        a[i] = a[j];
-        a[j] = x;
-    }
-    return a;
-}
-
-export { getDateTime, toCelsius, isDay, shuffle }; */

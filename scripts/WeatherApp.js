@@ -3,14 +3,10 @@ import Geocoding from "./Geocoding.js";
 import ErrorHandler from './ErrorHandler.js';
 import Animations from './Animations.js';
 import RenderMethods from './RenderMethods.js';
-import Utilities from './Utilities.js';
-//import { displayWeather, displayTemperature, displayForecast, displayLocation, displayDate, displayClock } from './displayUI.js';
-// import ErrorHandler from './ErrorHandler.js';
 
-// import { animateWeatherGFX, animateSky, clearParticles, toggleParticleAnimations }from './animations.js';
 
 class WeatherApp {
-    constructor(){ //errorElement, animations)
+    constructor(){ 
         this.state = {
             // initial properties on creation
             isPaused: false,
@@ -26,8 +22,6 @@ class WeatherApp {
             min: '',
             toggledWeather: '',
             unit: localStorage.getItem('unit'),
-            //current: '',
-            //today: '',
             timezone: '',
             sunrise: 0,
             sunset: 0,
@@ -36,14 +30,7 @@ class WeatherApp {
             lon: 0,
             location: '',
             clockElement: document.querySelector('.js-clock')
-            /* setMultipleProperties: function(arr){
-                arr.forEach((el) => {
-                    this[el[0]] = el[1];
-                });
-            } */
         }; 
-        //this.errorHandler = new ErrorHandler(document.getElementById('error'));
-        //this.animations = new Animations(document.getElementById('weather'));
     }
 
     // updateState accepts either a key and a value or an array of keys and values
@@ -69,25 +56,21 @@ class WeatherApp {
     }
 
     render(){
+        // (animations only) use user selected weather status if selected, 
+        //   otherwise use default (actual) weather status
         const weather = this.state.toggledWeather ? this.state.toggledWeather : this.state.weather;
         const data = this.state;
         
         // new clock instance
         this.updateClock();
 
-        RenderMethods.displayDate(data); // this.state.timezone
-        //RenderMethods.displayClock(data); // this.state.timezone, this.state.clockInterval
-        RenderMethods.displayLocation(data); // this.state.location
-        RenderMethods.displayWeather(data); // this.state.current.weather[0].id, this.state.weather, this.state.timezone
-        RenderMethods.displayTemperature(data); //this.state.current.temp, this.state.current.feels_like, this.state.today.temp.max, this.state.today.temp.min, this.state.unit
-        RenderMethods.displayForecast(data); // this.state.forecast, this.state.unit
-        Animations.animateSky(weather, data); // this.state.today.sunrise, this.state.today.sunset this.state.lat, this.state.lon
-        Animations.animateWeatherGFX(weather, data); // this.state.id, this.state.timezone
-    }
-
-    update(...args){
-        this.updateState(args);
-        this.render();
+        RenderMethods.displayDate(data);
+        RenderMethods.displayLocation(data);
+        RenderMethods.displayWeather(data);
+        RenderMethods.displayTemperature(data);
+        RenderMethods.displayForecast(data);
+        Animations.animateWeatherGFX(weather, data);
+        Animations.paintBackground(weather, data);
     }
 
     async getWeather({lat, lon}){
@@ -96,12 +79,10 @@ class WeatherApp {
                 fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&appid=${config.OPENWEATHER_API_KEY}&units=imperial`)
                 .then((response) => response.json())
                 .then((data) => {
-                    console.log(data);
                     resolve(data);
                 })
                 .catch(error => {
                     ErrorHandler.showError('Unable to reach weather service at this time. Please wait a few minutes, then refresh the page.');
-                    //animateSky("default");
                     reject(error);
                 });
             }
@@ -111,12 +92,10 @@ class WeatherApp {
     async updateWeatherData(){
         return await this.getWeather(this.state)
         .then((data) => {
-            // this.state.setMultipleProperties
             this.updateState([
                 ['weather', data.current.weather[0].main],
                 ['id', data.current.weather[0].id],
                 ['temperature', data.current.temp],
-                //['current', data.current],
                 ['feels_like', data.current.feels_like],
                 ['max', data.daily[0].temp.max],
                 ['min', data.daily[0].temp.min],
@@ -126,7 +105,6 @@ class WeatherApp {
                 ['sunset', data.daily[0].sunset],
                 ['forecast', data.daily]
             ]);
-            console.log(this.state);
         }); 
     }
 
@@ -143,9 +121,6 @@ class WeatherApp {
         //   so timeRemaininInCycle needs to be reset
         if(!wasPaused){ this.state.timeRemainingInCycle = 60000; }
         
-        console.log(`keepWeatherDataUpdated called. timeRemainingInCycle: ${this.state.timeRemainingInCycle}`);
-        console.log(`refreshData ID: ${this.state.refreshData}`);
-        console.log(`updateTimeRemainingInCycle ID: ${this.state.updateTimeRemainingInCycle}`);
         // reset 
         clearTimeout(this.state.refreshData); 
         clearInterval(this.state.updateTimeRemainingInCycle);
@@ -166,8 +141,6 @@ class WeatherApp {
         this.state.updateTimeRemainingInCycle = setInterval(() => {
             this.state.timeRemainingInCycle  -= 100;
             if(this.state.timeRemainingInCycle  <= 0){
-                /* clearInterval(this.state.updateTimeRemainingInCycle);
-                clearTimeout(this.state.refreshData); */
                 startNewCycle();
             }
         }, 100);
@@ -176,8 +149,6 @@ class WeatherApp {
         this.state.refreshData = setTimeout(() => {
             startNewCycle();
         }, this.state.timeRemainingInCycle);
-
-        
     }
 
     async getLocationData(){
@@ -195,10 +166,7 @@ class WeatherApp {
                 if(!window.navigator.geolocation){
                     ErrorHandler.showError('Geolocation is not supported by your browser.');
                 } else {
-                    /* const continueBtn = document.getElementById('continue');
-                    continueBtn.addEventListener('click', () => { */
                     window.navigator.geolocation.getCurrentPosition(success, error);
-                    // });
                 }
             }
         );
@@ -213,8 +181,6 @@ class WeatherApp {
             ]);
         });
     }
-
-    // CONTROLS
 
     toggleLoader(isLoaderAlreadyRunning){
         const loaderElement = document.getElementById('loader');
@@ -232,42 +198,26 @@ class WeatherApp {
     }
 
     toggleAppPause(){
-        const searchInput = document.getElementById('search');
-        const searchSubmit = document.getElementById('search-submit');
-        const settingsContainer = document.getElementById('settings__container');
-
-    
         if(!this.state.isPaused){
             this.state.isPaused = this.toggleIsPaused();
-            /* searchInput.disabled = true;
-            searchSubmit.disabled = true; */
-            clearTimeout(this.state.refreshData);
             clearInterval(this.state.updateTimeRemainingInCycle);
+            clearTimeout(this.state.refreshData);
             Animations.toggleParticleAnimations();
-            /* Utilities.toggleHidden(settingsContainer); */
-            //settingsContainer.classList.toggle('hidden');
             return;
         }
     
         this.state.isPaused = this.toggleIsPaused();
-        /* searchInput.disabled = false;
-        searchSubmit.disabled = false; */
         Animations.toggleParticleAnimations();
-        // Utilities.toggleHidden(settingsContainer);
-        //settingsContainer.classList.toggle('hidden');
         this.keepWeatherDataUpdated(true);
         return;
     }
 
-    toggleDisplayUnits(farenheitButton, celsiusButton){
+    toggleDisplayUnits(){
         RenderMethods.displayTemperature(this.state);
         RenderMethods.displayForecast(this.state);
     }
 
     async initialize(){
-
-        // enable Loader while data is being fetched
-        //this.toggleLoader();
         
         // get user latitude and longitude coords from geolocator API
         await this.getLocationData()
