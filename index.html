@@ -13,7 +13,7 @@
 </head>
 <body id="body">
     <div class="search__container js-searchContainer transparent-dark-background foreground flex-center border-radius">
-        <div class="search-bar flex-center">
+        <div class="search__input-container flex-center">
             <i class="fas fa-search"></i>
             <input id="search" class="search__input js-searchInput" type="text" placeholder="City or town">
         </div>
@@ -39,12 +39,12 @@
             <div id="weather-forecast" class="js-forecast"></div>
         </div>
         <p id="credit"></p>
-        <div id="loader" class="container grid border-radius hidden">
+        <div class="loader__container container grid border-radius hidden js-loader">
             <span><i class="fas fa-circle-notch loader__icon fa-spin"></i></span>
-            <div id="error" class="js-error">
+            <div class="error__container js-error">
                 <h2>Welcome</h2>
                 <p class="margin-top">Please click [Start] to enable the geolocator API to find your location or manually enter a location in the search bar above.</p>
-                <button id="continue" class="btn btn-rect border-radius font-bold js-start">Start</button>
+                <button class="btn btn-rect border-radius font-bold error__btn js-start">Start</button>
             </div>
         </div>
         <div id="settings__container" class="container hidden border-radius js-settingsContainer">

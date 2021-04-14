@@ -295,7 +295,7 @@ class Animations {
 
     static paintBackground(weather, {sunrise, sunset}, colorPalette = this.defaultColorPalette, grayScalePalette = this.defaultGrayScalePalette){
 
-        // --- A Brief Explanation of animateSky() ---
+        // --- A Brief Explanation of paintBackground() ---
 
         // (time calculatons are done in UNIX time)
 
@@ -315,6 +315,10 @@ class Animations {
         //   palette[1] and palette[2], so if palette[1] has an R value of 100, 
         //   and palette[2] has an R value of 200, then the R value for the new color 
         //   will be 120.
+
+        // Resources used for color interpolation:
+        // https://graphicdesign.stackexchange.com/questions/83866/generating-a-series-of-colors-between-two-colors/83869
+        // https://stackoverflow.com/questions/13488957/interpolate-from-one-color-to-another
         
 
         // reset

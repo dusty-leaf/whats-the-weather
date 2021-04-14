@@ -1,3 +1,5 @@
+@use '../base/colors';
+
 footer {
   position: absolute;
   bottom: 0;
@@ -11,16 +13,12 @@ footer {
   justify-content: space-between;
   align-items: center;
 
-  /*  div {
-    margin-top: 0.2rem;
-  } */
-
   p {
     padding: 0 0.2rem;
   }
 
   a {
-    color: #4287f5;
+    color: colors.$link-blue;
   }
 
   a:hover,

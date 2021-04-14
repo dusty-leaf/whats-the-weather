@@ -1,5 +1,7 @@
-#loader {
-  background-color: #4d4d4d;
+@use '../base/colors';
+
+.loader__container {
+  background-color: colors.$btn-bg;
   z-index: 10;
 
   span {
@@ -13,10 +15,10 @@
   }
 }
 
-#error {
+.error__container {
   margin: 0 1rem;
 }
 
-#continue {
+.error__btn {
   margin: 0.4rem auto;
 }

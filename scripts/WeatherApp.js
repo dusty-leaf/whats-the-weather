@@ -3,6 +3,7 @@ import Geocoding from "./Geocoding.js";
 import ErrorHandler from './ErrorHandler.js';
 import Animations from './Animations.js';
 import RenderMethods from './RenderMethods.js';
+import Utilities from './Utilities.js';
 
 
 class WeatherApp {
@@ -183,13 +184,13 @@ class WeatherApp {
     }
 
     toggleLoader(isLoaderAlreadyRunning){
-        const loaderElement = document.getElementById('loader');
+        const loaderElement = document.querySelector('.js-loader');
     
         if(isLoaderAlreadyRunning && !loaderElement.classList.contains('hidden')){
             return;
         }
     
-        loaderElement.classList.toggle('hidden');
+        Utilities.toggleHidden(loaderElement);
     }
 
     toggleIsPaused(){
