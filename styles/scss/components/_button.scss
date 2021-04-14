@@ -1,9 +1,11 @@
+@use '../base/colors';
+
 .btn {
   border: 1px;
   font-size: 0.6rem;
   font-family: "Inter", sans-serif;
   color: #4d4d4d;
-  border: 1px solid #4d4d4d;
+  border: 1px solid colors.$btn-bg;
   cursor: pointer;
 }
 
