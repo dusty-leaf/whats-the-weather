@@ -320,6 +320,18 @@ html input[type=number] {
   opacity: 0.5;
 }
 
+/* i {
+    /* manual off-set to center button due to font-awesome wonkyness */
+/* color: #4d4d4d;
+    padding-top: 0.15rem;
+
+  } */
+/* needs fixing */
+/* :disabled {
+    i {
+      opacity: 0.5;
+    }
+  } */
 #settings__container {
   z-index: 10;
   background-color: #4d4d4d;
@@ -388,6 +400,19 @@ html input[type=number] {
   animation-iteration-count: infinite;
   animation-timing-function: linear;
   overflow: hidden;
+}
+
+.cloud::selection,
+.particle::selection {
+  color: none;
+  background: none;
+}
+
+/* For Mozilla Firefox */
+.cloud::-moz-selection,
+.particle::-moz-selection {
+  color: none;
+  background: none;
 }
 
 .fade {

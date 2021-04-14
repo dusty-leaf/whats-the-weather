@@ -34,9 +34,12 @@ const settingsContainerElement = document.querySelector('.js-settingsContainer')
 // --- DOM Helper Functions ---
 
 const DOMHelpers = {
-    toggleMenu: function(){
+    toggleSearch: function(){
         Utilities.toggleDisabled(inputs.search);
         Utilities.toggleDisabled(buttons.searchSubmit);
+    },
+    toggleMenu: function(){
+        this.toggleSearch();
         Utilities.toggleHidden(settingsContainerElement);
     },
     toggleUnitButtons: function(){
@@ -51,13 +54,14 @@ const DOMHelpers = {
 // on page load, create a new instance of WeatherApp
 const app = new WeatherApp();
 
-
 // on page load, create new autocomplete search bar
 const search = new AutocompleteSearchBar(inputs.search, scripts.google, { types: ['(cities)'] });
 
 // Initial app state
 app.toggleLoader();
-buttons.toggleSettingsMenu.disabled = true;
+Utilities.toggleDisabled(buttons.toggleSettingsMenu);
+let appIsStarted = false;
+inputs.search.value = '';
 
 
 
@@ -67,27 +71,51 @@ buttons.toggleSettingsMenu.disabled = true;
 buttons.start.addEventListener('click', () => {
     // call app.initialize() to fetch initial data
     app.initialize();
-    buttons.toggleSettingsMenu.disabled = false;
+    // prevent user from selecting animations before app is initialized
+    Utilities.toggleDisabled(buttons.toggleSettingsMenu);
+
+    appIsStarted = true;
 
 });
 
 
-// search bar
+// select new location
 buttons.searchSubmit.addEventListener('click', async () => {
+
+    // clear the current clock
     clearInterval(app.state.clockInterval)
-    const regex = /\s|,\s/g;
-    //displayLocation(searchInput.value.slice(0, searchInput.value.indexOf(',')));
+
+    // save the city/town name to app.state.location for display purposes
     app.updateState('location', inputs.search.value.slice(0, inputs.search.value.indexOf(',')));
+
+    // format the location for app.updateLocationData()
+    const regex = /\s|,\s/g;
     const newLocation = inputs.search.value.replaceAll(regex, '+');
-    app.toggleLoader();
+
+    // dispay Loader & disable further searches while updating data
+    // don't disabled loader if user manually picks location on app start
+    // then flag app as started
+    if(appIsStarted === true){
+        app.toggleLoader();
+    } else {
+        appIsStarted = true;
+    }
+    
+    DOMHelpers.toggleSearch();
+
+    // updata data
     await app.updateLocationData(newLocation)
     .then(async () => {
         await app.updateWeatherData();
     })
     .then(() => {
+        // render with new data and track data for updated location
         app.render();
         app.keepWeatherDataUpdated();
+        
+        // clear Loader & re-enable search once new data is rendered
         app.toggleLoader();
+        DOMHelpers.toggleSearch();
     });
     
 });
@@ -125,6 +153,7 @@ buttons.settingsOptions.forEach(el => {
         app.updateState('toggledWeather', el.dataset.weather);
         DOMHelpers.toggleMenu();
         app.toggleAppPause();
+        app.keepWeatherDataUpdated();
         app.render();
         
     });
@@ -161,115 +190,3 @@ buttons.toggleCelsius.addEventListener('click', () => {
     DOMHelpers.toggleUnitButtons();
     app.toggleDisplayUnits(buttons.toggleFarenheit, buttons.toggleCelsius);
 });
-
-
-
-
-
-
-
-
-// --- OLD  ---
-/* import { setLS, getLS } from './scripts/LS.js';
-import getLocation from './scripts/location.js';
-import { geocode, reverseGeocode } from './scripts/geocoding.js';
-import autocompleteSearchBar from './scripts/autocompleteSearchBar.js';
-import { toggleDisplayUnits, toggleLoader, toggleHidden, toggleIsPaused, toggleAppPause, toggleLoaderWithBuffer } from './scripts/controls.js';
-import { showError, clearError } from './scripts/errorHandler.js';
-import { getWeather, updateWeather } from "./scripts/weather.js";
-import { isDay } from './scripts/utilities.js';
-import menu from './scripts/menu.js'; */
-
-
-
-
-//export default app.state;
-
-/* const updateAll = async (state) => {
-    await getWeather(state)
-    .then((data) => {
-        state.setMultipleProperties([
-            ['weather', data.current.weather[0].main],
-            ['current', data.current],
-            ['today', data.daily[0]],
-            ['tz', data.timezone],
-            ['forecast', data.daily]
-        ]);
-        
-        updateDOM(state);
-        if(state.refreshData !== undefined){ clearTimeout(state.refreshData); };
-        updateWeather(state);
-        settingsBtn.disabled = false;
-    })
-    .catch((err) => {
-        console.error(err);
-    });
-};
-
-const updateLocation = async (location) => {
-    toggleLoader(true);
-    clearError();
-    await geocode(location)
-    .then(data => {
-        console.log(data);
-        state.setMultipleProperties([
-            ['lat', data.results[0].geometry.location.lat],
-            ['lon', data.results[0].geometry.location.lng]
-        ]);
-    })
-    .then(async () => {
-        updateAll();
-        toggleLoaderWithBuffer();
-    })
-    .catch((err) => {
-        console.error(err);
-    });  
-}
-
-const setup = async () => {
-    await getLocation()
-    .then((data) => {
-        console.log(data);
-        state.setMultipleProperties([
-            ['lat', data.lat],
-            ['lon', data.lon]
-        ]);
-    })
-    .then(async () => {
-        await reverseGeocode(state.lat, state.lon, config.GOOGLE_API_KEY)
-        .then(value => state.location = value);
-        return location;
-    })
-    .then(async () => {
-        displayLocation(state.location);
-        updateAll(state);
-        toggleLoaderWithBuffer();
-    })
-    .catch((err) => {
-        console.error(err);
-    });
-
-}
-
-const searchInput = document.getElementById('search');
-const searchSubmit = document.getElementById('search-submit');
-searchSubmit.addEventListener('click', () => {
-    const regex = /\s|,\s/g;
-    displayLocation(searchInput.value.slice(0, searchInput.value.indexOf(',')));
-    const newLocation = searchInput.value.replaceAll(regex, '+');
-    updateLocation(newLocation);
-});
-
-const settingsBtn = document.getElementById('settings');
-settingsBtn.disabled = true;
-
-settingsBtn.addEventListener('click', () => {
-    toggleAppPause(state);
-});
-
-toggleLoader();
-toggleDisplayUnits();
-setup();
-menu(state);
-
-export default state; */

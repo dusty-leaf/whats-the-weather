@@ -8,6 +8,18 @@
   overflow: hidden;
 }
 
+.cloud::selection,
+.particle::selection {
+  color: none;
+  background: none;
+}
+/* For Mozilla Firefox */
+.cloud::-moz-selection,
+.particle::-moz-selection {
+  color: none;
+  background: none;
+}
+
 .fade {
   animation: fade 60s;
 }

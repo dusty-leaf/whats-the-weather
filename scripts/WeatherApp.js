@@ -16,7 +16,7 @@ class WeatherApp {
             isPaused: false,
             refreshData: '',
             timeRemainingInCycle: 60000,
-            upgetDateTimeRemainingInCycle: '',
+            updateTimeRemainingInCycle: '',
             clockInterval: undefined,
             weather: '',
             id: '',
@@ -138,23 +138,46 @@ class WeatherApp {
     // (psuedo-pause/resume)
 
     async keepWeatherDataUpdated(wasPaused){
+    
+        // if app wasn't paused, keepWeatherDataUpdated is starting a new cycle,
+        //   so timeRemaininInCycle needs to be reset
         if(!wasPaused){ this.state.timeRemainingInCycle = 60000; }
+        
+        console.log(`keepWeatherDataUpdated called. timeRemainingInCycle: ${this.state.timeRemainingInCycle}`);
+        console.log(`refreshData ID: ${this.state.refreshData}`);
+        console.log(`updateTimeRemainingInCycle ID: ${this.state.updateTimeRemainingInCycle}`);
+        // reset 
+        clearTimeout(this.state.refreshData); 
+        clearInterval(this.state.updateTimeRemainingInCycle);
 
-        this.state.refreshData = setTimeout(() => {
-            this.updateWeatherData()
+        const startNewCycle = async () => {
+            await this.updateWeatherData()
             .then(() => {
                 this.render();
-                clearInterval(this.state.updateTimeRemainingInCycle);
                 this.keepWeatherDataUpdated();
             });
-        }, this.state.timeRemainingInCycle);
+        }
+                
+        // recursively call keepWeatherDataUpdated at end of cycle.
+        // updateTimeRemainingInCycle & refreshData may not always 
+        //  exactly sync up, so whichever technically completes
+        //  a cycle first will make the next recursive call
 
         this.state.updateTimeRemainingInCycle = setInterval(() => {
             this.state.timeRemainingInCycle  -= 100;
             if(this.state.timeRemainingInCycle  <= 0){
-                clearInterval(this.state.updateTimeRemainingInCycle);
+                /* clearInterval(this.state.updateTimeRemainingInCycle);
+                clearTimeout(this.state.refreshData); */
+                startNewCycle();
             }
         }, 100);
+
+        
+        this.state.refreshData = setTimeout(() => {
+            startNewCycle();
+        }, this.state.timeRemainingInCycle);
+
+        
     }
 
     async getLocationData(){
