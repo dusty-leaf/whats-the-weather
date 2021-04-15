@@ -1,4 +1,4 @@
-@use '../base/variables';
+@use '../base/screen-widths';
 
 .search__container {
   position: absolute;
@@ -10,9 +10,9 @@
   z-index: 10;
   justify-content: space-evenly;
 
-  @media screen and (max-width: variables.$med-width) {
+  @media screen and (max-width: screen-widths.$med-width) {
     /* approx 20% bigger */
-    width: 19.75rem;
+    //width: 19.75rem;
     height: 2.7rem;
   }
 }
@@ -26,12 +26,13 @@
   padding: 0 0.5rem;
   background-color: white;
 
-  @media screen and (max-width: variables.$med-width) {
+  @media screen and (max-width: screen-widths.$med-width) {
     /* approx 20% bigger */
-    width: 17rem;
+    //width: 17rem;
     height: 1.9rem;
     font-size: 0.95rem;
     padding: 0 0.6rem;
+    border-radius: 1.2rem;
   }
 
   i {
@@ -39,7 +40,7 @@
     margin: 0 0.35rem;
     font-size: 0.6rem;
 
-    @media screen and (max-width: variables.$med-width) {
+    @media screen and (max-width: screen-widths.$med-width) {
       /* approx 20% bigger */
       margin: 0 0.4rem;
       font-size: 0.7rem;
@@ -48,15 +49,15 @@
 
   input {
     border: none;
-    height: 1.5rem;
+    height: 1.4rem;
     width: 14rem;
     font-size: 0.6rem;
 
-    @media screen and (max-width: variables.$med-width) {
+    @media screen and (max-width: screen-widths.$med-width) {
       /* approx 20% bigger */
-      height: 1.8rem;
-      width: 16.8rem;
-      fony-size: 0.7rem;
+      height: 1.7rem;
+      //width: 16.8rem;
+      font-size: 0.7rem;
     }
   }
 

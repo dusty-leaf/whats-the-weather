@@ -1,4 +1,4 @@
-@use '../base/variables';
+@use '../base/screen-widths';
 
 .container {
   position: absolute;
@@ -6,13 +6,30 @@
   width: 18rem;
   color: white;
   text-align: center;
+  display: grid;
+  padding-bottom: 1rem;
 
-  @media screen and (max-width: variables.$med-width) {
-    width: 60%;
+  @media screen and (max-width: screen-widths.$med-width) {
+    width: 45%;
     height: 80%;
   }
 
-  @media screen and (max-width: variables.$sm-width) {
+  @media screen and (max-width: screen-widths.$sm-width) {
+    width: 65%;
+    height: 80%;
+  }
+
+  @media screen and (max-width: 650px) {
+    height: 80%;
+  }
+
+  @media screen and (max-width: screen-widths.$sm-width) and (orientation: landscape) {
+    width: 65%;
+    height: 80%;
+  }
+
+  @media screen and (max-width: screen-widths.$xs-width) {
     width: 90%;
+    height: 75%;
   }
 }

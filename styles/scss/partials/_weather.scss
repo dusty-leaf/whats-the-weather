@@ -1,4 +1,4 @@
-@use '../base/variables';
+@use '../base/screen-widths';
 
 #weather__section {
   height: 100%;
@@ -49,9 +49,25 @@
   overflow: hidden;
 }
 
-@media screen and (max-width: variables.$med-width) {
-  .weather__status {
-  }
-  .weather__temperature--detail {
+@media screen and (max-width: screen-widths.$med-width) and (orientation: portrait) {
+  #weather__section {
+    .weather__location,
+    .weather__temperature {
+      font-size: 2.4rem;
+    }
+
+    .weather__clock,
+    .weather__date,
+    .weather__temperature--detail {
+      font-size: 1.1rem;
+    }
+
+    .weather__icon {
+      font-size: 2.9rem;
+    }
+
+    .weather__status {
+      font-size: 1.8rem;
+    }
   }
 }

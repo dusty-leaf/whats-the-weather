@@ -2,9 +2,9 @@
 
 @use './base/colors';
 @use './base/reset';
+@use './base/screen-widths';
 @use './base/typography';
 @use './base/utilities';
-@use './base/variables';
 @use './components/searchbar';
 @use './components/loader';
 @use './components/button';

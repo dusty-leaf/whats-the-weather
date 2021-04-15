@@ -1,3 +1,5 @@
+@use '../base/screen-widths';
+
 .forecast__container {
   display: flex;
   justify-content: center;
@@ -23,5 +25,26 @@
 
   .forecast__container--low-temp {
     color: #e0e0e0;
+  }
+}
+
+@media screen and (max-width: screen-widths.$med-width) {
+  .forecast__container {
+    padding-left: 0.5rem;
+
+    .forecast__title {
+      margin-top: 1.2rem;
+      font-size: 1.45rem;
+    }
+
+    .forecast__subcontainer:not(:last-of-type) {
+      margin-right: 0.5rem;
+    }
+
+    p,
+    i {
+      font-size: 0.95rem;
+      padding-right: 0.5rem;
+    }
   }
 }

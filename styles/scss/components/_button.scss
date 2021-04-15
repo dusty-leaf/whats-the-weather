@@ -1,5 +1,5 @@
 @use '../base/colors';
-@use '../base/variables';
+@use '../base/screen-widths';
 
 .btn {
   border: 1px;
@@ -25,7 +25,7 @@
 .btn:hover:enabled,
 .btn:focus:enabled {
   outline: none;
-  border: none;
+  //border: none;
   background-color: white;
 }
 
@@ -33,7 +33,8 @@
   cursor: default;
 }
 
-@media screen and (max-width: variables.$med-width) {
+@media screen and (max-width: screen-widths.$med-width) {
+  // approx 20% bigger than default
   .btn {
     font-size: 0.7rem;
   }
@@ -46,5 +47,22 @@
   .btn-round {
     height: 1.7rem;
     width: 1.75rem;
+  }
+}
+
+@media screen and (max-width: screen-widths.$sm-width) {
+  // approx 35% bigger than default
+  .btn {
+    font-size: 0.8rem;
+  }
+
+  .btn-rect {
+    height: 2.7rem;
+    width: 5.95rem;
+  }
+
+  .btn-round {
+    height: 1.9rem;
+    width: 1.9rem;
   }
 }

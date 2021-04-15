@@ -8,14 +8,14 @@ body {
   height: 100vh;
   position: relative;
 }
-@media screen and (max-height: 760px) {
+@media screen and (max-height: 700px) {
   body {
-    height: 760px;
+    height: 700px;
   }
 }
 
 html {
-  font-size: calc(14px + (26 - 14) * ((100vw - 300px) / (1600 - 300)));
+  font-size: calc(16px + (26 - 16) * ((100vw - 300px) / (1600 - 300)));
   font-family: "Inter", sans-serif;
 }
 
@@ -109,7 +109,6 @@ html {
 @media screen and (max-width: 1200px) {
   .search__container {
     /* approx 20% bigger */
-    width: 19.75rem;
     height: 2.7rem;
   }
 }
@@ -126,10 +125,10 @@ html {
 @media screen and (max-width: 1200px) {
   .search__input-container {
     /* approx 20% bigger */
-    width: 17rem;
     height: 1.9rem;
     font-size: 0.95rem;
     padding: 0 0.6rem;
+    border-radius: 1.2rem;
   }
 }
 .search__input-container i {
@@ -146,16 +145,15 @@ html {
 }
 .search__input-container input {
   border: none;
-  height: 1.5rem;
+  height: 1.4rem;
   width: 14rem;
   font-size: 0.6rem;
 }
 @media screen and (max-width: 1200px) {
   .search__input-container input {
     /* approx 20% bigger */
-    height: 1.8rem;
-    width: 16.8rem;
-    fony-size: 0.7rem;
+    height: 1.7rem;
+    font-size: 0.7rem;
   }
 }
 .search__input-container input:focus,
@@ -179,9 +177,12 @@ html {
 .error__container {
   margin: 0 1rem;
 }
+.error__container p {
+  margin-bottom: 1rem;
+}
 
 .error__btn {
-  margin: 0.4rem auto;
+  margin: 0.4rem;
 }
 
 .btn {
@@ -208,7 +209,6 @@ html {
 .btn:hover:enabled,
 .btn:focus:enabled {
   outline: none;
-  border: none;
   background-color: white;
 }
 
@@ -231,29 +231,64 @@ html {
     width: 1.75rem;
   }
 }
+@media screen and (max-width: 850px) {
+  .btn {
+    font-size: 0.8rem;
+  }
+
+  .btn-rect {
+    height: 2.7rem;
+    width: 5.95rem;
+  }
+
+  .btn-round {
+    height: 1.9rem;
+    width: 1.9rem;
+  }
+}
 .container {
   position: absolute;
   height: 24rem;
   width: 18rem;
   color: white;
   text-align: center;
+  display: grid;
+  padding-bottom: 1rem;
 }
 @media screen and (max-width: 1200px) {
   .container {
-    width: 60%;
+    width: 45%;
+    height: 80%;
+  }
+}
+@media screen and (max-width: 850px) {
+  .container {
+    width: 65%;
+    height: 80%;
+  }
+}
+@media screen and (max-width: 650px) {
+  .container {
+    height: 80%;
+  }
+}
+@media screen and (max-width: 850px) and (orientation: landscape) {
+  .container {
+    width: 65%;
     height: 80%;
   }
 }
 @media screen and (max-width: 500px) {
   .container {
     width: 90%;
+    height: 75%;
   }
 }
 
 footer {
   position: absolute;
-  bottom: 0;
   background-color: #4d4d4d;
+  bottom: 0;
   height: 2.1rem;
   width: 100%;
   z-index: 11;
@@ -281,10 +316,16 @@ footer #dev-credit {
     height: 2.3rem;
     display: grid;
   }
+  footer p {
+    font-size: 0.6rem;
+  }
+  footer #dev-credit {
+    text-align: center;
+  }
 }
 @media screen and (max-width: 900px) {
   footer {
-    height: 3rem;
+    height: 3.4rem;
   }
 }
 
@@ -351,11 +392,28 @@ html input[type=number] {
   overflow: hidden;
 }
 
+@media screen and (max-width: 1200px) and (orientation: portrait) {
+  #weather__section .weather__location,
+#weather__section .weather__temperature {
+    font-size: 2.4rem;
+  }
+  #weather__section .weather__clock,
+#weather__section .weather__date,
+#weather__section .weather__temperature--detail {
+    font-size: 1.1rem;
+  }
+  #weather__section .weather__icon {
+    font-size: 2.9rem;
+  }
+  #weather__section .weather__status {
+    font-size: 1.8rem;
+  }
+}
 .settings__toggle {
   position: absolute;
   top: 0;
   right: 0;
-  margin: 0.2rem;
+  margin: 0.5rem;
   z-index: 10;
   font-size: 1rem;
   border: 1px solid #4d4d4d;
@@ -365,6 +423,9 @@ html input[type=number] {
   /* manual off-set to center button due to font-awesome wonkyness */
   color: #4d4d4d;
   padding-top: 0.15rem;
+}
+.settings__toggle :disabled {
+  border: 1px solid #4d4d4d;
 }
 .settings__toggle :disabled i {
   opacity: 0.5;
@@ -743,6 +804,24 @@ html input[type=number] {
 }
 .forecast__container .forecast__container--low-temp {
   color: #e0e0e0;
+}
+
+@media screen and (max-width: 1200px) {
+  .forecast__container {
+    padding-left: 0.5rem;
+  }
+  .forecast__container .forecast__title {
+    margin-top: 1.2rem;
+    font-size: 1.45rem;
+  }
+  .forecast__container .forecast__subcontainer:not(:last-of-type) {
+    margin-right: 0.5rem;
+  }
+  .forecast__container p,
+.forecast__container i {
+    font-size: 0.95rem;
+    padding-right: 0.5rem;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */

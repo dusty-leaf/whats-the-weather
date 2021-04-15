@@ -1,6 +1,7 @@
 import WeatherApp from './scripts/WeatherApp.js';
 import AutocompleteSearchBar from './scripts/AutocompleteSearchBar.js';
 import Utilities from './scripts/Utilities.js';
+import ErrorHandler from './scripts/ErrorHandler.js';
 
 
 // --- ELEMENTS ---
@@ -76,14 +77,23 @@ buttons.start.addEventListener('click', () => {
 
     appIsStarted = true;
 
+    // clear welcome message
+    ErrorHandler.clearError();
+
 });
 
 
 // select new location
 buttons.searchSubmit.addEventListener('click', async () => {
 
+    // do nothing if there's no search value
+    if(!inputs.search.value){ return; }
+
     // clear the current clock
     clearInterval(app.state.clockInterval)
+
+    // clear welcome message if present
+    ErrorHandler.clearError();
 
     // save the city/town name to app.state.location for display purposes
     app.updateState('location', inputs.search.value.slice(0, inputs.search.value.indexOf(',')));
@@ -119,6 +129,12 @@ buttons.searchSubmit.addEventListener('click', async () => {
 
         // enable settings if manual location pick at app start
         buttons.toggleSettingsMenu.disabled = false;
+    })
+    .catch(err => {
+        // clear Loader & re-enable if search fails
+        alert('Invalid location. Click [Ok] then try a different location.');
+        app.toggleLoader();
+        DOMHelpers.toggleSearch();
     });
     
 });
