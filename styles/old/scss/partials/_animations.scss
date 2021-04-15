@@ -1,39 +1,3 @@
-@use '../base/colors';
-
-.animations__container {
-  height: 100vh;
-  width: 100vw;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-color: #65b7f6;
-  overflow: hidden;
-  position: relative;
-}
-
-.animations__foreground-image {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  height: auto;
-
-  @media screen and (orientation: landscape) {
-    bottom: -75%;
-  }
-
-  @media screen and (orientation: landscape) and (min-height: 767px) {
-    bottom: -50%;
-  }
-
-  /*  @media screen and (min-height: 360px) and (orientation: landscape) {
-    bottom: -75%;
-  } */
-
-  /*@media screen and (min-width: 767px) {
-    width: 100%;
-    height: auto;
-  } */
-}
-
 .cloud {
   z-index: 1;
   position: absolute;

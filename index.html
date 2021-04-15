@@ -11,7 +11,10 @@
     <script async id="js-google"></script>
     <title id="title">Whats The Weather?</title>
 </head>
-<body id="body">
+<body>
+    <div class="animations__container js-animations">
+        <img class="animations__foreground-image js-foregroundImage" src="images/hills-cropped.png">
+    </div>
     <div class="search__container js-searchContainer transparent-dark-background foreground flex-center border-radius">
         <div class="search__input-container flex-center">
             <i class="fas fa-search"></i>
@@ -20,7 +23,6 @@
         <button type="submit" id="search-submit" class="btn btn-round font-bold js-searchSubmit">Go</button>  
     </div>
     <section id="weather__section" class="js-animations">
-        <img id="weather__background" class="js-foregroundImage" src="images/—Pngtree—cartoon hills png download_4586597.png">
         <div class="container transparent-dark-background foreground border-radius">
             <div class="weather__controls">
                 <button class="btn btn-round hidden font-bold js-toggleFarenheit">F&deg;</button>

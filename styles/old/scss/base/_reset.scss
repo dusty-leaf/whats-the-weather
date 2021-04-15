@@ -1,0 +1,16 @@
+@use '../base/screen-widths';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  height: 100vh;
+  position: relative;
+
+  @media screen and (max-height: 700px) {
+    height: 700px;
+  }
+}
