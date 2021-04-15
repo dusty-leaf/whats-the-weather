@@ -1,4 +1,6 @@
-#weather {
+@use '../base/variables';
+
+#weather__section {
   height: 100%;
   width: 100%;
   background-size: cover;
@@ -17,20 +19,20 @@
     display: flex;
   }
 
-  #temperature {
+  .weather__temperature {
     font-size: 2rem;
   }
 
-  #date,
-  #clock {
+  .weather__date,
+  .weather__clock {
     font-size: 0.8rem;
   }
 
-  #clock {
+  .weather__clock {
     font-family: "Inconsolata", monospace;
   }
 
-  #weather-icon {
+  .weather__icon {
     font-size: 2.4rem;
   }
 
@@ -47,10 +49,9 @@
   overflow: hidden;
 }
 
-#credit {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  background: rgba(0, 0, 0, 0.5);
-  color: white;
+@media screen and (max-width: variables.$med-width) {
+  .weather__status {
+  }
+  .weather__temperature--detail {
+  }
 }

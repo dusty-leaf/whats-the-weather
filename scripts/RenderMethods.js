@@ -44,7 +44,7 @@ class RenderMethods {
         const weatherIconElement = document.querySelector('.js-weatherIcon');
         
         // reset
-        weatherIconElement.classList = 'js-weatherIcon';
+        weatherIconElement.classList = 'weather__icon js-weatherIcon';
 
         const weatherStatusElement = document.querySelector('.js-weatherStatus');
         let classes = [];
@@ -127,7 +127,7 @@ class RenderMethods {
     
             const lowTemperatureElement = document.createElement('p');
             lowTemperatureElement.innerHTML = `${Math.round(min)}&deg;`;
-            lowTemperatureElement.classList.add('forecast__container--low');
+            lowTemperatureElement.classList.add('forecast__container--low-temp');
             forecastSubcontainerElement.appendChild(lowTemperatureElement);
     
             forecastContainerElement.appendChild(forecastSubcontainerElement);

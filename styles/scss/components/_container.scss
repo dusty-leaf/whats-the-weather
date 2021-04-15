@@ -1,7 +1,18 @@
+@use '../base/variables';
+
 .container {
   position: absolute;
   height: 24rem;
   width: 18rem;
   color: white;
   text-align: center;
+
+  @media screen and (max-width: variables.$med-width) {
+    width: 60%;
+    height: 80%;
+  }
+
+  @media screen and (max-width: variables.$sm-width) {
+    width: 90%;
+  }
 }

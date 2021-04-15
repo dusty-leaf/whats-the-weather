@@ -19,26 +19,24 @@
         </div>
         <button type="submit" id="search-submit" class="btn btn-round font-bold js-searchSubmit">Go</button>  
     </div>
-    <button id="settings" class="btn btn-round js-toggleSettingsMenu"><i class="fas fa-cog"></i></button>
-    <section id="weather" class="js-animations">
+    <section id="weather__section" class="js-animations">
         <img id="weather__background" class="js-foregroundImage" src="images/—Pngtree—cartoon hills png download_4586597.png">
         <div class="container transparent-dark-background foreground border-radius">
             <div class="weather__controls">
                 <button id="F" class="btn btn-round hidden font-bold js-toggleFarenheit">F&deg;</button>
                 <button id="C" class="btn btn-round font-bold js-toggleCelsius">C&deg;</button>
             </div>
-            <h2 id="location" class="margin-top js-location"></h2>
-            <p id="date" class="js-date"></p>
-            <p id="clock" class="js-clock"></p>
-            <h1 id="temperature" class="margin-top js-temperature"></></h1>
-            <i id="weather-icon" class="js-weatherIcon"></i>
-            <h2 id="weather-status" class="js-weatherStatus"></h2> 
-            <p id="feelslike" class="margin-top js-feelsLike"></></p>
-            <p id="high" class="js-highTemperature"></p>
-            <p id="low" class="js-lowTemperature"></p>
-            <div id="weather-forecast" class="js-forecast"></div>
+            <h2 class="weather__location margin-top js-location"></h2>
+            <p class="weather__date js-date"></p>
+            <p class="weather__clock js-clock"></p>
+            <h1 class="weather__temperature margin-top js-temperature"></></h1>
+            <i class="weather__icon js-weatherIcon"></i>
+            <h2 id="weather-status" class="weather__status js-weatherStatus"></h2> 
+            <p class="weather__temperature--detail margin-top js-feelsLike"></></p>
+            <p class="weather__temperature--detail js-highTemperature"></p>
+            <p class="weather__temperature--detail js-lowTemperature"></p>
+            <div class="margin-top js-forecast"></div>
         </div>
-        <p id="credit"></p>
         <div class="loader__container container grid border-radius hidden js-loader">
             <span><i class="fas fa-circle-notch loader__icon fa-spin"></i></span>
             <div class="error__container js-error">
@@ -47,10 +45,11 @@
                 <button class="btn btn-rect border-radius font-bold error__btn js-start">Start</button>
             </div>
         </div>
-        <div id="settings__container" class="container hidden border-radius js-settingsContainer">
+        <button class="settings__toggle btn btn-round js-toggleSettingsMenu"><i class="fas fa-cog"></i></button>
+        <div class="settings__container container hidden border-radius js-settingsContainer">
             <h2 class="margin-top">Weather Animations</h2>
             <p class="margin-top">Use the buttons below to view different background animations.</p>
-            <div id="settings__menu" class="margin-top">
+            <div class="settings__menu margin-top">
                 <div class="settings__button-container">
                     <button id="cloud-rain" data-weather="Rain" class="settings__button btn btn-rect border-radius font-bold js-settingsOption">Rain</button>
                     <button id="bolt" data-weather="Thunderstorm" class="settings__button btn btn-rect border-radius font-bold js-settingsOption">Thunderstorm</button>

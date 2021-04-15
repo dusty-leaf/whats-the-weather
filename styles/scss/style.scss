@@ -4,6 +4,7 @@
 @use './base/reset';
 @use './base/typography';
 @use './base/utilities';
+@use './base/variables';
 @use './components/searchbar';
 @use './components/loader';
 @use './components/button';
@@ -12,6 +13,5 @@
 @use './layout/navigation';
 @use './partials/weather';
 @use './partials/settings';
-@use './partials/setup';
 @use './partials/animations';
 @use './partials/forecast';

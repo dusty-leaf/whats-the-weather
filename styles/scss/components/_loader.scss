@@ -1,7 +1,7 @@
 @use '../base/colors';
 
 .loader__container {
-  background-color: colors.$btn-bg;
+  background-color: colors.$bg-gray;
   z-index: 10;
 
   span {
