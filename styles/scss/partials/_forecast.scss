@@ -48,3 +48,13 @@
     }
   }
 }
+
+@media screen and (max-width: screen-widths.$xs-width) {
+  .forecast__container {
+    p,
+    i {
+      font-size: 0.8rem;
+      padding-right: 0.4rem;
+    }
+  }
+}

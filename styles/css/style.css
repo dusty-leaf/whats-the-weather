@@ -367,6 +367,11 @@ html input[type=number] {
   left: 90%;
   display: flex;
 }
+@media screen and (max-width: 300px) and (orientation: protrait) {
+  #weather__section .weather__controls button {
+    display: hidden;
+  }
+}
 #weather__section .weather__temperature {
   font-size: 2rem;
 }
@@ -821,6 +826,13 @@ html input[type=number] {
 .forecast__container i {
     font-size: 0.95rem;
     padding-right: 0.5rem;
+  }
+}
+@media screen and (max-width: 500px) {
+  .forecast__container p,
+.forecast__container i {
+    font-size: 0.8rem;
+    padding-right: 0.4rem;
   }
 }
 

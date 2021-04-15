@@ -17,6 +17,13 @@
     top: 1%;
     left: 90%;
     display: flex;
+
+    // hide buttons on extra small screens
+    @media screen and (max-width: 300px) and (orientation: protrait) {
+      button {
+        display: hidden;
+      }
+    }
   }
 
   .weather__temperature {
