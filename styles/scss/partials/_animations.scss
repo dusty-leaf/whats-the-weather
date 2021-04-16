@@ -17,21 +17,28 @@
   height: auto;
 
   @media screen and (orientation: landscape) {
-    bottom: -75%;
+    bottom: -100%;
   }
 
-  @media screen and (orientation: landscape) and (min-height: 767px) {
+  @media screen and (orientation: landscape) and (min-height: 300px) {
+    bottom: -80%;
+  }
+
+  /* @media screen and (orientation: landscape) and (min-height: 400px) {
+    bottom: -65%;
+  } */
+
+  @media screen and (orientation: landscape) and (min-height: 500px) {
     bottom: -50%;
   }
 
-  /*  @media screen and (min-height: 360px) and (orientation: landscape) {
+  @media screen and (min-height: 900px) and (min-width: 1400px) {
     bottom: -75%;
-  } */
+  }
 
-  /*@media screen and (min-width: 767px) {
-    width: 100%;
-    height: auto;
-  } */
+  @media screen and (min-height: 900px) and (orientation: portrait) {
+    bottom: 0;
+  }
 }
 
 .cloud {
