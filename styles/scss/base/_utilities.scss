@@ -43,3 +43,29 @@
 .paused {
   animation-play-state: paused;
 }
+
+.container {
+  // testing
+  border: 1px solid black;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  height: 60%;
+  width: 80%;
+
+  @media screen and (orientation: landscape) {
+    top: 60%;
+    transform: translate(-50%, -60%);
+  }
+
+  @media screen and (min-width: 600px) and (orientation: landscape) {
+    width: 30%;
+  }
+
+  @media screen and (min-width: 1200px) and (orientation: landscape) {
+    width: 25%;
+  }
+}

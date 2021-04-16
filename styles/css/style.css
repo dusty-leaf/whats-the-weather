@@ -55,6 +55,32 @@
   animation-play-state: paused;
 }
 
+.container {
+  border: 1px solid black;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 60%;
+  width: 80%;
+}
+@media screen and (orientation: landscape) {
+  .container {
+    top: 60%;
+    transform: translate(-50%, -60%);
+  }
+}
+@media screen and (min-width: 600px) and (orientation: landscape) {
+  .container {
+    width: 30%;
+  }
+}
+@media screen and (min-width: 1200px) and (orientation: landscape) {
+  .container {
+    width: 25%;
+  }
+}
+
 .btn {
   border: 1px;
   font-family: "Inter", sans-serif;
@@ -107,6 +133,9 @@
 .nav button,
 .nav input {
   font-size: 0.8rem;
+}
+.nav button {
+  padding-top: 0.1rem;
 }
 
 .nav__container {
