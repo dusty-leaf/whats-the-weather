@@ -68,3 +68,35 @@
     margin-right: 0.2rem;
   }
 }
+
+// larger screen support
+
+@media screen and (min-width: 767px) {
+  .nav {
+    height: 3.5rem;
+
+    i,
+    button,
+    input {
+      font-size: 1.1rem;
+    }
+  }
+
+  .nav__search-container {
+    i {
+      padding-left: 0.8rem;
+      color: white;
+    }
+
+    input,
+    button {
+      margin-left: 0.4rem;
+    }
+
+    input {
+      height: 2rem;
+      width: 18rem;
+      padding-left: 0.2rem;
+    }
+  }
+}
