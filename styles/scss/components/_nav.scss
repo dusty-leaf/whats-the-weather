@@ -1,0 +1,70 @@
+@use '../base/colors';
+
+.nav {
+  position: absolute;
+  height: 3rem;
+  width: 100%;
+  background-color: colors.$bg-gray;
+  display: grid;
+  grid-template-columns: 75% 25%;
+
+  i,
+  button,
+  input {
+    font-size: 0.8rem;
+  }
+}
+
+.nav__container {
+  display: flex;
+  align-items: center;
+}
+
+.nav__search-container {
+  justify-content: start;
+
+  i {
+    padding-left: 0.4rem;
+    color: white;
+  }
+
+  input,
+  button {
+    margin-left: 0.2rem;
+  }
+
+  input {
+    height: 1.5rem;
+    width: 10rem;
+  }
+}
+
+.nav__buttons-container {
+  justify-content: flex-end;
+
+  button {
+    margin-right: 0.6rem;
+  }
+}
+
+.nav__toggle {
+  z-index: 10;
+  margin-right: 0.8rem;
+}
+
+// XS screen support
+@media screen and (max-width: 300px) {
+  .nav {
+    grid-template-columns: 83% 17%;
+  }
+
+  .nav__buttons-container {
+    button {
+      margin-right: 0.1rem;
+    }
+  }
+
+  .nav__toggle {
+    margin-right: 0.2rem;
+  }
+}

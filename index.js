@@ -14,7 +14,12 @@ const buttons = {
     toggleFarenheit: document.querySelector('.js-toggleFarenheit'),
     toggleCelsius: document.querySelector('.js-toggleCelsius'),
     reset: document.querySelector('.js-reset'),
-    searchSubmit: document.querySelector('.js-searchSubmit')
+    searchSubmit: document.querySelector('.js-searchSubmit'),
+    navToggle: document.querySelector('.js-navToggle')
+}
+
+const components = {
+    nav: document.querySelector('.js-nav')
 }
 
 const inputs = {
@@ -138,6 +143,12 @@ buttons.searchSubmit.addEventListener('click', async () => {
     });
     
 });
+
+// show/hide nav
+buttons.navToggle.addEventListener('click', () =>{
+    components.nav.classList.toggle('foreground');
+});
+
 
 
 // open & close settings menu

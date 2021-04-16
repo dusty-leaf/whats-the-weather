@@ -12,17 +12,24 @@
     <title id="title">Whats The Weather?</title>
 </head>
 <body>
+    <nav class="nav foreground js-nav">
+        <div class="nav__container nav__search-container js-searchContainer">
+            <div class="nav__input-container">
+                <i class="fas fa-search"></i>
+                <input id="search" class="search__input border-radius js-searchInput" type="text" placeholder="City or town">
+            </div>
+            <button type="submit" id="search-submit" class="btn btn-square border-radius font-bold js-searchSubmit">Go</button>  
+        </div>
+        <div class="nav__container nav__buttons-container">
+            <button class="settings__toggle btn btn-square border-radius font-bold js-toggleSettingsMenu"><i class="fas fa-cog"></i></button>
+            <button class="nav__button nav__toggle btn btn-square border-radius font-bold js-navToggle"><i class="fas fa-bars"></i></button>
+        </div>
+    </nav>
     <div class="animations__container js-animations">
         <img class="animations__foreground-image js-foregroundImage" src="images/hills-cropped.png">
     </div>
-    <div class="search__container js-searchContainer transparent-dark-background foreground flex-center border-radius">
-        <div class="search__input-container flex-center">
-            <i class="fas fa-search"></i>
-            <input id="search" class="search__input js-searchInput" type="text" placeholder="City or town">
-        </div>
-        <button type="submit" id="search-submit" class="btn btn-round font-bold js-searchSubmit">Go</button>  
-    </div>
-    <section id="weather__section" class="js-animations">
+    
+    <section id="weather__section">
         <div class="container transparent-dark-background foreground border-radius">
             <div class="weather__controls">
                 <button class="btn btn-round hidden font-bold js-toggleFarenheit">F&deg;</button>
@@ -47,7 +54,6 @@
                 <button class="btn btn-rect border-radius font-bold error__btn js-start">Start</button>
             </div>
         </div>
-        <button class="settings__toggle btn btn-round js-toggleSettingsMenu"><i class="fas fa-cog"></i></button>
         <div class="settings__container container hidden border-radius js-settingsContainer">
             <h2 class="margin-top">Weather Animations</h2>
             <p class="margin-top">Use the buttons below to view different background animations.</p>

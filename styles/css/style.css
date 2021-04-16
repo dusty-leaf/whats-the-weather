@@ -4,6 +4,151 @@
   box-sizing: border-box;
 }
 
+.font-bold {
+  font-weight: bold;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.transparent-dark-background {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.foreground {
+  z-index: 10;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.border-radius {
+  border-radius: 4px;
+}
+
+.margin-top {
+  margin-top: 0.5rem;
+}
+@media screen and (max-width: 1200px) {
+  .margin-top {
+    margin-top: 1rem;
+  }
+}
+
+.grid {
+  display: grid;
+}
+
+.display-block {
+  display: block;
+}
+
+.half-opacity {
+  opacity: 0.5;
+}
+
+.paused {
+  animation-play-state: paused;
+}
+
+.btn {
+  border: 1px;
+  font-family: "Inter", sans-serif;
+  color: #4d4d4d;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.btn-square {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+/* .btn-rect {
+  height: 2rem;
+  width: 4.4rem;
+}
+
+.btn-round {
+  height: 1.45rem;
+  width: 1.45rem;
+  border-radius: 50%;
+} */
+.btn:active:enabled,
+.btn:hover:enabled,
+.btn:focus:enabled {
+  outline: none;
+  background-color: white;
+}
+
+.btn:disabled {
+  cursor: default;
+}
+
+.nav {
+  position: absolute;
+  height: 3rem;
+  width: 100%;
+  background-color: #4d4d4d;
+  display: grid;
+  grid-template-columns: 75% 25%;
+}
+.nav i,
+.nav button,
+.nav input {
+  font-size: 0.8rem;
+}
+
+.nav__container {
+  display: flex;
+  align-items: center;
+}
+
+.nav__search-container {
+  justify-content: start;
+}
+.nav__search-container i {
+  padding-left: 0.4rem;
+  color: white;
+}
+.nav__search-container input,
+.nav__search-container button {
+  margin-left: 0.2rem;
+}
+.nav__search-container input {
+  height: 1.5rem;
+  width: 10rem;
+}
+
+.nav__buttons-container {
+  justify-content: flex-end;
+}
+.nav__buttons-container button {
+  margin-right: 0.6rem;
+}
+
+.nav__toggle {
+  z-index: 10;
+  margin-right: 0.8rem;
+}
+
+@media screen and (max-width: 300px) {
+  .nav {
+    grid-template-columns: 83% 17%;
+  }
+
+  .nav__buttons-container button {
+    margin-right: 0.1rem;
+  }
+
+  .nav__toggle {
+    margin-right: 0.2rem;
+  }
+}
 .animations__container {
   height: 100vh;
   width: 100vw;
@@ -19,9 +164,6 @@
   bottom: 0;
   width: 100%;
   height: auto;
-  /* @media screen and (orientation: landscape) and (min-height: 400px) {
-    bottom: -65%;
-  } */
 }
 @media screen and (orientation: landscape) {
   .animations__foreground-image {

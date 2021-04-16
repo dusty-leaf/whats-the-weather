@@ -1,0 +1,37 @@
+@use '../base/colors';
+
+.btn {
+  border: 1px;
+  font-family: "Inter", sans-serif;
+  color: colors.$bg-gray;
+  border: 1px solid black;
+  cursor: pointer;
+}
+
+.btn-square {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+/* .btn-rect {
+  height: 2rem;
+  width: 4.4rem;
+}
+
+.btn-round {
+  height: 1.45rem;
+  width: 1.45rem;
+  border-radius: 50%;
+} */
+
+.btn:active:enabled,
+.btn:hover:enabled,
+.btn:focus:enabled {
+  outline: none;
+  //border: none;
+  background-color: white;
+}
+
+.btn:disabled {
+  cursor: default;
+}

@@ -1,8 +1,12 @@
 // Base
 @use './base/colors';
 @use './base/reset';
+@use './base/typography';
+@use './base/utilities';
 
 // Components
+@use './components/button';
+@use './components/nav';
 
 // Partials
 @use './partials/animations';
