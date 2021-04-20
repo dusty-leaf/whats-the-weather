@@ -66,7 +66,7 @@ class RenderMethods {
         const deg = (unit === 'celsius') ? 'C' : 'F';
 
         const todayElement = document.querySelector('.js-today');
-        todayElement.innerHTML = "Today's Forecast:";
+        todayElement.innerHTML = 'Today:';
         
         const temperatureElement = document.querySelector('.js-temperature');
         temperatureElement.innerHTML = `${temperatures[0]}&deg;${deg}`;
@@ -89,9 +89,9 @@ class RenderMethods {
             rootElement.firstChild.remove();
         }
 
-        const forecastTitleElement = document.createElement('h2');
+        const forecastTitleElement = document.createElement('h3');
         forecastTitleElement.classList.add('forecast__title');
-        forecastTitleElement.innerText = '7 Day Forecast';
+        forecastTitleElement.innerText = '7 Day Forecast:';
         rootElement.appendChild(forecastTitleElement);
 
         const forecastContainerElement = document.createElement('div');

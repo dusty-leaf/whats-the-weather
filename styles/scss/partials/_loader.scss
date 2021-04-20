@@ -1,5 +1,10 @@
 @use '../base/colors';
 
+.loader__container {
+  grid-template-rows: 40% 60%;
+  align-items: center;
+}
+
 .loader__container,
 .error__container {
   justify-items: center;
@@ -9,7 +14,7 @@
   i,
   h2,
   p {
-    color: white;
+    color: colors.$text-white;
     z-index: 20 opacity 1;
   }
 }
@@ -19,5 +24,10 @@
 }
 
 .error__container p {
+  top: -10%;
   padding: 0.6rem;
+}
+
+.error__btn {
+  align-self: center;
 }

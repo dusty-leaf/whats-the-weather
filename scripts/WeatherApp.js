@@ -240,7 +240,7 @@ class WeatherApp {
         .then(() => {
             // rerender DOM with updated state and disable Loader
             this.render();
-            this.keepWeatherDataUpdated();
+            //this.keepWeatherDataUpdated();
             ErrorHandler.clearError();
             this.toggleLoader();
         })

@@ -35,7 +35,7 @@
 .btn:focus:enabled {
   outline: none;
   //border: none;
-  background-color: white;
+  background-color: colors.$text-white;
 }
 
 .btn:disabled {

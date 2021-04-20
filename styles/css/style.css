@@ -61,26 +61,68 @@ html {
 
 .container {
   position: absolute;
-  top: 50%;
+  top: 55%;
   left: 50%;
-  transform: translate(-50%, -50%);
-  height: 60%;
-  width: 80%;
+  transform: translate(-50%, -55%);
+  height: 80%;
+  width: 85%;
 }
 @media screen and (orientation: landscape) {
   .container {
-    top: 60%;
-    transform: translate(-50%, -60%);
+    top: 80%;
+    transform: translate(-50%, -80%);
   }
 }
-@media screen and (min-width: 600px) and (orientation: landscape) {
+@media screen and (orientation: landscape) and (min-height: 700px) {
   .container {
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+@media screen and (orientation: portrait) and (min-height: 640px) {
+  .container {
+    height: 75%;
+  }
+}
+@media screen and (orientation: portrait) and (min-height: 730px) {
+  .container {
+    height: 65%;
+  }
+}
+@media screen and (orientation: portrait) and (min-height: 820px) {
+  .container {
+    height: 60%;
+  }
+}
+@media screen and (orientation: landscape) and (min-height: 360px) {
+  .container {
+    height: 70%;
+  }
+}
+@media screen and (orientation: landscape) and (min-height: 700px) {
+  .container {
+    height: 50%;
+  }
+}
+@media screen and (orientation: landscape) and (min-width: 600px) {
+  .container {
+    width: 70%;
+  }
+}
+@media screen and (orientation: landscape) and (min-width: 800px) {
+  .container {
+    width: 60%;
+  }
+}
+@media screen and (orientation: portrait) and (min-width: 500px) {
+  .container {
+    width: 65%;
+  }
+}
+@media screen and (orientation: landscape) and (min-height: 900px) {
+  .container {
+    height: 60%;
     width: 30%;
-  }
-}
-@media screen and (min-width: 1200px) and (orientation: landscape) {
-  .container {
-    width: 25%;
   }
 }
 
@@ -118,7 +160,7 @@ html {
 .btn:hover:enabled,
 .btn:focus:enabled {
   outline: none;
-  background-color: white;
+  background-color: #e0e0e0;
 }
 
 .btn:disabled {
@@ -141,6 +183,11 @@ html {
 .nav button {
   padding-top: 0.1rem;
 }
+@media screen and (orientation: landscape) and (max-height: 300px) {
+  .nav {
+    height: 2.5rem;
+  }
+}
 
 .nav__container {
   display: flex;
@@ -152,7 +199,7 @@ html {
 }
 .nav__search-container i {
   padding-left: 0.4rem;
-  color: white;
+  color: #e0e0e0;
 }
 .nav__search-container input,
 .nav__search-container button {
@@ -200,7 +247,7 @@ html {
 
   .nav__search-container i {
     padding-left: 0.8rem;
-    color: white;
+    color: #e0e0e0;
   }
   .nav__search-container input,
 .nav__search-container button {
@@ -570,6 +617,11 @@ html {
     transform: rotate(360deg);
   }
 }
+.loader__container {
+  grid-template-rows: 40% 60%;
+  align-items: center;
+}
+
 .loader__container,
 .error__container {
   justify-items: center;
@@ -582,7 +634,7 @@ html {
 .error__container i,
 .error__container h2,
 .error__container p {
-  color: white;
+  color: #e0e0e0;
   z-index: 20 opacity 1;
 }
 
@@ -591,7 +643,106 @@ html {
 }
 
 .error__container p {
+  top: -10%;
   padding: 0.6rem;
+}
+
+.error__btn {
+  align-self: center;
+}
+
+@media screen and (orientation: landscape) and (max-height: 300px) {
+  .weather__container {
+    font-size: 85%;
+  }
+}
+@media screen and (orientation: landscape) and (min-height: 700px) {
+  .weather__container {
+    font-size: 150%;
+  }
+}
+@media screen and (orientation: portrait) and (min-height: 1000px) {
+  .weather__container {
+    font-size: 150%;
+  }
+}
+@media screen and (orientation: portrait) and (min-height: 1200px) {
+  .weather__container {
+    font-size: 200%;
+  }
+}
+@media screen and (orientation: landscape) {
+  .weather__container {
+    display: grid;
+    grid-template-columns: 40% 60%;
+  }
+}
+@media screen and (orientation: landscape) and (min-height: 900px) {
+  .weather__container {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}
+
+.forecast__container .forecast__subcontainer p,
+.forecast__container .forecast__subcontainer i {
+  /*  @media screen and (orientation: portrait) and (min-height: 1200px) {
+    font-size: 90%;
+  } */
+}
+@media screen and (orientation: landscape) and (min-height: 700px) {
+  .forecast__container .forecast__subcontainer p,
+.forecast__container .forecast__subcontainer i {
+    font-size: 80%;
+  }
+}
+@media screen and (orientation: portrait) and (min-height: 1000px) {
+  .forecast__container .forecast__subcontainer p,
+.forecast__container .forecast__subcontainer i {
+    font-size: 80%;
+  }
+}
+
+.weather__container .forecast__container .forecast__title {
+  /* @media screen and (orientation: portrait) and (min-height: 1200px) {
+    font-size: 130%;
+  } */
+}
+@media screen and (orientation: landscape) and (max-height: 280px) {
+  .weather__container .forecast__container .forecast__title {
+    margin-top: 0.5rem;
+  }
+}
+@media screen and (orientation: landscape) and (min-height: 700px) {
+  .weather__container .forecast__container .forecast__title {
+    font-size: 100%;
+  }
+}
+@media screen and (orientation: portrait) and (min-height: 1000px) {
+  .weather__container .forecast__container .forecast__title {
+    font-size: 120%;
+  }
+}
+
+.weather__subcontainer {
+  display: grid;
+  justify-items: center;
+}
+.weather__subcontainer h1,
+.weather__subcontainer h2,
+.weather__subcontainer h3,
+.weather__subcontainer p,
+.weather__subcontainer i {
+  color: white;
+}
+
+.weather__temperature,
+.weather__status {
+  font-size: 1.6rem;
+}
+
+.weather__icon {
+  font-size: 2rem;
 }
 
 .weather__controls {
@@ -600,10 +751,49 @@ html {
   right: 0.2rem;
 }
 
-@media screen and (orietation: portrait) {
+@media screen and (orientation: portrait) {
   .weather__today {
     display: hidden;
   }
+}
+
+.forecast__container {
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  margin-top: 1rem;
+  padding-left: 0.2rem;
+  /*   .forecast__title,
+  p,
+  i {
+    @media screen and (orientation: portrait) and (min-height: 700px) {
+      font-size: 105%;
+    }
+  } */
+}
+.forecast__container .forecast__title {
+  margin-top: 1rem;
+  font-size: 1.2rem;
+  text-align: center;
+}
+.forecast__container .forecast__subcontainer:not(:last-of-type) {
+  margin-right: 0.4rem;
+  border-right: 1px solid white;
+}
+.forecast__container p,
+.forecast__container i {
+  font-size: 0.7rem;
+  padding-right: 0.4rem;
+  text-align: center;
+}
+@media screen and (min-width: 360px) and (orientation: portrait) {
+  .forecast__container p,
+.forecast__container i {
+    font-size: 1rem;
+  }
+}
+.forecast__container .forecast__container--low-temp {
+  color: #e0e0e0;
 }
 
 /*# sourceMappingURL=style.css.map */
