@@ -1,0 +1,46 @@
+@use '../base/colors';
+
+footer {
+  color: white;
+  background: colors.$bg-gray;
+  width: 100%;
+  padding: 0.4rem;
+
+  a {
+    color: colors.$link-blue;
+  }
+
+  a:hover,
+  a:active {
+    color: white;
+  }
+
+  #privacy {
+    display: flex;
+    align-items: center;
+  }
+
+  #dev-credit,
+  #dev-link {
+    text-align: center;
+  }
+
+  @media screen and (orientation: landscape) and (min-height: 768px) {
+    position: absolute;
+    bottom: 0;
+    height: 3rem;
+    font-size: 0.9rem;
+
+    display: grid;
+    grid-template-columns: 70% 30%;
+
+    #dev-credit {
+      margin-top: 0;
+    }
+
+    #dev-credit,
+    #dev-link {
+      text-align: right;
+    }
+  }
+}

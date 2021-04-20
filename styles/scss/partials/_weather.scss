@@ -99,7 +99,11 @@
 
 .weather__today {
   @media screen and (orientation: portrait) {
-    display: hidden;
+    display: none;
+  }
+
+  @media screen and (orientation: landscape) and (min-width: 1440px) and (min-height: 900px) {
+    display: none;
   }
 }
 

@@ -3,6 +3,10 @@
 .loader__container {
   grid-template-rows: 40% 60%;
   align-items: center;
+
+  @media screen and (orientation: landscape) and (min-width: 1024px) and (min-height: 768px) {
+    grid-template-rows: 20% 80%;
+  }
 }
 
 .loader__container,
