@@ -64,6 +64,9 @@ class RenderMethods {
         });
     
         const deg = (unit === 'celsius') ? 'C' : 'F';
+
+        const todayElement = document.querySelector('.js-today');
+        todayElement.innerHTML = "Today's Forecast:";
         
         const temperatureElement = document.querySelector('.js-temperature');
         temperatureElement.innerHTML = `${temperatures[0]}&deg;${deg}`;

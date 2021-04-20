@@ -28,29 +28,35 @@
     <div class="animations__container js-animations">
         <img class="animations__foreground-image js-foregroundImage" src="images/hills-cropped.png">
     </div>
-    
     <section id="weather__section">
         <div class="container transparent-dark-background foreground border-radius">
             <div class="weather__controls">
-                <button class="btn btn-round hidden font-bold js-toggleFarenheit">F&deg;</button>
-                <button class="btn btn-round font-bold js-toggleCelsius">C&deg;</button>
+                <button class="btn btn-square border-radius hidden font-bold js-toggleFarenheit">F&deg;</button>
+                <button class="btn btn-square border-radius font-bold js-toggleCelsius">C&deg;</button>
             </div>
-            <h2 class="weather__location margin-top js-location"></h2>
-            <p class="weather__date js-date"></p>
-            <p class="weather__clock js-clock"></p>
-            <h1 class="weather__temperature margin-top js-temperature"></></h1>
-            <i class="weather__icon js-weatherIcon"></i>
-            <h2 class="weather__status js-weatherStatus"></h2> 
-            <p class="weather__temperature--detail margin-top js-feelsLike"></></p>
-            <p class="weather__temperature--detail js-highTemperature"></p>
-            <p class="weather__temperature--detail js-lowTemperature"></p>
-            <div class="margin-top js-forecast"></div>
+            <div class="weather__container">
+                <div class="weather__subcontainer">
+                    <h2 class="weather__location margin-top js-location"></h2>
+                    <p class="weather__date js-date"></p>
+                    <p class="weather__clock js-clock"></p>
+                    <h1 class="weather__temperature margin-top js-temperature"></></h1>
+                    <i class="weather__icon js-weatherIcon"></i>
+                    <h2 class="weather__status js-weatherStatus"></h2> 
+                </div>
+                <div class="weather__subcontainer">
+                    <h2 class="weather__today js-today"></h2>
+                    <p class="weather__temperature--detail margin-top js-feelsLike"></></p>
+                    <p class="weather__temperature--detail js-highTemperature"></p>
+                    <p class="weather__temperature--detail js-lowTemperature"></p>
+                    <div class="margin-top js-forecast"></div>
+                </div>
+            </div> 
         </div>
         <div class="loader__container container grid border-radius hidden js-loader">
-            <span><i class="fas fa-circle-notch loader__icon fa-spin"></i></span>
-            <div class="error__container js-error">
+            <span><i class="fas fa-circle-notch loader__icon margin-top fa-spin"></i></span>
+            <div class="error__container border-radius grid js-error">
                 <h2>Welcome</h2>
-                <p class="margin-top">Please click [Start] to enable the geolocator API to find your location or manually enter a location in the search bar above.</p>
+                <p>Please click [Start] to enable the geolocator API to find your location or manually enter a location in the search bar above. See below for privacy information.</p>
                 <button class="btn btn-rect border-radius font-bold error__btn js-start">Start</button>
             </div>
         </div>
@@ -77,7 +83,7 @@
     </section>
     <footer>
         <div>
-            <p >This site does not save your data, but does send data to OpenWeather Ltd and Google. See their privacy policies for more information: <a class="small-text" href="https://openweather.co.uk/privacy-policy">Open Weather Privacy Policy</a> &amp; <a class="small-text" href="https://policies.google.com/privacy?hl=en-US">Google Privacy Policy</a></p>    
+            <p >This site does not save your data, but does send data to OpenWeather Ltd and Google. See their privacy policies: <a class="small-text" href="https://openweather.co.uk/privacy-policy">Open Weather Privacy Policy</a> &amp; <a class="small-text" href="https://policies.google.com/privacy?hl=en-US">Google Privacy Policy</a></p>    
             <!-- <p>Cloud images provided by: <a href="https://www.youtube.com/c/OnlineTutorials4Designers/featured">Online Tutorials</a>. Background image provided by: <a href='https://pngtree.com/so/hillside'>hillside png from pngtree.com</a></p> -->
         </div>
         <p id="dev-credit">This site built by Name &#169;2021.</p>

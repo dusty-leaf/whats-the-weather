@@ -1,0 +1,23 @@
+@use '../base/colors';
+
+.loader__container,
+.error__container {
+  justify-items: center;
+  background-color: colors.$bg-gray;
+  z-index: 20;
+
+  i,
+  h2,
+  p {
+    color: white;
+    z-index: 20 opacity 1;
+  }
+}
+
+.loader__icon {
+  font-size: 2.4rem;
+}
+
+.error__container p {
+  padding: 0.6rem;
+}

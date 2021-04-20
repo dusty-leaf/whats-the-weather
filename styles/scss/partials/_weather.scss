@@ -1,0 +1,11 @@
+.weather__controls {
+  position: absolute;
+  top: 0.2rem;
+  right: 0.2rem;
+}
+
+.weather__today {
+  @media screen and (orietation: portrait) {
+    display: hidden;
+  }
+}
