@@ -5,3 +5,45 @@ html {
 .font-bold {
   font-weight: bold;
 }
+
+.font-xs {
+  font-size: 2.5vw;
+}
+
+.font-sm {
+  font-size: 4.5vw;
+}
+
+.font-med {
+  font-size: 6.5vw;
+}
+
+.font-lg {
+  font-size: 8.5vw;
+}
+
+.font-xl {
+  font-size: 10.5vw;
+}
+
+@media screen and (orientation: landscape) {
+  .font-xs {
+    font-size: 2.5vh;
+  }
+
+  .font-sm {
+    font-size: 4.5vh;
+  }
+
+  .font-med {
+    font-size: 6.5vh;
+  }
+
+  .font-lg {
+    font-size: 8.5vh;
+  }
+
+  .font-xl {
+    font-size: 10.5vh;
+  }
+}

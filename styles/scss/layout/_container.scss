@@ -2,15 +2,33 @@
 
 .container {
   position: absolute;
-  top: 55%;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, -55%);
+  transform: translate(-50%, -50%);
 
-  height: 80%;
-  width: 85%;
+  height: 80vh;
+  width: 100%;
 
-  // positioning
   @media screen and (orientation: landscape) {
+    top: 110%;
+    transform: translate(-50, -110%);
+    height: 160vh;
+    width: 45%;
+    /* height: 170vh;
+    width: 40vw; */
+  }
+
+  @media screen and (orientation: landscape) and (min-height: 500px) {
+    height: 90vh;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  @media screen and (orienation: landscape) and (min-height: 768px) {
+    height: 70vh;
+  }
+  // positioning
+  /* @media screen and (orientation: landscape) {
     top: 80%;
     transform: translate(-50%, -80%);
   }
@@ -75,19 +93,23 @@
   @media screen and (min-width: 1440px) and (min-height: 900px) {
     height: 60%;
     width: 20%;
-  }
+  } */
 }
 
 .animations__container {
-  height: 100vh;
   width: 100vw;
+  height: 100vh;
   background-size: cover;
   background-repeat: no-repeat;
   background-color: colors.$sky-blue;
   overflow: hidden;
   position: relative;
 
-  /* @media screen and (orientation: landscape) and (max-height: 768px) {
+  @media screen and (orientation: landscape) {
     height: 200vh;
-  } */
+  }
+
+  @media screen and (orientation: landscape) and (min-height: 500px) {
+    height: 100vh;
+  }
 }

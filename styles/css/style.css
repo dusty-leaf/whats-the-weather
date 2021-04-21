@@ -12,6 +12,47 @@ html {
   font-weight: bold;
 }
 
+.font-xs {
+  font-size: 2.5vw;
+}
+
+.font-sm {
+  font-size: 4.5vw;
+}
+
+.font-med {
+  font-size: 6.5vw;
+}
+
+.font-lg {
+  font-size: 8.5vw;
+}
+
+.font-xl {
+  font-size: 10.5vw;
+}
+
+@media screen and (orientation: landscape) {
+  .font-xs {
+    font-size: 2.5vh;
+  }
+
+  .font-sm {
+    font-size: 4.5vh;
+  }
+
+  .font-med {
+    font-size: 6.5vh;
+  }
+
+  .font-lg {
+    font-size: 8.5vh;
+  }
+
+  .font-xl {
+    font-size: 10.5vh;
+  }
+}
 .hidden {
   display: none !important;
 }
@@ -39,11 +80,16 @@ html {
 }
 
 .margin-top {
-  margin-top: 0.5rem;
-}
-@media screen and (max-width: 1200px) {
-  .margin-top {
+  /*  margin-top: 0.5rem;
+
+  @media screen and (max-width: 1200px) {
     margin-top: 1rem;
+  } */
+  margin-top: 4vw;
+}
+@media screen and (orientation: landscape) {
+  .margin-top {
+    margin-top: 4vh;
   }
 }
 
@@ -237,104 +283,119 @@ footer #dev-link {
 }
 .container {
   position: absolute;
-  top: 55%;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, -55%);
-  height: 80%;
-  width: 85%;
-}
-@media screen and (orientation: landscape) {
-  .container {
+  transform: translate(-50%, -50%);
+  height: 80vh;
+  width: 100%;
+  /* @media screen and (orientation: landscape) {
     top: 80%;
     transform: translate(-50%, -80%);
   }
-}
-@media screen and (orientation: landscape) and (max-height: 280px) {
-  .container {
+
+  @media screen and (orientation: landscape) and (max-height: 280px) {
     height: 85%;
+  }
+
+  @media screen and (orientation: landscape) and (min-height: 500px) {
+    top: 60%;
+    transform: translate(-50%, -60%);
+  }
+
+  @media screen and (orientation: landscape) and (min-height: 700px) {
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  // vertical scaling
+  @media screen and (orientation: portrait) and (min-height: 640px) {
+    height: 75%;
+  }
+
+  @media screen and (orientation: portrait) and (min-height: 730px) {
+    height: 65%;
+  }
+
+  @media screen and (orientation: portrait) and (min-height: 820px) {
+    height: 60%;
+  }
+
+  @media screen and (orientation: landscape) and (min-height: 360px) {
+    height: 70%;
+  }
+
+  @media screen and (orientation: landscape) and (min-height: 500px) {
+    height: 60%;
+  }
+
+  @media screen and (orientation: landscape) and (min-height: 700px) {
+    height: 50%;
+  }
+
+  // horizontal scaling
+  @media screen and (orientation: landscape) and (min-width: 600px) {
+    width: 70%;
+  }
+
+  @media screen and (orientation: landscape) and (min-width: 800px) {
+    width: 60%;
+  }
+
+  @media screen and (orientation: landscape) and (min-width: 1200px) {
+    width: 30%;
+    height: 55%;
+  }
+
+  @media screen and (orientation: portrait) and (min-width: 500px) {
+    width: 65%;
+  }
+
+  @media screen and (min-width: 1440px) and (min-height: 900px) {
+    height: 60%;
+    width: 20%;
+  } */
+}
+@media screen and (orientation: landscape) {
+  .container {
+    top: 110%;
+    transform: translate(-50, -110%);
+    height: 160vh;
+    width: 45%;
+    /* height: 170vh;
+    width: 40vw; */
   }
 }
 @media screen and (orientation: landscape) and (min-height: 500px) {
   .container {
-    top: 60%;
-    transform: translate(-50%, -60%);
-  }
-}
-@media screen and (orientation: landscape) and (min-height: 700px) {
-  .container {
+    height: 90vh;
     top: 50%;
     transform: translate(-50%, -50%);
   }
 }
-@media screen and (orientation: portrait) and (min-height: 640px) {
+@media screen and (orienation: landscape) and (min-height: 768px) {
   .container {
-    height: 75%;
-  }
-}
-@media screen and (orientation: portrait) and (min-height: 730px) {
-  .container {
-    height: 65%;
-  }
-}
-@media screen and (orientation: portrait) and (min-height: 820px) {
-  .container {
-    height: 60%;
-  }
-}
-@media screen and (orientation: landscape) and (min-height: 360px) {
-  .container {
-    height: 70%;
-  }
-}
-@media screen and (orientation: landscape) and (min-height: 500px) {
-  .container {
-    height: 60%;
-  }
-}
-@media screen and (orientation: landscape) and (min-height: 700px) {
-  .container {
-    height: 50%;
-  }
-}
-@media screen and (orientation: landscape) and (min-width: 600px) {
-  .container {
-    width: 70%;
-  }
-}
-@media screen and (orientation: landscape) and (min-width: 800px) {
-  .container {
-    width: 60%;
-  }
-}
-@media screen and (orientation: landscape) and (min-width: 1200px) {
-  .container {
-    width: 30%;
-    height: 55%;
-  }
-}
-@media screen and (orientation: portrait) and (min-width: 500px) {
-  .container {
-    width: 65%;
-  }
-}
-@media screen and (min-width: 1440px) and (min-height: 900px) {
-  .container {
-    height: 60%;
-    width: 20%;
+    height: 70vh;
   }
 }
 
 .animations__container {
-  height: 100vh;
   width: 100vw;
+  height: 100vh;
   background-size: cover;
   background-repeat: no-repeat;
   background-color: #65b7f6;
   overflow: hidden;
   position: relative;
-  /* @media screen and (orientation: landscape) and (max-height: 768px) {
+}
+@media screen and (orientation: landscape) {
+  .animations__container {
     height: 200vh;
-  } */
+  }
+}
+@media screen and (orientation: landscape) and (min-height: 500px) {
+  .animations__container {
+    height: 100vh;
+  }
 }
 
 .animations__foreground-image {
@@ -345,7 +406,7 @@ footer #dev-link {
 }
 @media screen and (orientation: landscape) {
   .animations__foreground-image {
-    bottom: -100%;
+    bottom: -40%;
   }
 }
 @media screen and (orientation: landscape) and (min-height: 300px) {
@@ -728,77 +789,97 @@ footer #dev-link {
   align-self: center;
 }
 
-@media screen and (orientation: landscape) and (max-height: 300px) {
-  .weather__container {
+.settings__container {
+  z-index: 10;
+  background-color: #4d4d4d;
+}
+
+.settings__menu {
+  width: 100%;
+  height: 50%;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  grid-column-gap: none;
+  margin: 1.6rem auto;
+}
+.settings__menu p {
+  font-size: 0.4rem;
+}
+
+.settings__button-container {
+  display: grid;
+  justify-items: center;
+}
+
+.settings__icon-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.settings__icon-container i {
+  font-size: 4rem;
+}
+
+.settings__button {
+  margin: 0.2rem auto;
+}
+
+.weather__container {
+  /* @media screen and (orientation: landscape) and (max-height: 300px) {
     font-size: 85%;
   }
-}
-@media screen and (orientation: landscape) and (min-height: 700px) {
-  .weather__container {
+
+  @media screen and (orientation: landscape) and (min-height: 700px) {
     font-size: 150%;
   }
-}
-@media screen and (orientation: portrait) and (min-height: 1000px) {
-  .weather__container {
+
+  @media screen and (orientation: portrait) and (min-height: 1000px) {
     font-size: 150%;
   }
-}
-@media screen and (orientation: portrait) and (min-height: 1200px) {
-  .weather__container {
+
+  @media screen and (orientation: portrait) and (min-height: 1200px) {
     font-size: 200%;
-  }
-}
-@media screen and (orientation: landscape) {
-  .weather__container {
+  } */
+  /* @media screen and (orientation: landscape) {
     display: grid;
     grid-template-columns: 40% 60%;
   }
-}
-@media screen and (orientation: landscape) and (min-height: 900px) {
-  .weather__container {
+
+  @media screen and (orientation: landscape) and (min-height: 900px) {
     display: grid;
     grid-template-columns: 1fr;
-  }
+  } */
 }
 
 .forecast__container .forecast__subcontainer p,
 .forecast__container .forecast__subcontainer i {
+  /*  @media screen and (orientation: landscape) and (min-height: 700px) {
+    font-size: 80%;
+  }
+
+  @media screen and (orientation: portrait) and (min-height: 1000px) {
+    font-size: 80%;
+  } */
   /*  @media screen and (orientation: portrait) and (min-height: 1200px) {
     font-size: 90%;
   } */
 }
-@media screen and (orientation: landscape) and (min-height: 700px) {
-  .forecast__container .forecast__subcontainer p,
-.forecast__container .forecast__subcontainer i {
-    font-size: 80%;
-  }
-}
-@media screen and (orientation: portrait) and (min-height: 1000px) {
-  .forecast__container .forecast__subcontainer p,
-.forecast__container .forecast__subcontainer i {
-    font-size: 80%;
-  }
-}
 
 .weather__container .forecast__container .forecast__title {
+  /* @media screen and (orientation: landscape) and (max-height: 280px) {
+    margin-top: 0.5rem;
+  }
+
+  @media screen and (orientation: landscape) and (min-height: 700px) {
+    font-size: 100%;
+  }
+
+  @media screen and (orientation: portrait) and (min-height: 1000px) {
+    font-size: 120%;
+  } */
   /* @media screen and (orientation: portrait) and (min-height: 1200px) {
     font-size: 130%;
   } */
-}
-@media screen and (orientation: landscape) and (max-height: 280px) {
-  .weather__container .forecast__container .forecast__title {
-    margin-top: 0.5rem;
-  }
-}
-@media screen and (orientation: landscape) and (min-height: 700px) {
-  .weather__container .forecast__container .forecast__title {
-    font-size: 100%;
-  }
-}
-@media screen and (orientation: portrait) and (min-height: 1000px) {
-  .weather__container .forecast__container .forecast__title {
-    font-size: 120%;
-  }
 }
 
 .weather__subcontainer {
@@ -813,19 +894,17 @@ footer #dev-link {
   color: white;
 }
 
-.weather__temperature,
+/* .weather__temperature,
 .weather__status {
   font-size: 1.6rem;
-}
-
-.weather__icon {
+} */
+/* .weather__icon {
   font-size: 2.4rem;
-}
-
+} */
 .weather__controls {
   position: absolute;
-  top: 0.2rem;
-  right: 0.2rem;
+  top: 0.7rem;
+  right: 0.7rem;
 }
 
 @media screen and (orientation: portrait) {
@@ -866,8 +945,13 @@ footer #dev-link {
 }
 .forecast__container .forecast__title {
   margin-top: 1rem;
-  font-size: 1.2rem;
+  font-size: 6.5vw;
   text-align: center;
+}
+@media screen and (orientation: landscape) {
+  .forecast__container .forecast__title {
+    font-size: 6.5vh;
+  }
 }
 .forecast__container .forecast__subcontainer:not(:last-of-type) {
   margin-right: 0.4rem;
@@ -875,14 +959,17 @@ footer #dev-link {
 }
 .forecast__container p,
 .forecast__container i {
-  font-size: 0.7rem;
+  font-size: 4.5vw;
   padding-right: 0.4rem;
   text-align: center;
+  /* @media screen and (min-width: 360px) and (orientation: portrait) {
+    font-size: 1rem;
+  } */
 }
-@media screen and (min-width: 360px) and (orientation: portrait) {
+@media screen and (orientation: landscape) {
   .forecast__container p,
 .forecast__container i {
-    font-size: 1rem;
+    font-size: 4.5vh;
   }
 }
 .forecast__container .forecast__container--low-temp {

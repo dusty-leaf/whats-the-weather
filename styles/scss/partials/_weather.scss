@@ -1,7 +1,7 @@
 @use '../base/colors';
 
 .weather__container {
-  @media screen and (orientation: landscape) and (max-height: 300px) {
+  /* @media screen and (orientation: landscape) and (max-height: 300px) {
     font-size: 85%;
   }
 
@@ -15,9 +15,9 @@
 
   @media screen and (orientation: portrait) and (min-height: 1200px) {
     font-size: 200%;
-  }
+  } */
 
-  @media screen and (orientation: landscape) {
+  /* @media screen and (orientation: landscape) {
     display: grid;
     grid-template-columns: 40% 60%;
   }
@@ -25,20 +25,20 @@
   @media screen and (orientation: landscape) and (min-height: 900px) {
     display: grid;
     grid-template-columns: 1fr;
-  }
+  } */
 }
 
 .forecast__container {
   .forecast__subcontainer {
     p,
     i {
-      @media screen and (orientation: landscape) and (min-height: 700px) {
+      /*  @media screen and (orientation: landscape) and (min-height: 700px) {
         font-size: 80%;
       }
 
       @media screen and (orientation: portrait) and (min-height: 1000px) {
         font-size: 80%;
-      }
+      } */
 
       /*  @media screen and (orientation: portrait) and (min-height: 1200px) {
         font-size: 90%;
@@ -50,7 +50,7 @@
 .weather__container {
   .forecast__container {
     .forecast__title {
-      @media screen and (orientation: landscape) and (max-height: 280px) {
+      /* @media screen and (orientation: landscape) and (max-height: 280px) {
         margin-top: 0.5rem;
       }
 
@@ -60,7 +60,7 @@
 
       @media screen and (orientation: portrait) and (min-height: 1000px) {
         font-size: 120%;
-      }
+      } */
 
       /* @media screen and (orientation: portrait) and (min-height: 1200px) {
         font-size: 130%;
@@ -82,19 +82,19 @@
   justify-items: center;
 }
 
-.weather__temperature,
+/* .weather__temperature,
 .weather__status {
   font-size: 1.6rem;
-}
+} */
 
-.weather__icon {
+/* .weather__icon {
   font-size: 2.4rem;
-}
+} */
 
 .weather__controls {
   position: absolute;
-  top: 0.2rem;
-  right: 0.2rem;
+  top: 0.7rem;
+  right: 0.7rem;
 }
 
 .weather__today {
@@ -126,7 +126,13 @@
 
   .forecast__title {
     margin-top: 1rem;
-    font-size: 1.2rem;
+    // font-size: 1.2rem;
+
+    // font-med
+    font-size: 6.5vw;
+    @media screen and (orientation: landscape) {
+      font-size: 6.5vh;
+    }
     text-align: center;
   }
 
@@ -137,13 +143,19 @@
 
   p,
   i {
-    font-size: 0.7rem;
+    // font-size: 0.7rem;
+
+    // font-sm
+    font-size: 4.5vw;
+    @media screen and (orientation: landscape) {
+      font-size: 4.5vh;
+    }
     padding-right: 0.4rem;
     text-align: center;
 
-    @media screen and (min-width: 360px) and (orientation: portrait) {
+    /* @media screen and (min-width: 360px) and (orientation: portrait) {
       font-size: 1rem;
-    }
+    } */
   }
 
   /*   .forecast__title,

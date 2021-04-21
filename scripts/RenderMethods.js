@@ -44,7 +44,7 @@ class RenderMethods {
         const weatherIconElement = document.querySelector('.js-weatherIcon');
         
         // reset
-        weatherIconElement.classList = 'weather__icon js-weatherIcon';
+        weatherIconElement.classList = 'weather__icon font-lg js-weatherIcon';
 
         const weatherStatusElement = document.querySelector('.js-weatherStatus');
         let classes = [];

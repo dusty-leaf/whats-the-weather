@@ -25,10 +25,15 @@
 }
 
 .margin-top {
-  margin-top: 0.5rem;
+  /*  margin-top: 0.5rem;
 
   @media screen and (max-width: 1200px) {
     margin-top: 1rem;
+  } */
+  margin-top: 4vw;
+
+  @media screen and (orientation: landscape) {
+    margin-top: 4vh;
   }
 }
 
