@@ -10,6 +10,10 @@
   z-index: 10;
 }
 
+.foreground-max {
+  z-index: 21;
+}
+
 .flex-center {
   display: flex;
   justify-content: center;
@@ -42,78 +46,4 @@
 
 .paused {
   animation-play-state: paused;
-}
-
-.container {
-  position: absolute;
-  top: 55%;
-  left: 50%;
-  transform: translate(-50%, -55%);
-
-  height: 80%;
-  width: 85%;
-
-  // positioning
-  @media screen and (orientation: landscape) {
-    top: 80%;
-    transform: translate(-50%, -80%);
-  }
-
-  @media screen and (orientation: landscape) and (min-height: 500px) {
-    top: 60%;
-    transform: translate(-50%, -60%);
-  }
-
-  @media screen and (orientation: landscape) and (min-height: 700px) {
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  // vertical scaling
-  @media screen and (orientation: portrait) and (min-height: 640px) {
-    height: 75%;
-  }
-
-  @media screen and (orientation: portrait) and (min-height: 730px) {
-    height: 65%;
-  }
-
-  @media screen and (orientation: portrait) and (min-height: 820px) {
-    height: 60%;
-  }
-
-  @media screen and (orientation: landscape) and (min-height: 360px) {
-    height: 70%;
-  }
-
-  @media screen and (orientation: landscape) and (min-height: 500px) {
-    height: 60%;
-  }
-
-  @media screen and (orientation: landscape) and (min-height: 700px) {
-    height: 50%;
-  }
-
-  // horizontal scaling
-  @media screen and (orientation: landscape) and (min-width: 600px) {
-    width: 70%;
-  }
-
-  @media screen and (orientation: landscape) and (min-width: 800px) {
-    width: 60%;
-  }
-
-  @media screen and (orientation: landscape) and (min-width: 1200px) {
-    width: 30%;
-    height: 55%;
-  }
-
-  @media screen and (orientation: portrait) and (min-width: 500px) {
-    width: 65%;
-  }
-
-  @media screen and (min-width: 1440px) and (min-height: 900px) {
-    height: 60%;
-    width: 20%;
-  }
 }

@@ -12,7 +12,7 @@
     <title>Whats The Weather?</title>
 </head>
 <body>
-    <nav class="nav foreground js-nav">
+    <nav class="nav foreground-max js-nav">
         <div class="nav__container nav__search-container js-searchContainer">
             <div class="nav__input-container">
                 <i class="fas fa-search"></i>
@@ -37,7 +37,7 @@
             <div class="weather__container">
                 <div class="weather__subcontainer">
                     <h2 class="weather__location margin-top js-location"></h2>
-                    <p class="weather__date js-date"></p>
+                    <p class="weather__date margin-top js-date"></p>
                     <p class="weather__clock js-clock"></p>
                     <h1 class="weather__temperature margin-top js-temperature"></></h1>
                     <i class="weather__icon js-weatherIcon"></i>
@@ -45,7 +45,7 @@
                 </div>
                 <div class="weather__subcontainer">
                     <h3 class="weather__today margin-top js-today"></h3>
-                    <p class="weather__temperature--detail margin-top js-feelsLike"></></p>
+                    <p id="feelslike" class="weather__temperature--detail margin-top js-feelsLike"></></p>
                     <p class="weather__temperature--detail js-highTemperature"></p>
                     <p class="weather__temperature--detail js-lowTemperature"></p>
                     <div class="forecast__container margin-top js-forecast"></div>

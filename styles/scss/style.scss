@@ -9,6 +9,9 @@
 @use './components/footer';
 @use './components/nav';
 
+// Layout
+@use './layout/container';
+
 // Partials
 @use './partials/animations';
 @use './partials/loader';

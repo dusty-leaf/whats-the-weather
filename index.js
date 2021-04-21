@@ -146,7 +146,7 @@ buttons.searchSubmit.addEventListener('click', async () => {
 
 // show/hide nav
 buttons.navToggle.addEventListener('click', () =>{
-    components.nav.classList.toggle('foreground');
+    components.nav.classList.toggle('foreground-max');
 });
 
 

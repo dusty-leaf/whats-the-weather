@@ -24,6 +24,10 @@ html {
   z-index: 10;
 }
 
+.foreground-max {
+  z-index: 21;
+}
+
 .flex-center {
   display: flex;
   justify-content: center;
@@ -57,90 +61,6 @@ html {
 
 .paused {
   animation-play-state: paused;
-}
-
-.container {
-  position: absolute;
-  top: 55%;
-  left: 50%;
-  transform: translate(-50%, -55%);
-  height: 80%;
-  width: 85%;
-}
-@media screen and (orientation: landscape) {
-  .container {
-    top: 80%;
-    transform: translate(-50%, -80%);
-  }
-}
-@media screen and (orientation: landscape) and (min-height: 500px) {
-  .container {
-    top: 60%;
-    transform: translate(-50%, -60%);
-  }
-}
-@media screen and (orientation: landscape) and (min-height: 700px) {
-  .container {
-    top: 50%;
-    transform: translate(-50%, -50%);
-  }
-}
-@media screen and (orientation: portrait) and (min-height: 640px) {
-  .container {
-    height: 75%;
-  }
-}
-@media screen and (orientation: portrait) and (min-height: 730px) {
-  .container {
-    height: 65%;
-  }
-}
-@media screen and (orientation: portrait) and (min-height: 820px) {
-  .container {
-    height: 60%;
-  }
-}
-@media screen and (orientation: landscape) and (min-height: 360px) {
-  .container {
-    height: 70%;
-  }
-}
-@media screen and (orientation: landscape) and (min-height: 500px) {
-  .container {
-    height: 60%;
-  }
-}
-@media screen and (orientation: landscape) and (min-height: 700px) {
-  .container {
-    height: 50%;
-  }
-}
-@media screen and (orientation: landscape) and (min-width: 600px) {
-  .container {
-    width: 70%;
-  }
-}
-@media screen and (orientation: landscape) and (min-width: 800px) {
-  .container {
-    width: 60%;
-  }
-}
-@media screen and (orientation: landscape) and (min-width: 1200px) {
-  .container {
-    width: 30%;
-    height: 55%;
-  }
-}
-@media screen and (orientation: portrait) and (min-width: 500px) {
-  .container {
-    width: 65%;
-  }
-}
-@media screen and (min-width: 1440px) and (min-height: 900px) {
-  .container {
-    height: 60%;
-    width: 20%;
-  }
 }
 
 .btn {
@@ -274,7 +194,7 @@ footer #dev-link {
 }
 
 .nav__toggle {
-  z-index: 10;
+  z-index: 21;
   margin-right: 0.8rem;
 }
 
@@ -315,6 +235,95 @@ footer #dev-link {
     padding-left: 0.2rem;
   }
 }
+.container {
+  position: absolute;
+  top: 55%;
+  left: 50%;
+  transform: translate(-50%, -55%);
+  height: 80%;
+  width: 85%;
+}
+@media screen and (orientation: landscape) {
+  .container {
+    top: 80%;
+    transform: translate(-50%, -80%);
+  }
+}
+@media screen and (orientation: landscape) and (max-height: 280px) {
+  .container {
+    height: 85%;
+  }
+}
+@media screen and (orientation: landscape) and (min-height: 500px) {
+  .container {
+    top: 60%;
+    transform: translate(-50%, -60%);
+  }
+}
+@media screen and (orientation: landscape) and (min-height: 700px) {
+  .container {
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+}
+@media screen and (orientation: portrait) and (min-height: 640px) {
+  .container {
+    height: 75%;
+  }
+}
+@media screen and (orientation: portrait) and (min-height: 730px) {
+  .container {
+    height: 65%;
+  }
+}
+@media screen and (orientation: portrait) and (min-height: 820px) {
+  .container {
+    height: 60%;
+  }
+}
+@media screen and (orientation: landscape) and (min-height: 360px) {
+  .container {
+    height: 70%;
+  }
+}
+@media screen and (orientation: landscape) and (min-height: 500px) {
+  .container {
+    height: 60%;
+  }
+}
+@media screen and (orientation: landscape) and (min-height: 700px) {
+  .container {
+    height: 50%;
+  }
+}
+@media screen and (orientation: landscape) and (min-width: 600px) {
+  .container {
+    width: 70%;
+  }
+}
+@media screen and (orientation: landscape) and (min-width: 800px) {
+  .container {
+    width: 60%;
+  }
+}
+@media screen and (orientation: landscape) and (min-width: 1200px) {
+  .container {
+    width: 30%;
+    height: 55%;
+  }
+}
+@media screen and (orientation: portrait) and (min-width: 500px) {
+  .container {
+    width: 65%;
+  }
+}
+@media screen and (min-width: 1440px) and (min-height: 900px) {
+  .container {
+    height: 60%;
+    width: 20%;
+  }
+}
+
 .animations__container {
   height: 100vh;
   width: 100vw;
@@ -323,6 +332,9 @@ footer #dev-link {
   background-color: #65b7f6;
   overflow: hidden;
   position: relative;
+  /* @media screen and (orientation: landscape) and (max-height: 768px) {
+    height: 200vh;
+  } */
 }
 
 .animations__foreground-image {
@@ -703,6 +715,10 @@ footer #dev-link {
   font-size: 2.4rem;
 }
 
+.error__container {
+  align-items: start;
+}
+
 .error__container p {
   top: -10%;
   padding: 0.6rem;
@@ -803,7 +819,7 @@ footer #dev-link {
 }
 
 .weather__icon {
-  font-size: 2rem;
+  font-size: 2.4rem;
 }
 
 .weather__controls {
@@ -820,6 +836,17 @@ footer #dev-link {
 @media screen and (orientation: landscape) and (min-width: 1440px) and (min-height: 900px) {
   .weather__today {
     display: none;
+  }
+}
+
+@media screen and (orientation: portrait) {
+  #feelslike {
+    margin-top: 1rem;
+  }
+}
+@media screen and (orientation: landscape) and (min-width: 1440px) and (min-height: 900px) {
+  #feelslike {
+    margin-top: 1rem;
   }
 }
 
