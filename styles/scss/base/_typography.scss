@@ -1,7 +1,17 @@
 html {
   font-family: "Inter", sans-serif;
-  // fluid typography: https://www.smashingmagazine.com/2016/05/fluid-typography/
-  font-size: calc(16px + (24px - 16) * (100vw - 400px) / (800 - 400));
+  font-size: 16px;
+
+  // fluid typography:
+  // https://www.smashingmagazine.com/2016/05/fluid-typography/
+  // https://css-tricks.com/snippets/css/fluid-typography/
+  @media screen and (min-width: 280px) {
+    font-size: calc(16px + 8 * ((100vw - 280px) / 680));
+  }
+
+  @media screen and (min-width: 1000px) {
+    font-size: 24px;
+  }
 }
 
 .font-bold {
@@ -9,26 +19,34 @@ html {
 }
 
 .font-xs {
-  font-size: 2.5vw;
+  font-size: 0.5rem;
 }
 
 .font-sm {
-  font-size: 4.5vw;
+  font-size: 1rem;
 }
 
 .font-med {
-  font-size: 6.5vw;
+  font-size: 1.5rem;
 }
 
 .font-lg {
-  font-size: 8.5vw;
+  font-size: 2rem;
 }
 
 .font-xl {
-  font-size: 10.5vw;
+  font-size: 2.5rem;
 }
 
-@media screen and (orientation: landscape) {
+.font-xs-sm {
+  font-size: 0.8rem;
+
+  @media screen and (min-width: 320px) {
+    font-size: 1rem;
+  }
+}
+
+/* @media screen and (orientation: landscape) {
   .font-xs {
     font-size: 2.5vh;
   }
@@ -92,4 +110,4 @@ html {
   .font-xl {
     font-size: 5.5vh;
   }
-}
+} */

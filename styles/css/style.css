@@ -6,7 +6,17 @@
 
 html {
   font-family: "Inter", sans-serif;
-  font-size: calc(16px + (24px - 16) * (100vw - 400px) / (800 - 400));
+  font-size: 16px;
+}
+@media screen and (min-width: 280px) {
+  html {
+    font-size: calc(16px + 8 * ((100vw - 280px) / 680));
+  }
+}
+@media screen and (min-width: 1000px) {
+  html {
+    font-size: 24px;
+  }
 }
 
 .font-bold {
@@ -14,26 +24,35 @@ html {
 }
 
 .font-xs {
-  font-size: 2.5vw;
+  font-size: 0.5rem;
 }
 
 .font-sm {
-  font-size: 4.5vw;
+  font-size: 1rem;
 }
 
 .font-med {
-  font-size: 6.5vw;
+  font-size: 1.5rem;
 }
 
 .font-lg {
-  font-size: 8.5vw;
+  font-size: 2rem;
 }
 
 .font-xl {
-  font-size: 10.5vw;
+  font-size: 2.5rem;
 }
 
-@media screen and (orientation: landscape) {
+.font-xs-sm {
+  font-size: 0.8rem;
+}
+@media screen and (min-width: 320px) {
+  .font-xs-sm {
+    font-size: 1rem;
+  }
+}
+
+/* @media screen and (orientation: landscape) {
   .font-xs {
     font-size: 2.5vh;
   }
@@ -54,6 +73,7 @@ html {
     font-size: 10.5vh;
   }
 }
+
 @media screen and (orientation: landscape) and (min-width: 674px) {
   .font-xs {
     font-size: 1.5vh;
@@ -75,6 +95,7 @@ html {
     font-size: 9.5vh;
   }
 }
+
 @media screen and (min-width: 1024px) and (min-height: 768px) {
   .font-xs {
     font-size: 1.5vh;
@@ -95,7 +116,7 @@ html {
   .font-xl {
     font-size: 5.5vh;
   }
-}
+} */
 .hidden {
   display: none !important;
 }
@@ -196,7 +217,7 @@ html {
 footer {
   color: white;
   background: #4d4d4d;
-  width: 100%;
+  width: 280px;
   padding: 0.4rem;
 }
 footer a {
@@ -213,6 +234,11 @@ footer #privacy {
 footer #dev-credit,
 footer #dev-link {
   text-align: center;
+}
+@media screen and (min-width: 280px) {
+  footer {
+    width: 100%;
+  }
 }
 @media screen and (orientation: landscape) and (min-height: 768px) {
   footer {
@@ -231,11 +257,16 @@ footer #dev-link {
     text-align: right;
   }
 }
+@media screen and (min-width: 2000px) {
+  footer {
+    width: 2000px;
+  }
+}
 
 .nav {
   position: absolute;
   height: 3rem;
-  width: 100%;
+  width: 280px;
   background-color: #4d4d4d;
   display: grid;
   grid-template-columns: 75% 25%;
@@ -249,9 +280,19 @@ footer #dev-link {
 .nav button {
   padding-top: 0.1rem;
 }
+@media screen and (min-width: 280px) {
+  .nav {
+    width: 100%;
+  }
+}
 @media screen and (orientation: landscape) and (max-height: 300px) {
   .nav {
     height: 2.5rem;
+  }
+}
+@media screen and (min-width: 2000px) {
+  .nav {
+    width: 2000px;
   }
 }
 
@@ -331,7 +372,7 @@ footer #dev-link {
   left: 50%;
   transform: translate(-50%, -50%);
   height: 80vh;
-  width: 100%;
+  width: 280px;
   /* @media screen and (orientation: landscape) {
     top: 80%;
     transform: translate(-50%, -80%);
@@ -398,6 +439,11 @@ footer #dev-link {
     height: 60%;
     width: 20%;
   } */
+}
+@media screen and (min-width: 280px) {
+  .container {
+    width: 100%;
+  }
 }
 @media screen and (orientation: landscape) {
   .container {
@@ -867,6 +913,15 @@ footer #dev-link {
 
 .settings__button {
   margin: 0.2rem auto;
+}
+
+#weather-section {
+  width: 280px;
+}
+@media screen and (min-width: 280px) {
+  #weather-section {
+    width: 100%;
+  }
 }
 
 .weather__container {

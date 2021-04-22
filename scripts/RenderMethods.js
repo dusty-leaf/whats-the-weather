@@ -117,22 +117,23 @@ class RenderMethods {
                 dayOfTheWeek = 0;
                 dayNameElement.innerText = days[dayOfTheWeek];
             }
+            dayNameElement.classList.add('font-xs-sm');
             forecastSubcontainerElement.appendChild(dayNameElement);
     
             const iconElement = document.createElement('i');
             const iconClasses = this.getIcon(el.weather[0].id, el.weather[0].main);
             iconClasses.forEach(el => iconElement.classList.add(el));
-            iconElement.classList.add('font-sm');
+            iconElement.classList.add('font-xs-sm');
             forecastSubcontainerElement.appendChild(iconElement);
     
             const highTemperatureElement = document.createElement('p');
             highTemperatureElement.innerHTML = `${Math.round(max)}&deg;`;
-            highTemperatureElement.classList.add('font-sm');
+            highTemperatureElement.classList.add('font-xs-sm');
             forecastSubcontainerElement.appendChild(highTemperatureElement);
     
             const lowTemperatureElement = document.createElement('p');
             lowTemperatureElement.innerHTML = `${Math.round(min)}&deg;`;
-            lowTemperatureElement.classList.add('forecast__container--low-temp', 'font-sm');
+            lowTemperatureElement.classList.add('forecast__container--low-temp', 'font-xs-sm');
             forecastSubcontainerElement.appendChild(lowTemperatureElement);
     
             forecastContainerElement.appendChild(forecastSubcontainerElement);
