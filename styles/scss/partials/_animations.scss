@@ -4,9 +4,9 @@
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: auto;
+  height: 50vh;
 
-  @media screen and (orientation: landscape) {
+  /* @media screen and (orientation: landscape) {
     bottom: -40%;
   }
 
@@ -24,7 +24,7 @@
 
   @media screen and (min-height: 900px) and (orientation: portrait) {
     bottom: 0;
-  }
+  } */
 }
 
 .cloud {

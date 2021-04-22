@@ -524,32 +524,26 @@ footer #dev-link {
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: auto;
-}
-@media screen and (orientation: landscape) {
-  .animations__foreground-image {
+  height: 50vh;
+  /* @media screen and (orientation: landscape) {
     bottom: -40%;
   }
-}
-@media screen and (orientation: landscape) and (min-height: 300px) {
-  .animations__foreground-image {
+
+  @media screen and (orientation: landscape) and (min-height: 300px) {
     bottom: -80%;
   }
-}
-@media screen and (orientation: landscape) and (min-height: 500px) {
-  .animations__foreground-image {
+
+  @media screen and (orientation: landscape) and (min-height: 500px) {
     bottom: -50%;
   }
-}
-@media screen and (min-height: 900px) and (min-width: 1400px) {
-  .animations__foreground-image {
+
+  @media screen and (min-height: 900px) and (min-width: 1400px) {
     bottom: -75%;
   }
-}
-@media screen and (min-height: 900px) and (orientation: portrait) {
-  .animations__foreground-image {
+
+  @media screen and (min-height: 900px) and (orientation: portrait) {
     bottom: 0;
-  }
+  } */
 }
 
 .cloud {
