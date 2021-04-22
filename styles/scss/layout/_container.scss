@@ -1,3 +1,4 @@
+@use '../abstracts/variables';
 @use '../base/colors';
 
 .container {
@@ -104,18 +105,22 @@
 
 .animations__container {
   width: 100vw;
-  height: 100vh;
+  height: variables.$min-height;
   background-size: cover;
   background-repeat: no-repeat;
   background-color: colors.$sky-blue;
   overflow: hidden;
   position: relative;
 
-  @media screen and (orientation: landscape) {
+  @media screen and (min-height: variables.$min-height) {
+    height: 100vh;
+  }
+
+  /* @media screen and (orientation: landscape) {
     height: 200vh;
   }
 
   @media screen and (orientation: landscape) and (min-height: 500px) {
     height: 100vh;
-  }
+  } */
 }

@@ -184,12 +184,10 @@ html {
 .btn-square {
   height: 1.5rem;
   width: 1.5rem;
-}
-@media screen and (min-width: 767px) {
-  .btn-square {
+  /* @media screen and (min-width: 767px) {
     height: 2rem;
     width: 2rem;
-  }
+  } */
 }
 
 .btn-rect {
@@ -215,10 +213,35 @@ html {
 }
 
 footer {
+  grid-template-columns: 1fr;
+  position: relative;
   color: white;
   background: #4d4d4d;
+  height: 12rem;
   width: 280px;
   padding: 0.4rem;
+  bottom: 0;
+  /* @media screen and (min-height: 568px) {
+    top: 100%;
+  } */
+  /* @media screen and (orientation: landscape) and (min-height: 768px) {
+    position: absolute;
+    bottom: 0;
+    height: 3rem;
+    font-size: 0.9rem;
+
+    display: grid;
+    grid-template-columns: 70% 30%;
+
+    #dev-credit {
+      margin-top: 0;
+    }
+
+    #dev-credit,
+    #dev-link {
+      text-align: right;
+    }
+  } */
 }
 footer a {
   color: #4287f5;
@@ -235,19 +258,22 @@ footer #dev-credit,
 footer #dev-link {
   text-align: center;
 }
-@media screen and (min-width: 280px) {
+@media screen and (min-width: 281px) {
   footer {
     width: 100%;
+    height: 9.5rem;
   }
 }
-@media screen and (orientation: landscape) and (min-height: 768px) {
+@media screen and (orientation: landscape) {
   footer {
-    position: absolute;
-    bottom: 0;
-    height: 3rem;
-    font-size: 0.9rem;
-    display: grid;
+    height: 8rem;
+  }
+}
+@media screen and (min-width: 1200px) {
+  footer {
     grid-template-columns: 70% 30%;
+    height: 4.2rem;
+    align-items: center;
   }
   footer #dev-credit {
     margin-top: 0;
@@ -271,6 +297,9 @@ footer #dev-link {
   display: grid;
   grid-template-columns: 75% 25%;
   border-bottom: 1px solid black;
+  /*  @media screen and (orientation: landscape) and (max-height: 300px) {
+    height: 2.5rem;
+  } */
 }
 .nav i,
 .nav button,
@@ -283,11 +312,6 @@ footer #dev-link {
 @media screen and (min-width: 280px) {
   .nav {
     width: 100%;
-  }
-}
-@media screen and (orientation: landscape) and (max-height: 300px) {
-  .nav {
-    height: 2.5rem;
   }
 }
 @media screen and (min-width: 2000px) {
@@ -342,30 +366,35 @@ footer #dev-link {
     margin-right: 0.2rem;
   }
 }
-@media screen and (min-width: 767px) {
+/* @media screen and (min-width: 767px) {
   .nav {
     height: 3.5rem;
-  }
-  .nav i,
-.nav button,
-.nav input {
-    font-size: 1.1rem;
+
+    i,
+    button,
+    input {
+      font-size: 1.1rem;
+    }
   }
 
-  .nav__search-container i {
-    padding-left: 0.8rem;
-    color: #e0e0e0;
-  }
-  .nav__search-container input,
-.nav__search-container button {
-    margin-left: 0.4rem;
-  }
-  .nav__search-container input {
-    height: 2rem;
-    width: 18rem;
-    padding-left: 0.2rem;
-  }
-}
+  .nav__search-container {
+    i {
+      padding-left: 0.8rem;
+      color: colors.$text-white;
+    }
+
+    input,
+    button {
+      margin-left: 0.4rem;
+    }
+
+    input {
+      height: 2rem;
+      width: 18rem;
+      padding-left: 0.2rem;
+    }
+  } 
+} */
 .container {
   position: absolute;
   top: 50%;
@@ -471,19 +500,21 @@ footer #dev-link {
 
 .animations__container {
   width: 100vw;
-  height: 100vh;
+  height: 800px;
   background-size: cover;
   background-repeat: no-repeat;
   background-color: #65b7f6;
   overflow: hidden;
   position: relative;
-}
-@media screen and (orientation: landscape) {
-  .animations__container {
+  /* @media screen and (orientation: landscape) {
     height: 200vh;
   }
+
+  @media screen and (orientation: landscape) and (min-height: 500px) {
+    height: 100vh;
+  } */
 }
-@media screen and (orientation: landscape) and (min-height: 500px) {
+@media screen and (min-height: 800px) {
   .animations__container {
     height: 100vh;
   }
@@ -917,10 +948,26 @@ footer #dev-link {
 
 #weather-section {
   width: 280px;
+  height: 800px;
+  padding-bottom: 12rem;
+  /* @media screen and (min-width: 1200px) {
+    padding-bottom: 0;
+  } */
 }
-@media screen and (min-width: 280px) {
+@media screen and (min-width: 281px) {
   #weather-section {
     width: 100%;
+    padding-bottom: 9.5rem;
+  }
+}
+@media screen and (min-height: 800px) {
+  #weather-section {
+    height: 100vh;
+  }
+}
+@media screen and (orientation: landscape) {
+  #weather-section {
+    padding-bottom: 8rem;
   }
 }
 

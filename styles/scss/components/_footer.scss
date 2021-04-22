@@ -1,10 +1,16 @@
 @use '../base/colors';
 
 footer {
+  //position: absolute;
+  grid-template-columns: 1fr;
+  position: relative;
   color: white;
   background: colors.$bg-gray;
+  height: 12rem;
   width: 280px;
   padding: 0.4rem;
+  //top: 568px;
+  bottom: 0;
 
   a {
     color: colors.$link-blue;
@@ -25,11 +31,37 @@ footer {
     text-align: center;
   }
 
-  @media screen and (min-width: 280px) {
+  @media screen and (min-width: 281px) {
     width: 100%;
+    height: 9.5rem;
   }
 
-  @media screen and (orientation: landscape) and (min-height: 768px) {
+  @media screen and (orientation: landscape) {
+    height: 8rem;
+  }
+
+  @media screen and (min-width: 1200px) {
+    // position: absolute;
+    grid-template-columns: 70% 30%;
+    height: 4.2rem;
+    align-items: center;
+    // bottom: 0;
+
+    #dev-credit {
+      margin-top: 0;
+    }
+
+    #dev-credit,
+    #dev-link {
+      text-align: right;
+    }
+  }
+
+  /* @media screen and (min-height: 568px) {
+    top: 100%;
+  } */
+
+  /* @media screen and (orientation: landscape) and (min-height: 768px) {
     position: absolute;
     bottom: 0;
     height: 3rem;
@@ -46,7 +78,7 @@ footer {
     #dev-link {
       text-align: right;
     }
-  }
+  } */
 
   @media screen and (min-width: 2000px) {
     width: 2000px;
