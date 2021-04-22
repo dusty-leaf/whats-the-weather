@@ -30,21 +30,26 @@
     </div>
     <section id="weather__section">
         <div class="container transparent-dark-background foreground border-radius">
-            <div class="weather__controls">
+            <!-- <div class="weather__controls">
                 <button class="btn btn-square border-radius hidden font-bold js-toggleFarenheit">F&deg;</button>
                 <button class="btn btn-square border-radius font-bold js-toggleCelsius">C&deg;</button>
-            </div>
-            <div class="weather__container">
+            </div> -->
+            <div class="weather__container grid">
                 <div class="weather__subcontainer">
-                    <h2 class="weather__location font-lg margin-top js-location"></h2>
+                    <h2 class="weather__location font-lg js-location"></h2>
                     <p class="weather__date font-sm margin-top js-date"></p>
                     <p class="weather__clock font-sm js-clock"></p>
-                    <h1 class="weather__temperature font-med margin-top js-temperature"></></h1>
+                    <h1 class="weather__temperature font-med margin-top js-temperature"></h1>
+                    <!-- <span class="weather__controls">
+                        <h1 class="weather__temperature font-med margin-top js-temperature"></h1>
+                        <button class="btn btn-square border-radius hidden font-bold js-toggleFarenheit">F&deg;</button>
+                        <button class="btn btn-square border-radius font-bold js-toggleCelsius">C&deg;</button>
+                    </span> -->
                     <i class="weather__icon font-lg js-weatherIcon"></i>
                     <h2 class="weather__status font-med js-weatherStatus"></h2> 
                 </div>
                 <div class="weather__subcontainer">
-                    <h3 class="weather__today margin-top font-med js-today"></h3>
+                    <!-- <h3 class="weather__today margin-top font-med js-today"></h3> -->
                     <p id="feelslike" class="weather__temperature--detail margin-top font-sm js-feelsLike"></></p>
                     <p class="weather__temperature--detail font-sm js-highTemperature"></p>
                     <p class="weather__temperature--detail font-sm js-lowTemperature"></p>
@@ -61,6 +66,9 @@
             </div>
         </div>
         <div class="settings__container container hidden border-radius js-settingsContainer">
+            <h2>Toggle Display Units</h2>
+            <button class="btn btn-square border-radius hidden font-bold js-toggleFarenheit">F&deg;</button>
+            <button class="btn btn-square border-radius font-bold js-toggleCelsius">C&deg;</button>
             <h2 class="margin-top">Weather Animations</h2>
             <p class="margin-top">Use the buttons below to view different background animations.</p>
             <div class="settings__menu margin-top">

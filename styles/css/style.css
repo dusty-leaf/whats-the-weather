@@ -6,6 +6,7 @@
 
 html {
   font-family: "Inter", sans-serif;
+  font-size: calc(16px + (24px - 16) * (100vw - 400px) / (800 - 400));
 }
 
 .font-bold {
@@ -53,6 +54,48 @@ html {
     font-size: 10.5vh;
   }
 }
+@media screen and (orientation: landscape) and (min-width: 674px) {
+  .font-xs {
+    font-size: 1.5vh;
+  }
+
+  .font-sm {
+    font-size: 3.5vh;
+  }
+
+  .font-med {
+    font-size: 5.5vh;
+  }
+
+  .font-lg {
+    font-size: 7.5vh;
+  }
+
+  .font-xl {
+    font-size: 9.5vh;
+  }
+}
+@media screen and (min-width: 1024px) and (min-height: 768px) {
+  .font-xs {
+    font-size: 1.5vh;
+  }
+
+  .font-sm {
+    font-size: 2.5vh;
+  }
+
+  .font-med {
+    font-size: 3.5vh;
+  }
+
+  .font-lg {
+    font-size: 4.5vh;
+  }
+
+  .font-xl {
+    font-size: 5.5vh;
+  }
+}
 .hidden {
   display: none !important;
 }
@@ -85,11 +128,11 @@ html {
   @media screen and (max-width: 1200px) {
     margin-top: 1rem;
   } */
-  margin-top: 4vw;
+  margin-top: 2.5vw;
 }
 @media screen and (orientation: landscape) {
   .margin-top {
-    margin-top: 4vh;
+    margin-top: 2.5vh;
   }
 }
 
@@ -196,6 +239,7 @@ footer #dev-link {
   background-color: #4d4d4d;
   display: grid;
   grid-template-columns: 75% 25%;
+  border-bottom: 1px solid black;
 }
 .nav i,
 .nav button,
@@ -372,9 +416,10 @@ footer #dev-link {
     transform: translate(-50%, -50%);
   }
 }
-@media screen and (orienation: landscape) and (min-height: 768px) {
+@media screen and (orientation: landscape) and (min-height: 768px) {
   .container {
     height: 70vh;
+    width: 30vw;
   }
 }
 
@@ -825,6 +870,9 @@ footer #dev-link {
 }
 
 .weather__container {
+  align-items: center;
+  justify-items: center;
+  height: 100%;
   /* @media screen and (orientation: landscape) and (max-height: 300px) {
     font-size: 85%;
   }
@@ -902,22 +950,24 @@ footer #dev-link {
   font-size: 2.4rem;
 } */
 .weather__controls {
-  position: absolute;
+  /* h1,
+  button {
+    display: inline-block;
+  } */
+  /* position: absolute;
   top: 0.7rem;
-  right: 0.7rem;
+  right: 0.7rem; */
 }
 
-@media screen and (orientation: portrait) {
-  .weather__today {
+/* .weather__today {
+  @media screen and (orientation: portrait) {
     display: none;
   }
-}
-@media screen and (orientation: landscape) and (min-width: 1440px) and (min-height: 900px) {
-  .weather__today {
-    display: none;
-  }
-}
 
+  @media screen and (orientation: landscape) and (min-width: 1440px) and (min-height: 900px) {
+    display: none;
+  }
+} */
 @media screen and (orientation: portrait) {
   #feelslike {
     margin-top: 1rem;
@@ -945,13 +995,15 @@ footer #dev-link {
 }
 .forecast__container .forecast__title {
   margin-top: 1rem;
-  font-size: 6.5vw;
-  text-align: center;
-}
-@media screen and (orientation: landscape) {
-  .forecast__container .forecast__title {
+  /*    font-size: 6.5vw;
+  @media screen and (orientation: landscape) {
     font-size: 6.5vh;
   }
+
+  @media screen and (min-width: 1024px) and (min-height: 768px) {
+    font-size: 3.5vh;
+  } */
+  text-align: center;
 }
 .forecast__container .forecast__subcontainer:not(:last-of-type) {
   margin-right: 0.4rem;
@@ -959,18 +1011,19 @@ footer #dev-link {
 }
 .forecast__container p,
 .forecast__container i {
-  font-size: 4.5vw;
+  /*  font-size: 4.5vw;
+  @media screen and (orientation: landscape) {
+    font-size: 4.5vh;
+  }
+
+  @media screen and (min-width: 1024px) and (min-height: 768px) {
+    font-size: 2.5vh;
+  } */
   padding-right: 0.4rem;
   text-align: center;
   /* @media screen and (min-width: 360px) and (orientation: portrait) {
     font-size: 1rem;
   } */
-}
-@media screen and (orientation: landscape) {
-  .forecast__container p,
-.forecast__container i {
-    font-size: 4.5vh;
-  }
 }
 .forecast__container .forecast__container--low-temp {
   color: #e0e0e0;

@@ -65,8 +65,8 @@ class RenderMethods {
     
         const deg = (unit === 'celsius') ? 'C' : 'F';
 
-        const todayElement = document.querySelector('.js-today');
-        todayElement.innerHTML = 'Today:';
+        /* const todayElement = document.querySelector('.js-today');
+        todayElement.innerHTML = 'Today:'; */
         
         const temperatureElement = document.querySelector('.js-temperature');
         temperatureElement.innerHTML = `${temperatures[0]}&deg;${deg}`;
@@ -90,7 +90,7 @@ class RenderMethods {
         }
 
         const forecastTitleElement = document.createElement('h3');
-        forecastTitleElement.classList.add('forecast__title');
+        forecastTitleElement.classList.add('forecast__title', 'font-med');
         forecastTitleElement.innerText = '7 Day Forecast:';
         rootElement.appendChild(forecastTitleElement);
 
@@ -122,15 +122,17 @@ class RenderMethods {
             const iconElement = document.createElement('i');
             const iconClasses = this.getIcon(el.weather[0].id, el.weather[0].main);
             iconClasses.forEach(el => iconElement.classList.add(el));
+            iconElement.classList.add('font-sm');
             forecastSubcontainerElement.appendChild(iconElement);
     
             const highTemperatureElement = document.createElement('p');
             highTemperatureElement.innerHTML = `${Math.round(max)}&deg;`;
+            highTemperatureElement.classList.add('font-sm');
             forecastSubcontainerElement.appendChild(highTemperatureElement);
     
             const lowTemperatureElement = document.createElement('p');
             lowTemperatureElement.innerHTML = `${Math.round(min)}&deg;`;
-            lowTemperatureElement.classList.add('forecast__container--low-temp');
+            lowTemperatureElement.classList.add('forecast__container--low-temp', 'font-sm');
             forecastSubcontainerElement.appendChild(lowTemperatureElement);
     
             forecastContainerElement.appendChild(forecastSubcontainerElement);

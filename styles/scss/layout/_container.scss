@@ -24,9 +24,11 @@
     transform: translate(-50%, -50%);
   }
 
-  @media screen and (orienation: landscape) and (min-height: 768px) {
+  @media screen and (orientation: landscape) and (min-height: 768px) {
     height: 70vh;
+    width: 30vw;
   }
+
   // positioning
   /* @media screen and (orientation: landscape) {
     top: 80%;
