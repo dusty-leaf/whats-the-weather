@@ -1,15 +1,19 @@
 @use '../abstracts/variables';
 @use '../base/colors';
 
-#weather-section {
-  width: 280px;
+//#weather__section {
+/*   width: 280px;
   //height: 568px;
   height: variables.$min-height;
 
   // height of footer
   padding-bottom: 12rem;
 
-  @media screen and (min-width: 281px) {
+  /* display: flex;
+  justify-content: center;
+  align-items: center;
+ */
+/* @media screen and (min-width: 281px) {
     width: 100%;
     padding-bottom: 9.5rem;
   }
@@ -20,12 +24,34 @@
 
   @media screen and (orientation: landscape) {
     padding-bottom: 8rem;
-  }
+  } */
 
-  /* @media screen and (min-width: 1200px) {
+/* @media screen and (min-width: 1200px) {
     padding-bottom: 0;
   } */
+//} */
+
+#weather__section {
+  width: 280px;
+  height: variables.$min-height;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @media screen and (min-width: 280px) {
+    width: 100vw;
+  }
+
+  @media screen and (min-height: variables.$min-height) {
+    height: 100vh;
+  }
 }
+
 .weather__container {
   align-items: center;
   justify-items: center;
