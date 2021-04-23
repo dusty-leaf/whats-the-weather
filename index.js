@@ -19,7 +19,8 @@ const buttons = {
 }
 
 const components = {
-    nav: document.querySelector('.js-nav')
+    nav: document.querySelector('.js-nav'),
+    weatherWrapper: document.querySelector('.js-weatherWrapper')
 }
 
 const inputs = {
@@ -51,6 +52,9 @@ const DOMHelpers = {
     toggleUnitButtons: function(){
         Utilities.toggleHidden(buttons.toggleFarenheit);
         Utilities.toggleHidden(buttons.toggleCelsius);
+    },
+    toggleWeatherWrapper: function(){
+        Utilities.toggleHidden(components.weatherWrapper);
     }
 }
 
@@ -66,6 +70,7 @@ const search = new AutocompleteSearchBar(inputs.search, scripts.google, { types:
 // Initial app state
 app.toggleLoader();
 Utilities.toggleDisabled(buttons.toggleSettingsMenu);
+
 let appIsStarted = false;
 inputs.search.value = '';
 
@@ -134,6 +139,9 @@ buttons.searchSubmit.addEventListener('click', async () => {
 
         // enable settings if manual location pick at app start
         buttons.toggleSettingsMenu.disabled = false;
+        if(weatherWrapper.classList.contains(hidden)){
+            DOMHelpers.toggleWeatherWrapper();
+        }
     })
     .catch(err => {
         // clear Loader & re-enable if search fails

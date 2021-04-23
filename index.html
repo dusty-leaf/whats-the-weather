@@ -29,7 +29,7 @@
         <img class="animations__foreground-image js-foregroundImage" src="images/hills-cropped.png">
     </div>
     <section id="weather__section">
-        <div class="container transparent-dark-background foreground border-radius">
+        <div class="weather__section--wrapper container transparent-dark-background foreground border-radius hidden js-weatherWrapper">
             <!-- <div class="weather__controls">
                 <button class="btn btn-square border-radius hidden font-bold js-toggleFarenheit">F&deg;</button>
                 <button class="btn btn-square border-radius font-bold js-toggleCelsius">C&deg;</button>
@@ -57,11 +57,11 @@
                 </div>
             </div> 
         </div>
-        <div class="loader__container container grid border-radius hidden js-loader">
+        <div class="loader__container container grid transparent-dark-background hidden js-loader">
             <span><i class="fas fa-circle-notch loader__icon fa-spin"></i></span>
-            <div class="error__container border-radius grid js-error">
+            <div class="error__container border-radius js-error">
                 <h2>Welcome</h2>
-                <p>Please click [Start] to enable the geolocator API to find your location or manually enter a location in the search bar above. See below for privacy information.</p>
+                <p>Please click the [Start] button below to enable the geolocator API to find your location or manually enter a location in the search bar above. See below for privacy information.</p>
                 <button class="btn btn-rect border-radius font-bold error__btn js-start">Start</button>
             </div>
         </div>

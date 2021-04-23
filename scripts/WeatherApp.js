@@ -61,6 +61,11 @@ class WeatherApp {
         //   otherwise use default (actual) weather status
         const weather = this.state.toggledWeather ? this.state.toggledWeather : this.state.weather;
         const data = this.state;
+
+        const weatherWrapper = document.querySelector('.js-weatherWrapper');
+        if(weatherWrapper.classList.contains('hidden')){
+            Utilities.toggleHidden(weatherWrapper);
+        }
         
         // new clock instance
         this.updateClock();
