@@ -12,11 +12,6 @@
 .btn-square {
   height: 1.5rem;
   width: 1.5rem;
-
-  /* @media screen and (min-width: 767px) {
-    height: 2rem;
-    width: 2rem;
-  } */
 }
 
 .btn-rect {
@@ -24,18 +19,10 @@
   width: 6rem;
 }
 
-/*
-.btn-round {
-  height: 1.45rem;
-  width: 1.45rem;
-  border-radius: 50%;
-} */
-
 .btn:active:enabled,
 .btn:hover:enabled,
 .btn:focus:enabled {
   outline: none;
-  //border: none;
   background-color: colors.$text-white;
 }
 

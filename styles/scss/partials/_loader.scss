@@ -2,13 +2,8 @@
 @use '../base/colors';
 
 .loader__container {
-  //grid-template-rows: 40% 60%;
   width: 100%;
   grid-template-rows: 60% 40%;
-
-  /* @media screen and (orientation: landscape) and (min-width: 1024px) and (min-height: 768px) {
-    grid-template-rows: 20% 80%;
-  } */
   justify-items: center;
   align-items: center;
   row-gap: 1rem;
@@ -16,12 +11,7 @@
 
 .loader__container,
 .error__container {
-  /* justify-items: center;
-  align-items: center;
-  row-gap: 1rem; */
-  //background-color: colors.$bg-gray;
   z-index: 20;
-
   height: 100%;
   width: 100%;
 
@@ -60,35 +50,6 @@
   }
 }
 
-/* .error__container {
-  width: 100%;
-  @media screen and (orientation: landscape) {
-    margin-left: 1rem;
-    width: 50%;
-
-    h2 {
-      text-align: left;
-    }
-
-    .error_btn {
-      margin: 1rem auto;
-    }
-  }
-} */
-
 .loader__icon {
   font-size: 2.4rem;
 }
-
-/* .error__container {
-  align-items: flex-start;
-} */
-
-/* .error__container p {
-  top: -10%;
-  padding: 0.6rem;
-} */
-
-/* .error__btn {
-  align-self: flex-start;
-} */

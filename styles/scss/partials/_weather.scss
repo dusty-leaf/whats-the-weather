@@ -1,36 +1,6 @@
 @use '../abstracts/variables';
 @use '../base/colors';
 
-//#weather__section {
-/*   width: 280px;
-  //height: 568px;
-  height: variables.$min-height;
-
-  // height of footer
-  padding-bottom: 12rem;
-
-  /* display: flex;
-  justify-content: center;
-  align-items: center;
- */
-/* @media screen and (min-width: 281px) {
-    width: 100%;
-    padding-bottom: 9.5rem;
-  }
-
-  @media screen and (min-height: variables.$min-height) {
-    height: 100vh;
-  }
-
-  @media screen and (orientation: landscape) {
-    padding-bottom: 8rem;
-  } */
-
-/* @media screen and (min-width: 1200px) {
-    padding-bottom: 0;
-  } */
-//} */
-
 #weather__section {
   width: 280px;
   height: variables.$min-height;
@@ -56,73 +26,7 @@
   align-items: center;
   justify-items: center;
   height: 100%;
-  /* @media screen and (orientation: landscape) and (max-height: 300px) {
-    font-size: 85%;
-  }
-
-  @media screen and (orientation: landscape) and (min-height: 700px) {
-    font-size: 150%;
-  }
-
-  @media screen and (orientation: portrait) and (min-height: 1000px) {
-    font-size: 150%;
-  }
-
-  @media screen and (orientation: portrait) and (min-height: 1200px) {
-    font-size: 200%;
-  } */
-
-  /* @media screen and (orientation: landscape) {
-    display: grid;
-    grid-template-columns: 40% 60%;
-  }
-
-  @media screen and (orientation: landscape) and (min-height: 900px) {
-    display: grid;
-    grid-template-columns: 1fr;
-  } */
 }
-
-/* .forecast__container {
-  .forecast__subcontainer {
-    p,
-    i { */
-/*  @media screen and (orientation: landscape) and (min-height: 700px) {
-        font-size: 80%;
-      }
-
-      @media screen and (orientation: portrait) and (min-height: 1000px) {
-        font-size: 80%;
-      } */
-
-/*  @media screen and (orientation: portrait) and (min-height: 1200px) {
-        font-size: 90%;
-      } */
-/*     }
-  }
-}
-
-.weather__container {
-  .forecast__container {
-    .forecast__title { */
-/* @media screen and (orientation: landscape) and (max-height: 280px) {
-        margin-top: 0.5rem;
-      }
-
-      @media screen and (orientation: landscape) and (min-height: 700px) {
-        font-size: 100%;
-      }
-
-      @media screen and (orientation: portrait) and (min-height: 1000px) {
-        font-size: 120%;
-      } */
-
-/* @media screen and (orientation: portrait) and (min-height: 1200px) {
-        font-size: 130%;
-      } */
-/*     }
-  }
-} */
 
 .weather__subcontainer {
   h1,
@@ -137,45 +41,6 @@
   justify-items: center;
 }
 
-/* .weather__temperature,
-.weather__status {
-  font-size: 1.6rem;
-} */
-
-/* .weather__icon {
-  font-size: 2.4rem;
-} */
-
-//.weather__controls {
-/* h1,
-  button {
-    display: inline-block;
-  } */
-/* position: absolute;
-  top: 0.7rem;
-  right: 0.7rem; */
-//}
-
-/* .weather__today {
-  @media screen and (orientation: portrait) {
-    display: none;
-  }
-
-  @media screen and (orientation: landscape) and (min-width: 1440px) and (min-height: 900px) {
-    display: none;
-  }
-} */
-
-/* #feelslike {
-  @media screen and (orientation: portrait) {
-    margin-top: 1rem;
-  }
-
-  @media screen and (orientation: landscape) and (min-width: 1440px) and (min-height: 900px) {
-    margin-top: 1rem;
-  }
-} */
-
 .forecast__container {
   display: flex;
   justify-content: center;
@@ -184,19 +49,6 @@
   padding-left: 0.2rem;
 
   .forecast__title {
-    //margin-top: 0.8rem;
-    // font-size: 1.2rem;
-
-    // font-med
-    /*    font-size: 6.5vw;
-    @media screen and (orientation: landscape) {
-      font-size: 6.5vh;
-    }
-
-    @media screen and (min-width: 1024px) and (min-height: 768px) {
-      font-size: 3.5vh;
-    } */
-
     text-align: center;
   }
 
@@ -207,33 +59,9 @@
 
   p,
   i {
-    // font-size: 0.7rem;
-
-    // font-sm
-    /*  font-size: 4.5vw;
-    @media screen and (orientation: landscape) {
-      font-size: 4.5vh;
-    }
-
-    @media screen and (min-width: 1024px) and (min-height: 768px) {
-      font-size: 2.5vh;
-    } */
-
     padding-right: 0.4rem;
     text-align: center;
-
-    /* @media screen and (min-width: 360px) and (orientation: portrait) {
-      font-size: 1rem;
-    } */
   }
-
-  /*   .forecast__title,
-  p,
-  i {
-    @media screen and (orientation: portrait) and (min-height: 700px) {
-      font-size: 105%;
-    }
-  } */
 
   .forecast__container--low-temp {
     color: #e0e0e0;

@@ -24,10 +24,6 @@
     width: 100%;
   }
 
-  /*  @media screen and (orientation: landscape) and (max-height: 300px) {
-    height: 2.5rem;
-  } */
-
   @media screen and (min-width: 2000px) {
     width: 2000px;
   }
@@ -53,7 +49,6 @@
 
   input {
     height: 1.5rem;
-    //10rem
     width: calc(10rem + (40 - 10) * (100vw - 280px) / (800 - 280));
   }
 }
@@ -100,35 +95,3 @@
     right: 0.2rem;
   }
 }
-
-// larger screen support
-
-/* @media screen and (min-width: 767px) {
-  .nav {
-    height: 3.5rem;
-
-    i,
-    button,
-    input {
-      font-size: 1.1rem;
-    }
-  }
-
-  .nav__search-container {
-    i {
-      padding-left: 0.8rem;
-      color: colors.$text-white;
-    }
-
-    input,
-    button {
-      margin-left: 0.4rem;
-    }
-
-    input {
-      height: 2rem;
-      width: 18rem;
-      padding-left: 0.2rem;
-    }
-  } 
-} */
