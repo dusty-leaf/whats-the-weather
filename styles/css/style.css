@@ -502,7 +502,7 @@ footer #dev-link {
 
 .animations__container {
   width: 100vw;
-  height: 768px;
+  height: 700px;
   background-size: cover;
   background-repeat: no-repeat;
   background-color: #65b7f6;
@@ -516,7 +516,7 @@ footer #dev-link {
     height: 100vh;
   } */
 }
-@media screen and (min-height: 768px) {
+@media screen and (min-height: 700px) {
   .animations__container {
     height: 100vh;
   }
@@ -1014,7 +1014,7 @@ footer #dev-link {
   } */
 #weather__section {
   width: 280px;
-  height: 768px;
+  height: 700px;
   position: absolute;
   top: 0;
   left: 0;
@@ -1027,7 +1027,7 @@ footer #dev-link {
     width: 100vw;
   }
 }
-@media screen and (min-height: 768px) {
+@media screen and (min-height: 700px) {
   #weather__section {
     height: 100vh;
   }
