@@ -1,6 +1,33 @@
 .settings__container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
   z-index: 10;
   background-color: #4d4d4d;
+
+  h2,
+  p,
+  i {
+    color: white;
+  }
+
+  h2 {
+    text-align: center;
+  }
+
+  p {
+    margin-top: 0.4rem;
+  }
+
+  button {
+    font-weight: bold;
+  }
+}
+
+.settings__unit-button {
+  margin: 0.8rem;
 }
 
 .settings__menu {
@@ -9,7 +36,7 @@
   display: grid;
   grid-template-columns: 50% 50%;
   grid-column-gap: none;
-  margin: 1.6rem auto;
+  margin: 0.8rem auto;
 
   p {
     font-size: 0.4rem;
@@ -33,4 +60,8 @@
 
 .settings__button {
   margin: 0.2rem auto;
+}
+
+.settings__controls button {
+  margin: 0 0.4rem;
 }

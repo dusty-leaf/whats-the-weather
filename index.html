@@ -56,6 +56,30 @@
                     <p class="weather__temperature--detail font-sm js-lowTemperature"></p>
                     <div class="forecast__container margin-top js-forecast"></div>
                 </div>
+            </div>
+            <div class="settings__container container hidden border-radius js-settingsContainer">
+                <h2>Toggle Display Units</h2>
+                <span class="flex-center">
+                    <button class="settings__unit-button btn btn-square border-radius hidden font-bold js-toggleFarenheit">F&deg;</button>
+                    <button class="settings__unit-button btn btn-square border-radius font-bold js-toggleCelsius">C&deg;</button>
+                </span>
+                <h2>Weather Animations</h2>
+                <p>Use the buttons below to view different background animations.</p>
+                <div class="settings__menu">
+                    <div class="settings__button-container">
+                        <button id="cloud-rain" data-weather="Rain" class="settings__button btn btn-rect border-radius font-bold js-settingsOption">Rain</button>
+                        <button id="bolt" data-weather="Thunderstorm" class="settings__button btn btn-rect border-radius font-bold js-settingsOption">Thunderstorm</button>
+                        <button id="snowflake" data-weather="Snow" class="settings__button btn btn-rect border-radius font-bold js-settingsOption">Snow</button>
+                        <button id="smog" data-weather="Fog" class="settings__button btn btn-rect border-radius font-bold js-settingsOption">Fog</button>
+                    </div>
+                    <div class="settings__icon-container">
+                        <i id="settings__icon" class="fas fa-cloud-sun js-settingsIcon"></i>
+                    </div>
+                </div>
+                <div class="settings__controls flex-center">
+                    <button id="settings__reset" class="btn btn-rect border-radius font-bold js-reset">Reset Page</button>
+                    <button id="settings__close" class="btn btn-rect border-radius font-bold js-closeSettingsMenu">Close Menu</button>
+                </div>
             </div> 
         </div>
         <div class="loader__container container grid transparent-dark-background hidden js-loader">
@@ -70,9 +94,9 @@
             <h2>Toggle Display Units</h2>
             <button class="btn btn-square border-radius hidden font-bold js-toggleFarenheit">F&deg;</button>
             <button class="btn btn-square border-radius font-bold js-toggleCelsius">C&deg;</button>
-            <h2 class="margin-top">Weather Animations</h2>
-            <p class="margin-top">Use the buttons below to view different background animations.</p>
-            <div class="settings__menu margin-top">
+            <h2>Weather Animations</h2>
+            <p>Use the buttons below to view different background animations.</p>
+            <div class="settings__menu">
                 <div class="settings__button-container">
                     <button id="cloud-rain" data-weather="Rain" class="settings__button btn btn-rect border-radius font-bold js-settingsOption">Rain</button>
                     <button id="bolt" data-weather="Thunderstorm" class="settings__button btn btn-rect border-radius font-bold js-settingsOption">Thunderstorm</button>
@@ -87,7 +111,6 @@
                 <button id="settings__reset" class="btn btn-rect border-radius font-bold js-reset">Reset Page</button>
                 <button id="settings__close" class="btn btn-rect border-radius font-bold js-closeSettingsMenu">Close Menu</button>
             </div>
-            
         </div>
     </section>
     <footer class="grid">
