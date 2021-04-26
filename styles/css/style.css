@@ -149,12 +149,12 @@ html {
   @media screen and (max-width: 1200px) {
     margin-top: 1rem;
   } */
-  margin-top: 2.5vw;
-}
-@media screen and (orientation: landscape) {
-  .margin-top {
+  /*  margin-top: 2.5vw;
+
+  @media screen and (orientation: landscape) {
     margin-top: 2.5vh;
-  }
+  } */
+  margin-top: 0.8rem;
 }
 
 .grid {
@@ -1005,7 +1005,7 @@ footer #dev-link {
   display: grid;
   grid-template-columns: 50% 50%;
   grid-column-gap: none;
-  margin: 0.8rem auto;
+  margin: 0.8rem auto 0 auto;
 }
 .settings__menu p {
   font-size: 0.4rem;
@@ -1029,6 +1029,9 @@ footer #dev-link {
   margin: 0.2rem auto;
 }
 
+/* .settings__controls {
+  padding-bottom: 0.8rem;
+} */
 .settings__controls button {
   margin: 0 0.4rem;
 }
@@ -1194,7 +1197,7 @@ footer #dev-link {
   display: flex;
   justify-content: center;
   align-content: center;
-  margin-top: 1rem;
+  margin-top: 0.8rem;
   padding-left: 0.2rem;
   /*   .forecast__title,
   p,
@@ -1205,7 +1208,6 @@ footer #dev-link {
   } */
 }
 .forecast__container .forecast__title {
-  margin-top: 1rem;
   /*    font-size: 6.5vw;
   @media screen and (orientation: landscape) {
     font-size: 6.5vh;
