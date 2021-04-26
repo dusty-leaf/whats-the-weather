@@ -139,11 +139,13 @@ buttons.searchSubmit.addEventListener('click', async () => {
 
         // enable settings if manual location pick at app start
         buttons.toggleSettingsMenu.disabled = false;
-        if(weatherWrapper.classList.contains(hidden)){
+        if(components.weatherWrapper.classList.contains('hidden')){
             DOMHelpers.toggleWeatherWrapper();
         }
+        
     })
     .catch(err => {
+        
         // clear Loader & re-enable if search fails
         alert('Invalid location. Click [Ok] then try a different location.');
         app.toggleLoader();

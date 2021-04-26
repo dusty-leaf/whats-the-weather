@@ -865,6 +865,7 @@ footer #dev-link {
   }
 }
 .loader__container {
+  width: 100%;
   grid-template-rows: 60% 40%;
   /* @media screen and (orientation: landscape) and (min-width: 1024px) and (min-height: 768px) {
     grid-template-rows: 20% 80%;
@@ -902,9 +903,28 @@ footer #dev-link {
 }
 .loader__container .error__btn,
 .error__container .error__btn {
+  text-align: center;
+}
+.loader__container .error__btn,
+.error__container .error__btn {
   margin: 1rem;
 }
 
+/* .error__container {
+  width: 100%;
+  @media screen and (orientation: landscape) {
+    margin-left: 1rem;
+    width: 50%;
+
+    h2 {
+      text-align: left;
+    }
+
+    .error_btn {
+      margin: 1rem auto;
+    }
+  }
+} */
 .loader__icon {
   font-size: 2.4rem;
 }
