@@ -909,6 +909,18 @@ footer #dev-link {
 .error__container .error__btn {
   margin: 1rem;
 }
+@media screen and (orientation: portrait) {
+  .loader__container h2,
+.error__container h2 {
+    text-align: center;
+  }
+  .loader__container .error__button-wrapper,
+.error__container .error__button-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+}
 
 /* .error__container {
   width: 100%;

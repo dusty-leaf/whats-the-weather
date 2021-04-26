@@ -46,6 +46,18 @@
   .error__btn {
     margin: 1rem;
   }
+
+  @media screen and (orientation: portrait) {
+    h2 {
+      text-align: center;
+    }
+
+    .error__button-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+  }
 }
 
 /* .error__container {
