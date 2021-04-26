@@ -338,7 +338,7 @@ footer #dev-link {
 }
 .nav__search-container input {
   height: 1.5rem;
-  width: 10rem;
+  width: calc(10rem + (40 - 10) * (100vw - 280px) / (800 - 280));
 }
 
 .nav__buttons-container {
