@@ -12,18 +12,18 @@
     <title>What's The Weather?</title>
 </head>
 <body></body>
-    <button class="nav__toggle--outer btn btn-square border-radius font-bold flex-center js-navToggleOuter"><i class="fas fa-bars"></i></button>
+    <button class="nav__toggle--outer btn btn-square border-radius flex-center js-navToggleOuter"><i class="fas fa-bars"></i></button>
     <nav class="nav foreground-max hidden js-nav"> <!-- foreground- -->
         <div class="nav__container nav__search-container js-searchContainer">
-            <div class="nav__input-container">
+            <div>
                 <i class="fas fa-search"></i>
-                <input class="search__input border-radius js-searchInput" type="text" placeholder="City or town">
+                <input class="border-radius js-searchInput" type="text" placeholder="City or town">
             </div>
-            <button type="submit" class="btn btn-square border-radius font-bold flex-center js-searchSubmit">Go</button>  
+            <button type="submit" class="btn btn-square border-radius flex-center js-searchSubmit">Go</button>  
         </div>
         <div class="nav__container nav__buttons-container">
-            <button class="settings__toggle btn btn-square border-radius font-bold js-toggleSettingsMenu"><i class="fas fa-cog"></i></button>
-            <button class="nav__toggle btn btn-square border-radius font-bold js-navToggle"><i class="fas fa-bars"></i></button>  
+            <button class="btn btn-square border-radius js-toggleSettingsMenu"><i class="fas fa-cog"></i></button>
+            <button class="nav__toggle btn btn-square border-radius js-navToggle"><i class="fas fa-bars"></i></button>  
         </div>
     </nav>
     <div class="animations__container js-animations">
@@ -37,17 +37,17 @@
             </div> -->
             <div class="weather__container grid">
                 <div class="weather__subcontainer">
-                    <h2 class="weather__location font-lg js-location"></h2>
-                    <p class="weather__date font-sm margin-top js-date"></p>
-                    <p class="weather__clock font-sm js-clock"></p>
-                    <h1 class="weather__temperature font-med margin-top js-temperature"></h1>
+                    <h2 class="font-lg js-location"></h2>
+                    <p class="font-sm margin-top js-date"></p>
+                    <p class="font-sm js-clock"></p>
+                    <h1 class="font-med margin-top js-temperature"></h1>
                     <!-- <span class="weather__controls">
                         <h1 class="weather__temperature font-med margin-top js-temperature"></h1>
                         <button class="btn btn-square border-radius hidden font-bold js-toggleFarenheit">F&deg;</button>
                         <button class="btn btn-square border-radius font-bold js-toggleCelsius">C&deg;</button>
                     </span> -->
-                    <i class="weather__icon font-lg js-weatherIcon"></i>
-                    <h2 class="weather__status font-med js-weatherStatus"></h2> 
+                    <i class="font-lg js-weatherIcon"></i>
+                    <h2 class="font-med js-weatherStatus"></h2> 
                 </div>
                 <div class="weather__subcontainer">
                     <!-- <h3 class="weather__today margin-top font-med js-today"></h3> -->
@@ -60,25 +60,25 @@
             <div class="settings__container container hidden border-radius js-settingsContainer">
                 <h2>Toggle Display Units</h2>
                 <span class="flex-center">
-                    <button class="settings__unit-button btn btn-square border-radius hidden font-bold js-toggleFarenheit">F&deg;</button>
-                    <button class="settings__unit-button btn btn-square border-radius font-bold js-toggleCelsius">C&deg;</button>
+                    <button class="settings__unit-button btn border-radius hidden js-toggleFarenheit">F&deg;</button>
+                    <button class="settings__unit-button btn border-radius js-toggleCelsius">C&deg;</button>
                 </span>
                 <h2>Weather Animations</h2>
                 <p>Use the buttons below to view different background animations.</p>
                 <div class="settings__menu">
                     <div class="settings__button-container">
-                        <button id="cloud-rain" data-weather="Rain" class="settings__button btn btn-rect border-radius font-bold js-settingsOption">Rain</button>
-                        <button id="bolt" data-weather="Thunderstorm" class="settings__button btn btn-rect border-radius font-bold js-settingsOption">Thunderstorm</button>
-                        <button id="snowflake" data-weather="Snow" class="settings__button btn btn-rect border-radius font-bold js-settingsOption">Snow</button>
-                        <button id="smog" data-weather="Fog" class="settings__button btn btn-rect border-radius font-bold js-settingsOption">Fog</button>
+                        <button id="cloud-rain" data-weather="Rain" class="settings__button btn btn-rect border-radius js-settingsOption">Rain</button>
+                        <button id="bolt" data-weather="Thunderstorm" class="settings__button btn btn-rect border-radius js-settingsOption">Thunderstorm</button>
+                        <button id="snowflake" data-weather="Snow" class="settings__button btn btn-rect border-radius js-settingsOption">Snow</button>
+                        <button id="smog" data-weather="Fog" class="settings__button btn btn-rect border-radius js-settingsOption">Fog</button>
                     </div>
                     <div class="settings__icon-container">
-                        <i id="settings__icon" class="fas fa-cloud-sun js-settingsIcon"></i>
+                        <i class="fas fa-cloud-sun js-settingsIcon"></i>
                     </div>
                 </div>
                 <div class="settings__controls flex-center">
-                    <button id="settings__reset" class="btn btn-rect border-radius font-bold js-reset">Reset Page</button>
-                    <button id="settings__close" class="btn btn-rect border-radius font-bold js-closeSettingsMenu">Close Menu</button>
+                    <button id="settings__reset" class="btn btn-rect border-radius js-reset">Reset Page</button>
+                    <button id="settings__close" class="btn btn-rect border-radius js-closeSettingsMenu">Close Menu</button>
                 </div>
             </div> 
         </div>
@@ -90,28 +90,28 @@
                 <span class="error__button-wrapper"><button class="btn btn-rect border-radius font-bold error__btn js-start">Start</button></span>
             </div>
         </div>
-        <div class="settings__container container hidden border-radius js-settingsContainer">
+       <!--  <div class="settings__container container hidden border-radius js-settingsContainer">
             <h2>Toggle Display Units</h2>
-            <button class="btn btn-square border-radius hidden font-bold js-toggleFarenheit">F&deg;</button>
-            <button class="btn btn-square border-radius font-bold js-toggleCelsius">C&deg;</button>
+            <button class="btn btn-square border-radius hidden js-toggleFarenheit">F&deg;</button>
+            <button class="btn btn-square border-radius js-toggleCelsius">C&deg;</button>
             <h2>Weather Animations</h2>
             <p>Use the buttons below to view different background animations.</p>
             <div class="settings__menu">
                 <div class="settings__button-container">
-                    <button id="cloud-rain" data-weather="Rain" class="settings__button btn btn-rect border-radius font-bold js-settingsOption">Rain</button>
-                    <button id="bolt" data-weather="Thunderstorm" class="settings__button btn btn-rect border-radius font-bold js-settingsOption">Thunderstorm</button>
-                    <button id="snowflake" data-weather="Snow" class="settings__button btn btn-rect border-radius font-bold js-settingsOption">Snow</button>
-                    <button id="smog" data-weather="Fog" class="settings__button btn btn-rect border-radius font-bold js-settingsOption">Fog</button>
+                    <button id="cloud-rain" data-weather="Rain" class="settings__button btn btn-rect border-radius js-settingsOption">Rain</button>
+                    <button id="bolt" data-weather="Thunderstorm" class="settings__button btn btn-rect border-radius js-settingsOption">Thunderstorm</button>
+                    <button id="snowflake" data-weather="Snow" class="settings__button btn btn-rect border-radius js-settingsOption">Snow</button>
+                    <button id="smog" data-weather="Fog" class="settings__button btn btn-rect border-radius js-settingsOption">Fog</button>
                 </div>
                 <div class="settings__icon-container">
                     <i id="settings__icon" class="fas fa-cloud-sun js-settingsIcon"></i>
                 </div>
             </div>
             <div class="settings__controls">
-                <button id="settings__reset" class="btn btn-rect border-radius font-bold js-reset">Reset Page</button>
-                <button id="settings__close" class="btn btn-rect border-radius font-bold js-closeSettingsMenu">Close Menu</button>
+                <button id="settings__reset" class="btn btn-rect border-radius js-reset">Reset Page</button>
+                <button id="settings__close" class="btn btn-rect border-radius js-closeSettingsMenu">Close Menu</button>
             </div>
-        </div>
+        </div> -->
     </section>
     <footer class="grid">
         <div id="privacy">

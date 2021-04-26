@@ -187,6 +187,7 @@ html {
   color: #4d4d4d;
   border: 1px solid black;
   cursor: pointer;
+  font-weight: bold;
 }
 
 .btn-square {
@@ -997,6 +998,8 @@ footer #dev-link {
 
 .settings__unit-button {
   margin: 0.8rem;
+  height: 1.7rem;
+  width: 1.7rem;
 }
 
 .settings__menu {
@@ -1113,37 +1116,44 @@ footer #dev-link {
   } */
 }
 
-.forecast__container .forecast__subcontainer p,
-.forecast__container .forecast__subcontainer i {
-  /*  @media screen and (orientation: landscape) and (min-height: 700px) {
-    font-size: 80%;
-  }
+/* .forecast__container {
+  .forecast__subcontainer {
+    p,
+    i { */
+/*  @media screen and (orientation: landscape) and (min-height: 700px) {
+        font-size: 80%;
+      }
 
-  @media screen and (orientation: portrait) and (min-height: 1000px) {
-    font-size: 80%;
-  } */
-  /*  @media screen and (orientation: portrait) and (min-height: 1200px) {
-    font-size: 90%;
-  } */
+      @media screen and (orientation: portrait) and (min-height: 1000px) {
+        font-size: 80%;
+      } */
+/*  @media screen and (orientation: portrait) and (min-height: 1200px) {
+        font-size: 90%;
+      } */
+/*     }
+  }
 }
 
-.weather__container .forecast__container .forecast__title {
-  /* @media screen and (orientation: landscape) and (max-height: 280px) {
-    margin-top: 0.5rem;
+.weather__container {
+  .forecast__container {
+    .forecast__title { */
+/* @media screen and (orientation: landscape) and (max-height: 280px) {
+        margin-top: 0.5rem;
+      }
+
+      @media screen and (orientation: landscape) and (min-height: 700px) {
+        font-size: 100%;
+      }
+
+      @media screen and (orientation: portrait) and (min-height: 1000px) {
+        font-size: 120%;
+      } */
+/* @media screen and (orientation: portrait) and (min-height: 1200px) {
+        font-size: 130%;
+      } */
+/*     }
   }
-
-  @media screen and (orientation: landscape) and (min-height: 700px) {
-    font-size: 100%;
-  }
-
-  @media screen and (orientation: portrait) and (min-height: 1000px) {
-    font-size: 120%;
-  } */
-  /* @media screen and (orientation: portrait) and (min-height: 1200px) {
-    font-size: 130%;
-  } */
-}
-
+} */
 .weather__subcontainer {
   display: grid;
   justify-items: center;
@@ -1163,16 +1173,13 @@ footer #dev-link {
 /* .weather__icon {
   font-size: 2.4rem;
 } */
-.weather__controls {
-  /* h1,
+/* h1,
   button {
     display: inline-block;
   } */
-  /* position: absolute;
+/* position: absolute;
   top: 0.7rem;
   right: 0.7rem; */
-}
-
 /* .weather__today {
   @media screen and (orientation: portrait) {
     display: none;
@@ -1182,17 +1189,15 @@ footer #dev-link {
     display: none;
   }
 } */
-@media screen and (orientation: portrait) {
-  #feelslike {
+/* #feelslike {
+  @media screen and (orientation: portrait) {
     margin-top: 1rem;
   }
-}
-@media screen and (orientation: landscape) and (min-width: 1440px) and (min-height: 900px) {
-  #feelslike {
-    margin-top: 1rem;
-  }
-}
 
+  @media screen and (orientation: landscape) and (min-width: 1440px) and (min-height: 900px) {
+    margin-top: 1rem;
+  }
+} */
 .forecast__container {
   display: flex;
   justify-content: center;
