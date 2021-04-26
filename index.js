@@ -15,7 +15,8 @@ const buttons = {
     toggleCelsius: document.querySelector('.js-toggleCelsius'),
     reset: document.querySelector('.js-reset'),
     searchSubmit: document.querySelector('.js-searchSubmit'),
-    navToggle: document.querySelector('.js-navToggle')
+    navToggle: document.querySelector('.js-navToggle'),
+    navToggleOuter: document.querySelector('.js-navToggleOuter')
 }
 
 const components = {
@@ -55,6 +56,11 @@ const DOMHelpers = {
     },
     toggleWeatherWrapper: function(){
         Utilities.toggleHidden(components.weatherWrapper);
+    },
+    toggleNav: function(){
+        Utilities.toggleHidden(components.nav);
+        //Utilities.toggleHidden(buttons.navToggle);
+        Utilities.toggleHidden(buttons.navToggleOuter);
     }
 }
 
@@ -156,8 +162,17 @@ buttons.searchSubmit.addEventListener('click', async () => {
 
 // show/hide nav
 buttons.navToggle.addEventListener('click', () =>{
-    components.nav.classList.toggle('foreground-max');
+    //components.nav.classList.toggle('foreground-max');
+    // Utilities.toggleVisibility(components.nav);
+    // DOMHelpers.toggleNavToggles();
+    DOMHelpers.toggleNav();
 });
+
+buttons.navToggleOuter.addEventListener('click', () =>{
+    //components.nav.classList.toggle('foreground-max');
+    DOMHelpers.toggleNav();
+});
+
 
 
 

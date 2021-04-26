@@ -11,8 +11,9 @@
     <script async id="js-google"></script>
     <title>What's The Weather?</title>
 </head>
-<body>
-    <nav class="nav foreground-max js-nav">
+<body></body>
+    <button class="nav__toggle--outer btn btn-square border-radius font-bold flex-center js-navToggleOuter"><i class="fas fa-bars"></i></button>
+    <nav class="nav foreground-max hidden js-nav"> <!-- foreground- -->
         <div class="nav__container nav__search-container js-searchContainer">
             <div class="nav__input-container">
                 <i class="fas fa-search"></i>
@@ -22,7 +23,7 @@
         </div>
         <div class="nav__container nav__buttons-container">
             <button class="settings__toggle btn btn-square border-radius font-bold js-toggleSettingsMenu"><i class="fas fa-cog"></i></button>
-            <button class="nav__button nav__toggle btn btn-square border-radius font-bold js-navToggle"><i class="fas fa-bars"></i></button>
+            <button class="nav__toggle btn btn-square border-radius font-bold js-navToggle"><i class="fas fa-bars"></i></button>  
         </div>
     </nav>
     <div class="animations__container js-animations">

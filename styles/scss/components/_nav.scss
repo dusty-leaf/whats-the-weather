@@ -1,7 +1,7 @@
 @use '../base/colors';
 
 .nav {
-  position: absolute;
+  position: fixed;
   height: 3rem;
   width: 280px;
   background-color: colors.$bg-gray;
@@ -71,6 +71,15 @@
   margin-right: 0.8rem;
 }
 
+.nav__toggle--outer {
+  position: fixed;
+  z-index: 21;
+  font-size: 0.8rem;
+  // 1/2 height of nav - 1/2 height of btn-square
+  top: 0.75rem;
+  right: 0.6rem;
+}
+
 // XS screen support
 @media screen and (max-width: 300px) {
   .nav {
@@ -85,6 +94,10 @@
 
   .nav__toggle {
     margin-right: 0.2rem;
+  }
+
+  .nav__toggle--outer {
+    right: 0.2rem;
   }
 }
 

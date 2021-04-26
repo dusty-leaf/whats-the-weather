@@ -173,6 +173,14 @@ html {
   animation-play-state: paused;
 }
 
+.visibility-visible {
+  visibility: visible;
+}
+
+.visibility-hidden {
+  visibility: hidden;
+}
+
 .btn {
   border: 1px;
   font-family: "Inter", sans-serif;
@@ -290,7 +298,7 @@ footer #dev-link {
 }
 
 .nav {
-  position: absolute;
+  position: fixed;
   height: 3rem;
   width: 280px;
   background-color: #4d4d4d;
@@ -353,6 +361,14 @@ footer #dev-link {
   margin-right: 0.8rem;
 }
 
+.nav__toggle--outer {
+  position: fixed;
+  z-index: 21;
+  font-size: 0.8rem;
+  top: 0.75rem;
+  right: 0.6rem;
+}
+
 @media screen and (max-width: 300px) {
   .nav {
     grid-template-columns: 83% 17%;
@@ -364,6 +380,10 @@ footer #dev-link {
 
   .nav__toggle {
     margin-right: 0.2rem;
+  }
+
+  .nav__toggle--outer {
+    right: 0.2rem;
   }
 }
 /* @media screen and (min-width: 767px) {
