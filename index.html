@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Reliable weather information for anywhere in the world with colorful graphics and animations.">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet"> 
@@ -12,22 +13,22 @@
     <title>What's The Weather?</title>
 </head>
 <body></body>
-    <button class="nav__toggle--outer hidden btn btn-square border-radius flex-center js-navToggleOuter"><i class="fas fa-bars"></i></button>
+    <button aria-label="Show navbar" class="nav__toggle--outer hidden btn btn-square border-radius flex-center js-navToggleOuter"><i class="fas fa-bars"></i></button>
     <nav class="nav foreground-max js-nav">
         <div class="nav__container nav__search-container js-searchContainer">
             <div>
                 <i class="fas fa-search"></i>
                 <input class="border-radius js-searchInput" type="text" placeholder="City or town">
             </div>
-            <button type="submit" class="btn btn-square border-radius flex-center js-searchSubmit">Go</button>  
+            <button type="submit" aria-label="Submit" class="btn btn-square border-radius flex-center js-searchSubmit">Go</button>  
         </div>
         <div class="nav__container nav__buttons-container">
-            <button class="btn btn-square border-radius js-toggleSettingsMenu"><i class="fas fa-cog"></i></button>
-            <button class="nav__toggle btn btn-square border-radius js-navToggle"><i class="fas fa-bars"></i></button>  
+            <button aria-label="Show settings menu" class="btn btn-square border-radius js-toggleSettingsMenu"><i class="fas fa-cog"></i></button>
+            <button aria-label="Hide navbar" class="nav__toggle btn btn-square border-radius js-navToggle"><i class="fas fa-bars"></i></button>  
         </div>
     </nav>
     <div class="animations__container js-animations">
-        <img class="animations__foreground-image js-foregroundImage" src="images/hills-cropped.png">
+        <img alt="green hills" class="animations__foreground-image js-foregroundImage" src="images/hills-cropped.png">
     </div>
     <section id="weather__section">
         <div class="weather__section--wrapper container transparent-dark-background foreground border-radius hidden js-weatherWrapper">
@@ -50,25 +51,25 @@
             <div class="settings__container container hidden border-radius js-settingsContainer">
                 <h2>Toggle Display Units</h2>
                 <span class="flex-center">
-                    <button class="settings__unit-button btn border-radius hidden js-toggleFarenheit">F&deg;</button>
-                    <button class="settings__unit-button btn border-radius js-toggleCelsius">C&deg;</button>
+                    <button aria-label="Toggle Farenheit" class="settings__unit-button btn border-radius hidden js-toggleFarenheit">F&deg;</button>
+                    <button aria-label="Toggle Celsius" class="settings__unit-button btn border-radius js-toggleCelsius">C&deg;</button>
                 </span>
                 <h2>Weather Animations</h2>
                 <p>Use the buttons below to view different background animations.</p>
                 <div class="settings__menu">
                     <div class="settings__button-container">
-                        <button id="cloud-rain" data-weather="Rain" class="settings__button btn btn-rect border-radius js-settingsOption">Rain</button>
-                        <button id="bolt" data-weather="Thunderstorm" class="settings__button btn btn-rect border-radius js-settingsOption">Thunderstorm</button>
-                        <button id="snowflake" data-weather="Snow" class="settings__button btn btn-rect border-radius js-settingsOption">Snow</button>
-                        <button id="smog" data-weather="Fog" class="settings__button btn btn-rect border-radius js-settingsOption">Fog</button>
+                        <button id="cloud-rain" aria-label="Toggle rain" data-weather="Rain" class="settings__button btn btn-rect border-radius js-settingsOption">Rain</button>
+                        <button id="bolt" aria-label="Toggle thunderstorm" data-weather="Thunderstorm" class="settings__button btn btn-rect border-radius js-settingsOption">Thunderstorm</button>
+                        <button id="snowflake" aria-label="Toggle snow" data-weather="Snow" class="settings__button btn btn-rect border-radius js-settingsOption">Snow</button>
+                        <button id="smog" aria-label="Toggle fog" data-weather="Fog" class="settings__button btn btn-rect border-radius js-settingsOption">Fog</button>
                     </div>
                     <div class="settings__icon-container">
                         <i class="fas fa-cloud-sun js-settingsIcon"></i>
                     </div>
                 </div>
                 <div class="settings__controls flex-center">
-                    <button id="settings__reset" class="btn btn-rect border-radius js-reset">Reset Page</button>
-                    <button id="settings__close" class="btn btn-rect border-radius js-closeSettingsMenu">Close Menu</button>
+                    <button id="settings__reset" aria-label="Reset animation to current weather" class="btn btn-rect border-radius js-reset">Reset Page</button>
+                    <button id="settings__close" aria-label="Close settings menu" class="btn btn-rect border-radius js-closeSettingsMenu">Close Menu</button>
                 </div>
             </div> 
         </div>
@@ -77,13 +78,13 @@
             <div class="loader__message border-radius js-loaderMessage">
                 <h2>Welcome</h2>
                 <p>Please click the [Start] button below to enable the geolocator API to find your location or manually enter a location in the search bar above. See below for privacy information.</p>
-                <span class="start-button__wrapper"><button class="start-button btn btn-rect border-radius font-bold js-start">Start</button></span>
+                <span class="start-button__wrapper"><button aria-label="Start app" class="start-button btn btn-rect border-radius font-bold js-start">Start</button></span>
             </div>
         </div>
     </section>
     <footer class="grid">
         <div id="privacy">
-            <p >This site does not save your data, but does send data to OpenWeather Ltd and Google. See their privacy policies: <a class="small-text" href="https://openweather.co.uk/privacy-policy">Open Weather Privacy Policy</a> &amp; <a class="small-text" href="https://policies.google.com/privacy?hl=en-US">Google Privacy Policy</a></p>    
+            <p >This site does not save your data, but does send data to OpenWeather Ltd and Google. See their privacy policies: <a href="https://openweather.co.uk/privacy-policy">Open Weather Privacy Policy</a> &amp; <a href="https://policies.google.com/privacy?hl=en-US">Google Privacy Policy</a></p>    
             <!-- <p>Cloud images provided by: <a href="https://www.youtube.com/c/OnlineTutorials4Designers/featured">Online Tutorials</a>. Background image provided by: <a href='https://pngtree.com/so/hillside'>hillside png from pngtree.com</a></p> -->
         </div>
         <div>
