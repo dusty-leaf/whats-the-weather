@@ -1,7 +1,7 @@
 import WeatherApp from './scripts/WeatherApp.js';
 import AutocompleteSearchBar from './scripts/AutocompleteSearchBar.js';
 import Utilities from './scripts/Utilities.js';
-import ErrorHandler from './scripts/ErrorHandler.js';
+//import ErrorHandler from './scripts/ErrorHandler.js';
 
 
 // --- ELEMENTS ---
@@ -22,7 +22,8 @@ const buttons = {
 const components = {
     nav: document.querySelector('.js-nav'),
     weatherWrapper: document.querySelector('.js-weatherWrapper'),
-    loader: document.querySelector('.js-loader')
+    loader: document.querySelector('.js-loader'),
+    loaderMessage: document.querySelector('.js-loaderMessage')
 }
 
 const inputs = {
@@ -65,6 +66,9 @@ const DOMMethods = {
     },
     toggleLoader: function(){
         Utilities.toggleHidden(components.loader);
+    },
+    clearLoaderMessage: function(){
+        components.loaderMessage.innerHTML = '';
     }
 }
 
@@ -96,7 +100,7 @@ buttons.start.addEventListener('click', async () => {
     appIsStarted = true;
 
     // clear welcome message
-    ErrorHandler.clearError();
+    DOMMethods.clearLoaderMessage();
 
     // call app.initialize() to fetch initial data
     await app.initialize()
@@ -134,6 +138,7 @@ buttons.searchSubmit.addEventListener('click', async () => {
         DOMMethods.toggleLoader();
     } else {
         appIsStarted = true;
+        DOMMethods.clearLoaderMessage();
     }
     
     DOMMethods.toggleSearch();

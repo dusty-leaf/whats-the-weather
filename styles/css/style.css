@@ -649,7 +649,7 @@ footer #dev-link {
 }
 
 .loader__container,
-.error__container {
+.loader__message {
   z-index: 20;
   height: 100%;
   width: 100%;
@@ -657,35 +657,35 @@ footer #dev-link {
 .loader__container i,
 .loader__container h2,
 .loader__container p,
-.error__container i,
-.error__container h2,
-.error__container p {
+.loader__message i,
+.loader__message h2,
+.loader__message p {
   color: white;
 }
 .loader__container h2,
 .loader__container p,
-.error__container h2,
-.error__container p {
+.loader__message h2,
+.loader__message p {
   text-align: left;
   margin: 1rem;
   z-index: 20;
   max-width: 55ch;
 }
-.loader__container .error__btn,
-.error__container .error__btn {
+.loader__container .start-button,
+.loader__message .start-button {
   text-align: center;
 }
-.loader__container .error__btn,
-.error__container .error__btn {
+.loader__container .start-button,
+.loader__message .start-button {
   margin: 1rem;
 }
 @media screen and (orientation: portrait) {
   .loader__container h2,
-.error__container h2 {
+.loader__message h2 {
     text-align: center;
   }
-  .loader__container .error__button-wrapper,
-.error__container .error__button-wrapper {
+  .loader__container .start-button__wrapper,
+.loader__message .start-button__wrapper {
     width: 100%;
     display: flex;
     justify-content: center;

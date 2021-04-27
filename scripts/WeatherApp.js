@@ -1,6 +1,5 @@
 import config from './config.js';
 import Geocoding from "./Geocoding.js";
-import ErrorHandler from './ErrorHandler.js';
 import Animations from './Animations.js';
 import RenderMethods from './RenderMethods.js';
 import Utilities from './Utilities.js';
@@ -81,14 +80,13 @@ class WeatherApp {
 
     async getWeather({lat, lon}){
         return new Promise(
-            (resolve, reject) => { 
+            (resolve, reject) => {
                 fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&appid=${config.OPENWEATHER_API_KEY}&units=imperial`)
                 .then((response) => response.json())
                 .then((data) => {
                     resolve(data);
                 })
                 .catch(error => {
-                    ErrorHandler.showError('Unable to reach weather service at this time. Please wait a few minutes, then refresh the page.');
                     reject(error);
                 });
             }
@@ -170,7 +168,7 @@ class WeatherApp {
                 }
             
                 if(!window.navigator.geolocation){
-                    ErrorHandler.showError('Geolocation is not supported by your browser.');
+                    alert('Geolocation is not supported by your browser.');
                 } else {
                     window.navigator.geolocation.getCurrentPosition(success, error);
                 }
@@ -246,11 +244,11 @@ class WeatherApp {
             // rerender DOM with updated state and disable Loader
             this.render();
             //this.keepWeatherDataUpdated();
-            ErrorHandler.clearError();
+            //ErrorHandler.clearError();
+
             //this.toggleLoader();
         })
         .catch((error) => {
-            ErrorHandler.showError('Oops. It looks like something went wrong. Please wait a few minutes then refresh the page.');
             console.error(error);
         });
     }

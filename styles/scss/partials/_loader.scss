@@ -10,7 +10,7 @@
 }
 
 .loader__container,
-.error__container {
+.loader__message {
   z-index: 20;
   height: 100%;
   width: 100%;
@@ -29,11 +29,11 @@
     max-width: 55ch;
   }
 
-  .error__btn {
+  .start-button {
     text-align: center;
   }
 
-  .error__btn {
+  .start-button {
     margin: 1rem;
   }
 
@@ -42,7 +42,7 @@
       text-align: center;
     }
 
-    .error__button-wrapper {
+    .start-button__wrapper {
       width: 100%;
       display: flex;
       justify-content: center;
