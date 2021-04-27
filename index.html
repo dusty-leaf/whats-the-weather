@@ -28,7 +28,20 @@
         </div>
     </nav>
     <div class="animations__container js-animations">
-        <img alt="green hills" class="animations__foreground-image js-foregroundImage" src="images/hills-cropped.png">
+        <img 
+        alt="green hills" 
+        class="animations__foreground-image js-foregroundImage" 
+        srcset="images/hills-400px.png 400w,
+                images/hills-768px.png 768w,
+                images/hills-900px.png 900w,
+                images/hills-1200px.png 1200w,
+                images/hills-max.png"
+        sizes="(max-width: 400px) 400px,
+                (max-width: 768px) 768px,
+                (max-width: 900px) 900px,
+                (max-width: 1200px) 1200px,
+                1999px"
+        src="images/hills-max.png">
     </div>
     <section id="weather__section">
         <div class="weather__section--wrapper container transparent-dark-background foreground border-radius hidden js-weatherWrapper">
