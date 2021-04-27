@@ -21,7 +21,8 @@ const buttons = {
 
 const components = {
     nav: document.querySelector('.js-nav'),
-    weatherWrapper: document.querySelector('.js-weatherWrapper')
+    weatherWrapper: document.querySelector('.js-weatherWrapper'),
+    loader: document.querySelector('.js-loader')
 }
 
 const inputs = {
@@ -41,7 +42,7 @@ const settingsContainerElement = document.querySelector('.js-settingsContainer')
 
 // --- DOM Helper Functions ---
 
-const DOMHelpers = {
+const DOMMethods = {
     toggleSearch: function(){
         Utilities.toggleDisabled(inputs.search);
         Utilities.toggleDisabled(buttons.searchSubmit);
@@ -61,9 +62,11 @@ const DOMHelpers = {
         Utilities.toggleHidden(components.nav);
         //Utilities.toggleHidden(buttons.navToggle);
         Utilities.toggleHidden(buttons.navToggleOuter);
+    },
+    toggleLoader: function(){
+        Utilities.toggleHidden(components.loader);
     }
 }
-
 
 // --- SETUP ---
 
@@ -74,7 +77,7 @@ const app = new WeatherApp();
 const search = new AutocompleteSearchBar(inputs.search, scripts.google, { types: ['(cities)'] });
 
 // Initial app state
-app.toggleLoader();
+DOMMethods.toggleLoader();
 Utilities.toggleDisabled(buttons.toggleSettingsMenu);
 
 let appIsStarted = false;
@@ -85,9 +88,8 @@ inputs.search.value = '';
 // --- USER CONTROLS ---
 
 // start app
-buttons.start.addEventListener('click', () => {
-    // call app.initialize() to fetch initial data
-    app.initialize();
+buttons.start.addEventListener('click', async () => {
+    
     // prevent user from selecting animations before app is initialized
     Utilities.toggleDisabled(buttons.toggleSettingsMenu);
 
@@ -95,6 +97,13 @@ buttons.start.addEventListener('click', () => {
 
     // clear welcome message
     ErrorHandler.clearError();
+
+    // call app.initialize() to fetch initial data
+    await app.initialize()
+    .then(() => {
+        // remove loader once app is initialized
+        DOMMethods.toggleLoader();
+    });
 
 });
 
@@ -122,12 +131,12 @@ buttons.searchSubmit.addEventListener('click', async () => {
     // don't disabled loader if user manually picks location on app start
     // then flag app as started
     if(appIsStarted === true){
-        app.toggleLoader();
+        DOMMethods.toggleLoader();
     } else {
         appIsStarted = true;
     }
     
-    DOMHelpers.toggleSearch();
+    DOMMethods.toggleSearch();
 
     // updata data
     await app.updateLocationData(newLocation)
@@ -140,13 +149,13 @@ buttons.searchSubmit.addEventListener('click', async () => {
         app.keepWeatherDataUpdated();
         
         // clear Loader & re-enable search once new data is rendered
-        app.toggleLoader();
-        DOMHelpers.toggleSearch();
+        DOMMethods.toggleLoader();
+        DOMMethods.toggleSearch();
 
         // enable settings if manual location pick at app start
         buttons.toggleSettingsMenu.disabled = false;
         if(components.weatherWrapper.classList.contains('hidden')){
-            DOMHelpers.toggleWeatherWrapper();
+            DOMMethods.toggleWeatherWrapper();
         }
         
     })
@@ -154,8 +163,8 @@ buttons.searchSubmit.addEventListener('click', async () => {
         
         // clear Loader & re-enable if search fails
         alert('Invalid location. Click [Ok] then try a different location.');
-        app.toggleLoader();
-        DOMHelpers.toggleSearch();
+        DOMMethods.toggleLoader();
+        DOMMethods.toggleSearch();
     });
     
 });
@@ -164,13 +173,13 @@ buttons.searchSubmit.addEventListener('click', async () => {
 buttons.navToggle.addEventListener('click', () =>{
     //components.nav.classList.toggle('foreground-max');
     // Utilities.toggleVisibility(components.nav);
-    // DOMHelpers.toggleNavToggles();
-    DOMHelpers.toggleNav();
+    // DOMMethods.toggleNavToggles();
+    DOMMethods.toggleNav();
 });
 
 buttons.navToggleOuter.addEventListener('click', () =>{
     //components.nav.classList.toggle('foreground-max');
-    DOMHelpers.toggleNav();
+    DOMMethods.toggleNav();
 });
 
 
@@ -178,12 +187,12 @@ buttons.navToggleOuter.addEventListener('click', () =>{
 
 // open & close settings menu
 buttons.toggleSettingsMenu.addEventListener('click', () => {
-    DOMHelpers.toggleMenu();
+    DOMMethods.toggleMenu();
     app.toggleAppPause();
 });
 
 buttons.closeSettingsMenu.addEventListener('click', () => {
-    DOMHelpers.toggleMenu();
+    DOMMethods.toggleMenu();
     app.toggleAppPause();
 });
 
@@ -206,7 +215,7 @@ buttons.settingsOptions.forEach(el => {
 buttons.settingsOptions.forEach(el => {
     el.addEventListener('click', () => {
         app.updateState('toggledWeather', el.dataset.weather);
-        DOMHelpers.toggleMenu();
+        DOMMethods.toggleMenu();
         app.toggleAppPause();
         app.keepWeatherDataUpdated();
         app.render();
@@ -222,7 +231,7 @@ buttons.reset.addEventListener('click', () => {
         ['timeRemainingInCycle', 60000]
     ]);
     app.toggleAppPause();
-    DOMHelpers.toggleMenu();
+    DOMMethods.toggleMenu();
     app.render();
 });
 
@@ -230,14 +239,14 @@ buttons.reset.addEventListener('click', () => {
 
 // display correct unit button on start based on saved user preference
 if(localStorage.getItem('unit') === 'celsius'){
-    DOMHelpers.toggleUnitButtons();
+    DOMMethods.toggleUnitButtons();
 }
 
 // toggle units (display only) to farenheit or celsius
 buttons.toggleFarenheit.addEventListener('click', () => {
     app.updateState('unit', 'imperial');
     localStorage.setItem('unit', 'imperial');
-    DOMHelpers.toggleUnitButtons();
+    DOMMethods.toggleUnitButtons();
     app.toggleDisplayUnits(buttons.toggleFarenheit, buttons.toggleCelsius);
 
 });
@@ -245,6 +254,6 @@ buttons.toggleFarenheit.addEventListener('click', () => {
 buttons.toggleCelsius.addEventListener('click', () => {
     app.updateState('unit', 'celsius');
     localStorage.setItem('unit', 'celsius');
-    DOMHelpers.toggleUnitButtons();
+    DOMMethods.toggleUnitButtons();
     app.toggleDisplayUnits();
 });

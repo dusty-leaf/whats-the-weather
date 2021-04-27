@@ -81,7 +81,7 @@ class WeatherApp {
 
     async getWeather({lat, lon}){
         return new Promise(
-            (resolve, reject) => {
+            (resolve, reject) => { 
                 fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&appid=${config.OPENWEATHER_API_KEY}&units=imperial`)
                 .then((response) => response.json())
                 .then((data) => {
@@ -188,7 +188,7 @@ class WeatherApp {
         });
     }
 
-    toggleLoader(isLoaderAlreadyRunning){
+    /* toggleLoader(isLoaderAlreadyRunning){
         const loaderElement = document.querySelector('.js-loader');
     
         if(isLoaderAlreadyRunning && !loaderElement.classList.contains('hidden')){
@@ -196,7 +196,7 @@ class WeatherApp {
         }
     
         Utilities.toggleHidden(loaderElement);
-    }
+    } */
 
     toggleIsPaused(){
         if(this.state.isPaused){ return false; }
@@ -247,9 +247,12 @@ class WeatherApp {
             this.render();
             //this.keepWeatherDataUpdated();
             ErrorHandler.clearError();
-            this.toggleLoader();
+            //this.toggleLoader();
         })
-        .catch(error => ErrorHandler.showError(error));
+        .catch((error) => {
+            ErrorHandler.showError('Oops. It looks like something went wrong. Please wait a few minutes then refresh the page.');
+            console.error(error);
+        });
     }
 }
 
