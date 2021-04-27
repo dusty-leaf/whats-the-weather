@@ -185,20 +185,20 @@ class Animations {
               break;
             case 'Thunderstorm':
               this.drawClouds(5, timezone);
-              this.drawParticles('Rain', 100);
+              this.drawParticles('Rain', 50);
               this.drawLightning();
               break;
             case 'Drizzle':
               this.drawClouds(4, timezone);
-              this.drawParticles('Rain', 30);
+              this.drawParticles('Rain', 15);
               break;
             case 'Rain':
               this.drawClouds(5, timezone);
-              this.drawParticles('Rain', 100);
+              this.drawParticles('Rain', 25);
               break;
             case 'Snow':
               this.drawClouds(5, timezone);
-              this.drawParticles('Snow', 80);
+              this.drawParticles('Snow', 40);
               break;
             case 'Mist':
             case 'Ash':
