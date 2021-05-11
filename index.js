@@ -1,7 +1,6 @@
 import WeatherApp from './scripts/WeatherApp.js';
 import AutocompleteSearchBar from './scripts/AutocompleteSearchBar.js';
 import Utilities from './scripts/Utilities.js';
-//import ErrorHandler from './scripts/ErrorHandler.js';
 
 
 // --- ELEMENTS ---
@@ -61,7 +60,6 @@ const DOMMethods = {
     },
     toggleNav: function(){
         Utilities.toggleHidden(components.nav);
-        //Utilities.toggleHidden(buttons.navToggle);
         Utilities.toggleHidden(buttons.navToggleOuter);
     },
     toggleLoader: function(){
@@ -122,7 +120,7 @@ buttons.searchSubmit.addEventListener('click', async () => {
     clearInterval(app.state.clockInterval)
 
     // clear welcome message if present
-    ErrorHandler.clearError();
+    // ErrorHandler.clearError();
 
     // save the city/town name to app.state.location for display purposes
     app.updateState('location', inputs.search.value.slice(0, inputs.search.value.indexOf(',')));
@@ -176,14 +174,10 @@ buttons.searchSubmit.addEventListener('click', async () => {
 
 // show/hide nav
 buttons.navToggle.addEventListener('click', () =>{
-    //components.nav.classList.toggle('foreground-max');
-    // Utilities.toggleVisibility(components.nav);
-    // DOMMethods.toggleNavToggles();
     DOMMethods.toggleNav();
 });
 
 buttons.navToggleOuter.addEventListener('click', () =>{
-    //components.nav.classList.toggle('foreground-max');
     DOMMethods.toggleNav();
 });
 

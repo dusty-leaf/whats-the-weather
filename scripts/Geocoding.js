@@ -4,7 +4,7 @@ class Geocoding {
     static geocode(location){
         return new Promise(
             (resolve, reject) => {
-                fetch(`https://maps.googleapis.com/maps/api/geocode/json?address=${location}&key=${config.GOOGLE_API_KEY}`)
+                fetch(`https://blooming-sands-36961.herokuapp.com/geocode?address=${location}`)
                     .then(response => response.json())
                     .then((data) => {
                         resolve(data);
@@ -19,7 +19,7 @@ class Geocoding {
     static reverseGeocode(lat, lon, API){
         return new Promise(
             (resolve, reject) => {
-                fetch(`https://maps.googleapis.com/maps/api/geocode/json?latlng=${lat},${lon}&result_type=locality&key=${API}`)
+                fetch(`https://blooming-sands-36961.herokuapp.com/reversegeocode?lat=${lat}&lon=${lon}`)
                     .then(response => response.json())
                     .then((data) => {
                         resolve(data.results[0].address_components[0].long_name);

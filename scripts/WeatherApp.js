@@ -81,7 +81,7 @@ class WeatherApp {
     async getWeather({lat, lon}){
         return new Promise(
             (resolve, reject) => {
-                fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${lon}&exclude=minutely,hourly&appid=${config.OPENWEATHER_API_KEY}&units=imperial`)
+                fetch(`https://blooming-sands-36961.herokuapp.com/weather?lat=${lat}&lon=${lon}`)
                 .then((response) => response.json())
                 .then((data) => {
                     resolve(data);
@@ -186,16 +186,6 @@ class WeatherApp {
         });
     }
 
-    /* toggleLoader(isLoaderAlreadyRunning){
-        const loaderElement = document.querySelector('.js-loader');
-    
-        if(isLoaderAlreadyRunning && !loaderElement.classList.contains('hidden')){
-            return;
-        }
-    
-        Utilities.toggleHidden(loaderElement);
-    } */
-
     toggleIsPaused(){
         if(this.state.isPaused){ return false; }
         return true;
@@ -243,10 +233,7 @@ class WeatherApp {
         .then(() => {
             // rerender DOM with updated state and disable Loader
             this.render();
-            //this.keepWeatherDataUpdated();
-            //ErrorHandler.clearError();
-
-            //this.toggleLoader();
+            this.keepWeatherDataUpdated();
         })
         .catch((error) => {
             console.error(error);
