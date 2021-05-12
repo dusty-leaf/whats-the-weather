@@ -2,11 +2,11 @@
   "name": "whats-the-weather",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "sass-watch": "sass --watch ./styles/scss/style.scss ./styles/css/style.css",
-    "http": "http-server"
+    "http": "http-server",
+    "build": "parcel build index.html"
   },
   "keywords": [],
   "author": "",
