@@ -119,7 +119,7 @@ class Animations {
         for(let x = 0; x < num; x++){
             let cloud = document.createElement('img');
             //clouds provided by https://www.youtube.com/watch?v=FWW38GuIo7M
-            cloud.src = `../images/cloud${x + 1}.png`; 
+            cloud.src = `images/cloud${x + 1}.png`; 
             cloud.alt = ""; //allows screen readers to ignore clouds
             cloud.classList.add('cloud', `speed-${clouds[x]}`, 'js-gfx');
             // clouds have half-opacity at night time for aesthetic purposes
