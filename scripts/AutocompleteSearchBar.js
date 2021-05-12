@@ -1,5 +1,3 @@
-import config from './config.js';
-
 class AutocompleteSearchBar {
     constructor(searchBar, googleScript, options){
         this.searchBar = searchBar;

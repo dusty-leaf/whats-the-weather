@@ -1,4 +1,3 @@
-import config from './config.js';
 import Geocoding from "./Geocoding.js";
 import Animations from './Animations.js';
 import RenderMethods from './RenderMethods.js';
@@ -224,7 +223,7 @@ class WeatherApp {
         })
         .then(async () => {
             // use coords to get place name and add it to state
-            await Geocoding.reverseGeocode(this.state.lat, this.state.lon, config.GOOGLE_API_KEY)
+            await Geocoding.reverseGeocode(this.state.lat, this.state.lon)
             .then(data => this.state.location = data)
         })
         .then(async () => {
