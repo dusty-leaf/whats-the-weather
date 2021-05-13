@@ -119,9 +119,6 @@ buttons.searchSubmit.addEventListener('click', async () => {
     // clear the current clock
     clearInterval(app.state.clockInterval)
 
-    // clear welcome message if present
-    // ErrorHandler.clearError();
-
     // save the city/town name to app.state.location for display purposes
     app.updateState('location', inputs.search.value.slice(0, inputs.search.value.indexOf(',')));
 
