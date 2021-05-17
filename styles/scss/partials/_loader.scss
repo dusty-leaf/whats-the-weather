@@ -2,11 +2,11 @@
 @use '../base/colors';
 
 .loader__container {
-  width: 100%;
   grid-template-rows: 60% 40%;
   justify-items: center;
   align-items: center;
   row-gap: 1rem;
+  position: relative;
 }
 
 .loader__container,
