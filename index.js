@@ -1,3 +1,5 @@
+'use strict';
+
 import WeatherApp from './scripts/WeatherApp.js';
 import AutocompleteSearchBar from './scripts/AutocompleteSearchBar.js';
 import Utilities from './scripts/Utilities.js';

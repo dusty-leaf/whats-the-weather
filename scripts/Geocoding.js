@@ -2,7 +2,7 @@ class Geocoding {
     static geocode(location){
         return new Promise(
             (resolve, reject) => {
-                fetch(`https://blooming-sands-36961.herokuapp.com/geocode?address=${location}`)
+                fetch(`https://radiant-lowlands-59230.herokuapp.com/geocode?address=${location}`)
                     .then(response => response.json())
                     .then((data) => {
                         resolve(data);
@@ -17,10 +17,10 @@ class Geocoding {
     static reverseGeocode(lat, lon, API){
         return new Promise(
             (resolve, reject) => {
-                fetch(`https://blooming-sands-36961.herokuapp.com/reversegeocode?lat=${lat}&lon=${lon}`)
+                fetch(`https://radiant-lowlands-59230.herokuapp.com/reversegeocode?lat=${lat}&lon=${lon}`)
                     .then(response => response.json())
                     .then((data) => {
-                        resolve(data.results[0].address_components[0].long_name);
+                        resolve(data.json.results[0].address_components[0].long_name);
                     })
                     .catch(err => {
                         reject(err);

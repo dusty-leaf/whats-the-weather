@@ -1,3 +1,5 @@
+'use strict';
+
 import Geocoding from "./Geocoding.js";
 import Animations from './Animations.js';
 import RenderMethods from './RenderMethods.js';
@@ -80,10 +82,10 @@ class WeatherApp {
     async getWeather({lat, lon}){
         return new Promise(
             (resolve, reject) => {
-                fetch(`https://blooming-sands-36961.herokuapp.com/weather?lat=${lat}&lon=${lon}`)
-                .then((response) => response.json())
-                .then((data) => {
-                    resolve(data);
+                fetch(`https://radiant-lowlands-59230.herokuapp.com/onecall?lat=${lat}&lon=${lon}`)
+                .then(response => response.json())
+                .then(data => {
+                    resolve(data.json);
                 })
                 .catch(error => {
                     reject(error);
