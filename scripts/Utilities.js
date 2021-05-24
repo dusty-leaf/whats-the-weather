@@ -1,3 +1,5 @@
+'use strict';
+
 class Utilities {
     static getDateTime(timezone){
         const time = luxon.DateTime;

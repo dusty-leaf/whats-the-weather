@@ -1,3 +1,5 @@
+'use strict';
+
 import Utilities from './Utilities.js';
 
 class RenderMethods {
