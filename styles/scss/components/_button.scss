@@ -8,6 +8,10 @@
   border: 1px solid black;
   cursor: pointer;
   font-weight: bold;
+
+  i {
+    color: colors.$bg-gray;
+  }
 }
 
 .btn-square {

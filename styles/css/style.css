@@ -115,6 +115,9 @@ html {
   cursor: pointer;
   font-weight: bold;
 }
+.btn i {
+  color: #4d4d4d;
+}
 
 .btn-square {
   height: 1.5rem;
