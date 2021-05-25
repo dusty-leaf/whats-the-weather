@@ -22,6 +22,7 @@ class Geocoding {
                 fetch(`https://radiant-lowlands-59230.herokuapp.com/reversegeocode?lat=${lat}&lon=${lon}`)
                     .then(response => response.json())
                     .then((data) => {
+                        console.log(data);
                         resolve(data.json.results[0].address_components[0].long_name);
                     })
                     .catch(err => {

@@ -92,6 +92,7 @@ inputs.search.value = '';
 // --- USER CONTROLS ---
 
 // start app
+// async
 buttons.start.addEventListener('click', async () => {
     
     // prevent user from selecting animations before app is initialized
@@ -113,6 +114,7 @@ buttons.start.addEventListener('click', async () => {
 
 
 // select new location
+// async
 buttons.searchSubmit.addEventListener('click', async () => {
 
     // do nothing if there's no search value
@@ -162,7 +164,7 @@ buttons.searchSubmit.addEventListener('click', async () => {
         
     })
     .catch(err => {
-        
+        console.log(err);
         // clear Loader & re-enable if search fails
         alert('Invalid location. Click [Ok] then try a different location.');
         DOMMethods.toggleLoader();

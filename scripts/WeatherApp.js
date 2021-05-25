@@ -181,8 +181,8 @@ class WeatherApp {
         await Geocoding.geocode(location)
         .then(data => {
             this.updateState([
-                ['lat', data.results[0].geometry.location.lat],
-                ['lon', data.results[0].geometry.location.lng]
+                ['lat', data.json.results[0].geometry.location.lat],
+                ['lon', data.json.results[0].geometry.location.lng]
             ]);
         });
     }
